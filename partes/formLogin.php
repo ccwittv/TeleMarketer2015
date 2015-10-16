@@ -10,9 +10,11 @@ if(!isset($_SESSION['registrado'])){  ?>
     <div id="formLogin" class="container">
 
       <form  class="form-ingreso " onsubmit="validarLogin();return false;">
-        <h2 class="form-ingreso-heading">Ingrese su DNI</h2>
-        <label for="dni" class="sr-only">DNI</label>
-                <input type="number" id="dni" class="form-control" min="1000000" max="99000000" placeholder="DNI" required="" autofocus="" value="<?php  if(isset($_COOKIE["registro"])){echo $_COOKIE["registro"];}?>">
+        <h2 class="form-ingreso-heading">Ingrese sus Datos</h2>
+        <label for="correo" class="sr-only">Usuario (correo electrónico)</label>
+                <input type="email" id="correo" class="form-control" placeholder="Usuario (correo electrónico)" required="" autofocus="" value="<?php  if(isset($_COOKIE["registro"])){echo $_COOKIE["registro"];}?>">
+        <label for="clave" class="sr-only">Clave</label>
+        <input type="password" id="clave" minlength="6" class="form-control" placeholder="Clave" required="">
         <div class="checkbox">
           <label>
             <input type="checkbox" id="recordarme" checked> Recordame

@@ -43,7 +43,7 @@
 
 		<nav>
 			<ul id="main-nav" class="clearfix">
-				<li><a onclick="MostarLogin()" class="btn">Ingreso</a></li>
+				<li><a onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>
 				<li><a onclick="Mostrar('votacion')" class="btn">Carga de VENTAS</a> </li>
 				<li><a onclick="" class="btn">Carga de PRODUCTOS</a> </li>
 				<li><a onclick="Mostrar('MostrarGrilla')" class="btn">Listado de PRODUCTOS</a> </li>
