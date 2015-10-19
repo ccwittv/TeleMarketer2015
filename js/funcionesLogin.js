@@ -1,30 +1,34 @@
 function validarLogin()
 {
-		var varDni=$("#dni").val();
+		var varCorreo=$("#correo").val();
+		var varClave=$("#clave").val();
 		var recordar=$("#recordarme").is(':checked');
 
 $("#sidebar").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>");
 	
 
 	var funcionAjax=$.ajax({
-		url:"php/validarDni.php",
+		url:"php/validarLogin.php",
 		type:"post",
 		data:{
+			usuario:varCorreo,
+			clave:varClave,
 			recordarme:recordar,
-			dni:varDni,
 		}
 	});
 
 
 	funcionAjax.done(function(retorno){
-			if(retorno.trim()=="ingreso"){	
+		alert(retorno);
+		if(retorno.trim()=="ingreso")
+			{	
 				Mostrar('votacion');
 				//MostarLogin();
 			}
         else
-        {
-			MostarLogin();
-        }
+        	{
+				MostarLogin();
+        	}
 	});
 	funcionAjax.fail(function(retorno){
 		$("#botonesABM").html(":(");

@@ -9,4 +9,13 @@ class usuario
   	public $clave;
     public $foto;
 
+   public static function validarUsuario($usuario,$clave)
+     {
+            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where mail='$usuario' and clave='$clave'");            
+            $consulta->execute();         
+            $usuarioBuscado = $consulta->fetchObject('usuario');             
+            return $usuarioBuscado; 
+     } 
+
 }   
