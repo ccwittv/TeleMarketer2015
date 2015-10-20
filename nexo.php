@@ -53,7 +53,7 @@ switch ($queHago) {
 
 		break;
     case 'guardarMarcadores':
-        session_start();
+        /*session_start();
         if(isset($_POST["marcadores"]))
         {
             $filename = "ArchivosTxt/marcadores" . getdate()[0] . ".txt";
@@ -75,7 +75,7 @@ switch ($queHago) {
         echo "Marcadores guardados con exito";
         }
         else
-            echo "No ingreso marcador/es a guardar";
+            echo "No ingreso marcador/es a guardar";*/
         break;
 	default:
 		# code...

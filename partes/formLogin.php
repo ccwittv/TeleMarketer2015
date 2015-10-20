@@ -24,14 +24,14 @@ if(!isset($_SESSION['registrado'])){  ?>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
       </form>
 
-
-
     </div> <!-- /container -->
 
-  <?php }else{    echo"<h3>usted '".$_SESSION['registrado']."' esta logeado. </h3>";?>         
-    <button onclick="deslogear()" class="btn btn-lg btn-danger btn-block" type="button"><span class="glyphicon glyphicon-off">&nbsp;</span>Deslogearme</button>
- <script type="text/javascript">
- MostarBotones();</script>
-  <?php  }  ?>
+  <?php }
+  else
+        { 
+          echo"<h3>usted '".$_SESSION['registrado']."' esta logeado. </h3>";?>         
+          <button onclick="deslogear()" class="btn btn-lg btn-danger btn-block" type="button"><span class="glyphicon glyphicon-off">&nbsp;</span>Deslogearme</button>
+          <script type="text/javascript"> MostarBotones(); </script>
+  <?php } ?>
     
   

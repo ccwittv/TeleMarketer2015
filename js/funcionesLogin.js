@@ -39,7 +39,7 @@ $("#sidebar").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>")
 function deslogear()
 {	
 	var funcionAjax=$.ajax({
-		url:"php/deslogearDni.php",
+		url:"php/deslogearUsuario.php",
 		type:"post"		
 	});
 	funcionAjax.done(function(retorno){
