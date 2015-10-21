@@ -45,9 +45,9 @@
 			<ul id="main-nav" class="clearfix">
 				<li><a onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>
 				<li><a onclick="Mostrar('votacion')" class="btn">Carga de VENTAS</a> </li>
-				<li><a onclick="" class="btn">Carga de PRODUCTOS</a> </li>
+				<li><a onclick="" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
 				<li><a onclick="Mostrar('MostrarGrilla')" class="btn">Listado de PRODUCTOS</a> </li>
-				<li><a onclick="" class="btn">Ventas y Estadísticas</a> </li>
+				<li><a onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>
 				
 			</ul>
 			<!-- /#main-nav --> 
@@ -65,7 +65,7 @@
 		<article  class="post clearfix">
 
 			<header  >
-				<h1 class="post-title"><a href="#">Nombre.Apellido</a></h1>
+				<h1 class="post-title"><a href="#" >Nombre.Apellido</a></h1>
 				<p class="post-meta"><time class="post-date" datetime="2011-05-08" pubdate>2015</time> <em>en</em> <a href="#">UTN FRA</a></p>
 			</header>
 			<hr>

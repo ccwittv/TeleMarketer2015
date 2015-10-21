@@ -10,17 +10,32 @@ if(isset($_SESSION['registrado'])){  ?>
     <div class="container">
 
       <form  class="form-ingreso " onsubmit="GuardarVoto(); return false;">
-        <h2 class="form-ingreso-heading">Votar</h2>
+        <h2 class="form-ingreso-heading">Datos Cliente</h2>
+        <select id="producto" required="" >
+          <option value="Producto1">Articulo 1</option>
+          <option value="Producto2">Articulo 2</option>
+          <option value="Producto3">Articulo 3</option>
+        </select>
+        <br>
+        <select id="provincia" required="" onchange="document.getElementById('localidad').disabled=false;">
+          <option value="Provincia1">Buenos Aires</option>
+          <option value="Provincia2">CABA</option>
+          <option value="Provincia3">Neuquen</option>
+        </select>
+        <br>
+        <textarea id="localidad" disabled placeholder="Localidad"></textarea>
+        <br>
+        <textarea id="domicilio" disabled placeholder="Domicilio"></textarea>
         <label for="Provincia" class="sr-only" hidden>Provincia</label>
                 <input type="text" id="provincia" class="form-control" placeholder="Provincia" required="" autofocus="">
         <label for="localidad" class="sr-only" hidden>Localidad</label>
                 <input type="text" id="localidad" class="form-control" placeholder="Localidad" required="" autofocus="">
         <label for="direccion" class="sr-only" hidden>Provincia</label>
-                <input type="text" id="direccion" class="form-control" placeholder="Direccion" required="" autofocus="">
-        <select id="candidato">
+                <input type="text" id="direccion" class="form-control" placeholder="Direccion" required="" autofocus="">         
+<!--        <select id="candidato">
           <option value="Candidato1">Candidato 1</option>
           <option value="Candidato2">Candidato 2</option>
-          <option value="Candidato3">Candidato 3</option>
+          <option value="Candidato3">Candidato 3</option> -->
         </select>
         <br>
           <label>
