@@ -5,7 +5,7 @@ $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
 	case 'votacion':
-		include("partes/formVotacion.php");
+		include("partes/formVenta.php");
 		break;
 	case 'desloguear':
 			include("php/deslogearDni.php");
@@ -20,7 +20,7 @@ switch ($queHago) {
 			include("partes/formLogin.php");
 		break;
 	case 'MostrarFormAlta':
-			include("partes/formVotacion.php");
+			include("partes/formVenta.php");
 		break;
     case 'VerEnMapa':
         
