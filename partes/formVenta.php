@@ -20,13 +20,15 @@
           document.getElementById(idTextArea).disabled=true;
         }
 
-//      'input:radio[name="sexo"][value="F"]').prop('checked', true)
     }
 </script>
  
 <?php 
- 
 session_start();
+require_once("clases/AccesoDatos.php");
+require_once("clases/provincia.php");
+$arrayDeProvincias=provincia::TraerTodasLasProvincias();
+
 if(isset($_SESSION['registrado'])){  ?>
     <div class="container">
 
@@ -39,62 +41,71 @@ if(isset($_SESSION['registrado'])){  ?>
           <option value="Producto3">Articulo 3</option> 
         </select>
         
-        <input type="text" id="cantidad" min="1000000" max="99000000" placeholder="Cantidad" required="" disabled>
+        <input type="text" id="cantidad" min="1000000" max="99000000" placeholder="Cantidad" required="" disabled style="width:100px">
+        <input type="text" disabled id="precio" placeholder="Precio Unitario" style="width:100px">
+        <input type="text" disabled id="total"  placeholder="Total" style="width:100px">
         
         
         <div class="panel panel-default">
          <div class="panel-heading">Formas de pago:</div>
           <div class="panel-body">
             <label>
-             <input type="radio" Name="formaspago" id="formaspago" value="T">Transferencia o depósito
-             <input type="radio" Name="formaspago" id="formaspago" value="O">Otra forma de pago
+             <input type="radio" Name="formaspago" id="formaspago" value="T" required="">Transferencia o depósito
+             <input type="radio" Name="formaspago" id="formaspago" value="O" required="">Otra forma de pago
             </label>
           </div> 
         </div> 
 
         <select id="provincia" required="" onchange="Habilitar('localidad','domicilio')" name="provincia" >
             <option value="" disabled selected >Seleccionar provincia</option>
-            <option value="Provincia1">Buenos Aires</option>
-            <option value="Provincia2">CABA</option>
-            <option value="Provincia3">Neuquen</option>
+            <?php foreach ($arrayDeProvincias as $provincia) 
+                {            
+                  echo "<option value='$provincia->provincia'>$provincia->provincia</option>";
+                    
+                }?>
         </select>
         <br>
-        <textarea id="localidad" disabled placeholder="Localidad"></textarea>
+        <textarea id="localidad" class="form-control" disabled placeholder="Localidad"></textarea>
         <br>
-        <textarea id="domicilio" disabled placeholder="Domicilio"></textarea>
+        <textarea id="domicilio" class="form-control" disabled placeholder="Domicilio"></textarea>
         <br>
         
         <label>
-            <input type="radio" Name="sexo" id="sexo" value="M">Masculino
-            <input type="radio" Name="sexo" id="sexo" value="F">Femenino
+            <input type="radio" Name="sexo" id="sexo" value="M" onchange="Habilitar('apellidonombre')">Masculino
+            <input type="radio" Name="sexo" id="sexo" value="F" onchange="Habilitar('apellidonombre')">Femenino
         </label>
         <br>
         
         <label for="DNI" class="sr-only" hidden>DNI</label>
                 <input type="text" id="dni" class="" placeholder="DNI" required="">
-        <br>      
-        <label for="apellido" class="sr-only" hidden>apellido</label>
-                <input type="text" id="apellido" class="" placeholder="Apellido" required="">
-        <label for="nombre" class="sr-only" hidden>nombre</label>
-                <input type="text" id="nombre" class="" placeholder="Nombre" required="">               
-          
-        <!--<div class="panel panel-default">
-            <div class="panel-heading">Contacto 1</div>
-              <div class="panel-body">-->
-         <fieldset class="checkbox">
+        <br>
+        <textarea id="apellidonombre" class="form-control" disabled placeholder="Apellido y nombre"></textarea>      
+
+        <fieldset class="checkbox">
             <legend class="checkbox"><h5>Contacto 1:</h5></legend> 
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" id="telefonofijo"    onchange="HabilitarPorCheckbox('telefonofijo','contactouno')"> Telefono fijo <br />
-                    <input type="checkbox" id="telefonotrabajo" onclick="HabilitarPorCheckbox('telefonotrabajo','contactouno')"> Telefono trabajo <br />
-                    <input type="checkbox" id="telefonocelular" onclick="HabilitarPorCheckbox('telefonocelular','contactouno')"> Telefono celular
+                    <input type="checkbox" id="telefonocelular" onclick="HabilitarPorCheckbox('telefonocelular','tcelular')"> Teléfono celular </input> 
+                    <input type="text" id="tcelular" value="" disabled> </input> </br>
+                    <input type="checkbox" id="correoelectronico" onclick="HabilitarPorCheckbox('correoelectronico','mail')"> Correo electrónico </input> 
+                    <input type="text" id="mail" value="" disabled> </input> </br>
                   </label>  
                 </div>
              </leggend>
          </fieldset> 
-              <!--</div>
-        </div>   -->
-        <textarea id="contactouno" disabled placeholder="Contacto"></textarea>   
+
+         <fieldset class="checkbox">
+            <legend class="checkbox"><h5>Contacto 2:</h5></legend> 
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="telefonofijo" onclick="HabilitarPorCheckbox('telefonofijo','tfijo')"> Teléfono fijo </input> 
+                    <input type="text"    id="tfijo" value="" disabled> </input> </br>
+                    <input type="checkbox" id="telefonotrabajo" onclick="HabilitarPorCheckbox('telefonotrabajo','ttrabajo')"> Teléfono trabajo </input> 
+                    <input type="text" id="ttrabajo" value="" disabled> </input> </br>                    
+                  </label>  
+                </div>
+             </leggend>
+         </fieldset> 
           
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
         <input type="hidden" name="id" id="id" readonly>

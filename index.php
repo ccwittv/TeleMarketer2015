@@ -36,19 +36,17 @@
 
 	<header id="header">
 
-		<hgroup>
+		<!--<hgroup>
 			<h1 id="site-logo"><a href="#">Trabajo Práctico</a></h1>
 			<h2 id="site-description">Lab 4 2C 2015</h2>
-		</hgroup>
-
+		</hgroup>-->
 		<nav>
-			<ul id="main-nav" class="clearfix">
+			<ul id="main-nav" class="clearfix">		
 				<li><a onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>
 				<li><a onclick="Mostrar('votacion')" class="btn">Carga de VENTAS</a> </li>
 				<li><a onclick="" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
 				<li><a onclick="Mostrar('MostrarGrilla')" class="btn">Listado de PRODUCTOS</a> </li>
-				<li><a onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>
-				
+				<li><a onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>				
 			</ul>
 			<!-- /#main-nav --> 
 		</nav>
@@ -60,7 +58,7 @@
 	</header>
 	<!-- /#header -->
 	
-	<div id="content" >
+	<div id="content" style="width:700px;">
 
 		<article  class="post clearfix">
 
@@ -69,7 +67,7 @@
 				<p class="post-meta"><time class="post-date" datetime="2011-05-08" pubdate>2015</time> <em>en</em> <a href="#">UTN FRA</a></p>
 			</header>-->
 			<hr>
-			<div id="principal">
+			<div id="principal" >
 
 <?php
 
