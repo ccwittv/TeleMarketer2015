@@ -71,35 +71,78 @@ function VerEnMapa(prov, dire, loc, id)
 	});
 }
 
-function GuardarVoto()
+function GuardarVenta()
 {
+        
         var id = $("#id").val()
-		var candidato=$("#candidato").val();
+		var producto=$("#producto").val();
+		var cantidad=$("#cantidad").val();
+		var formadepago=$('input:radio[name=formaspago]:checked').val();
+		
+        var fecha = new Date();
+		var fechaventa= fecha.getFullYear() + "-" + (fecha.getMonth() +1) + "-" + fecha.getDate();
+		
 		var provincia=$("#provincia").val();
         var localidad=$("#localidad").val();
-        var direccion=$("#direccion").val();
+        var domicilio=$("#domicilio").val();
 		var sexo=$('input:radio[name=sexo]:checked').val();
+		var dni=$("#dni").val();
+		var apeynom=$("#apellidonombre").val();
+
+		var tcelular = null;
+		var mail = null;
+		var tfijo = null;
+		var ttrabajo = null;
+
+		if ($("#telefonocelular").is(':checked'))
+			{
+				tcelular=$("#tcelular").val();				
+			}
+
+		if ($("#correoelectronico").is(':checked'))
+			{
+				mail=$("#mail").val();				
+			}	
+
+		if ($("#telefonofijo").is(':checked'))
+			{
+				tfijo=$("#tfijo").val();				
+			}		
+
+		if ($("#telefonotrabajo").is(':checked'))
+			{
+				ttrabajo=$("#ttrabajo").val();				
+			}			
+
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"POST",
 		data:{
-			queHacer:"GuardarVoto",
-			candidato:candidato,
-			provincia:provincia,
-            localidad:localidad,
-            direccion: direccion,
-			sexo:sexo,
-            id: id
-		}
-	});
-	funcionAjax.done(function(retorno){
-		//alert(retorno);
-			deslogear();
-		$("#informe").html("cantidad de agregados "+ retorno);	
-		
-	});
-	funcionAjax.fail(function(retorno){	
-		//alert(retorno);
-		$("#informe").html(retorno.responseText);	
-	});	
+				queHacer:"GuardarVenta",
+				id:id,
+				producto:producto,
+            	cantidad:cantidad,
+            	formadepago:formadepago,
+				fechaventa:fechaventa,
+            	provincia:provincia,
+            	localidad:localidad,
+            	domicilio:domicilio,
+            	sexo:sexo,
+            	dni:dni,
+            	apeynom:apeynom,
+            	tcelular:tcelular,
+            	mail:mail,
+            	tfijo:tfijo,
+            	ttrabajo:ttrabajo
+			 }
+			});
+		funcionAjax.done(function(retorno)
+			{
+		      alert(retorno);
+			});
+		funcionAjax.fail(function(retorno)
+			{	
+				//alert(retorno);
+				$("#informe").html(retorno.responseText);	
+			});	
 }

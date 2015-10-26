@@ -1,5 +1,7 @@
 <?php 
 require_once("clases/AccesoDatos.php");
+require_once("clases/producto.php");
+require_once("clases/venta.php");
 require_once("clases/voto.php");
 $queHago=$_POST['queHacer'];
 
@@ -22,29 +24,59 @@ switch ($queHago) {
 	case 'MostrarFormAlta':
 			include("partes/formVenta.php");
 		break;
-    case 'VerEnMapa':
-        
+    case 'VerEnMapa':        
         include("partes/formMapa.php");
 		break;
+	case 'TraerPrecioUnitario':        
+        $productoBuscado = producto::TraerUnProducto($_POST['idProducto']);
+        echo $productoBuscado->preciounitario;	
+		break;	
 	case 'BorrarVoto':
 			$voto = new voto();
 			$voto->id=$_POST['id'];
 			$cantidad=$voto->Borrarvoto();
 			echo $cantidad;
-
 		break;
-	case 'GuardarVoto':
+	case 'GuardarVenta':
             session_start();
-			$voto = new voto();
-			$voto->id=$_POST['id'];
-			$voto->dni=$_SESSION['registrado'];
-			$voto->candidato=$_POST['candidato'];
-			$voto->provincia=$_POST['provincia'];
-            $voto->localidad=$_POST['localidad'];
-            $voto->direccion=$_POST['direccion'];
-			$voto->sexo=$_POST['sexo'];
-			$cantidad=$voto->Guardarvoto();
-			echo $cantidad;
+			$venta = new venta();
+			$venta->id=$_POST['id'];			
+			$venta->producto=$_POST['producto'];
+			$venta->cantidad=$_POST['cantidad'];
+			$venta->formadepago=$_POST['formadepago'];
+			$venta->fechaventa=$_POST['fechaventa'];
+			$venta->provincia=$_POST['provincia'];
+			$venta->localidad=$_POST['localidad'];
+			$venta->domicilio=$_POST['domicilio'];
+			$venta->sexo=$_POST['sexo'];
+			$venta->dni=$_POST['dni'];
+			$venta->apeynom=$_POST['apeynom'];
+			$venta->tcelular=$_POST['tcelular'];
+			$venta->mail=$_POST['mail'];
+			$venta->tfijo=$_POST['tfijo'];
+			$venta->ttrabajo=$_POST['ttrabajo'];
+
+			$cantidad=$venta->GuardarVenta(
+											$venta->id,
+											$venta->producto,
+            								$venta->cantidad,
+            								$venta->formadepago,
+											$venta->fechaventa,
+            								$venta->provincia,
+            								$venta->localidad,
+            								$venta->domicilio,
+            								$venta->sexo,
+            								$venta->dni,
+            								$venta->apeynom,
+            								$venta->tcelular,
+            								$venta->mail,
+            								$venta->tfijo,
+            								$venta->ttrabajo
+										  );
+			
+			//$voto->dni=$_SESSION['registrado']; "con el usuario registraro voy a buscar el idusuario para rgrabarlos en  usuariosventas"
+			//Guardar relacion
+			echo $cantidad;			
 
 		break;
 	case 'TraerVoto':
