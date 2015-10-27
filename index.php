@@ -41,8 +41,8 @@
 			<ul id="main-nav" class="clearfix">		
 				<li><a onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>
 				<li><a onclick="Mostrar('CargarVenta')" class="btn">Carga de VENTAS</a> </li>
-				<li><a onclick="" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
-				<li><a onclick="Mostrar('MostrarGrilla')" class="btn">Listado de PRODUCTOS</a> </li>
+				<li><a onclick="Mostrar('MostrarFormAltaProducto')" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
+				<li><a onclick="Mostrar('MostrarGrillaProductos')" class="btn">Listado de PRODUCTOS</a> </li>
 				<li><a onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>				
 			</ul>
 			<!-- /#main-nav --> 

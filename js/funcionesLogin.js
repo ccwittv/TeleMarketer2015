@@ -22,7 +22,7 @@ $("#sidebar").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>")
 		alert(retorno);
 		if(retorno.trim()=="ingreso")
 			{	
-				Mostrar('votacion');
+				Mostrar('CargarVenta');
 				//MostarLogin();
 			}
         else
@@ -46,16 +46,4 @@ function deslogear()
 			//MostarBotones();
 			MostarLogin();
 	});	
-}
-function MostarBotones()
-{		//alert(queMostrar);
-	var funcionAjax=$.ajax({
-		url:"nexo.php",
-		type:"post",
-		data:{queHacer:"MostarBotones"}
-	});
-	funcionAjax.done(function(retorno){
-		$("#botonesABM").html(retorno);
-		//$("#sidebar").html("Correcto BOTONES!!!");	
-	});
 }

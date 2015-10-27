@@ -19,6 +19,7 @@ echo("<br>");
 		
 		 }
 		$_SESSION['registrado']=$usuario;
+		$_SESSION['rol']=$usuarioBuscado->rol;
 		$retorno="ingreso";
     }
   else

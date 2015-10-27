@@ -18,39 +18,26 @@ class venta
 	public $tfijo;
 	public $ttrabajo;
 	public $mailusuarioregistrado;
-
-  	public function Borrarvoto()
-	 {
-	 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("CALL Borrarvoto($this->id)");
-				$consulta->bindValue(':id',$this->id, PDO::PARAM_INT);		
-				$consulta->execute();
-				return $consulta->rowCount();
-	 }
-
-	/*public static function BorrarvotoPorcandidato($candidato)
-	 {
-
-			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("
-				delete 
-				from votos 				
-				WHERE candidato=:candidato");	
-				$consulta->bindValue(':candidato',$candidato, PDO::PARAM_INT);		
-				$consulta->execute();
-				return $consulta->rowCount();
-
-	 }*/
-	public function Modificarvoto()
-	 {
-			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("
-				CALL Modificarvoto('$this->id', '$this->candidato','$this->provincia', '$this->sexo', '$this->localidad', '$this->direccion')");
-			return $consulta->execute();
-	 }
 	
-  
-	 public function InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
+	public function GuardarVenta($id,$producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
+	 							  $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo,$mailusuarioregistrado)
+	  {
+
+	 	if($id>0)
+	 		{
+	 			$this->ModificarVenta();
+	 			$acumuladorIdsInsertados=null;
+	 		}else {
+	 			$ultimoIdInsertadoVenta = $this->InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
+	 							  	 $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo);
+	 			$usuarioBuscado= usuario::TraerUnUsuario($this->mailusuarioregistrado);				  	 	 			
+	 			$ultimoIdInsertadoRelacion = $this->InsertarRelacionUsuarioVenta($usuarioBuscado->id,$ultimoIdInsertadoVenta);
+	 			$acumuladorIdsInsertados = $ultimoIdInsertadoVenta + $ultimoIdInsertadoRelacion;
+	 		}
+	 	return $acumuladorIdsInsertados;
+	  } 
+
+	public function InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
 	 							  	 $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo)
 	    {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -87,25 +74,24 @@ class venta
 	  	$consulta->execute();
 	    return $objetoAccesoDato->RetornarUltimoIdInsertado();				
 	  }
+	 
 
-	 public function GuardarVenta($id,$producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
-	 							  $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo,$mailusuarioregistrado)
-	  {
+/*  	public function Borrarvoto()
+	 {
+	 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("CALL Borrarvoto($this->id)");
+				$consulta->bindValue(':id',$this->id, PDO::PARAM_INT);		
+				$consulta->execute();
+				return $consulta->rowCount();
+	 }
 
-	 	if($this->id>0)
-	 		{
-	 			$this->ModificarVenta();
-	 			$acumuladorIdsInsertados=null;
-	 		}else {
-	 			$ultimoIdInsertadoVenta = $this->InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
-	 							  	 $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo);
-	 			$usuarioBuscado= usuario::TraerUnUsuario($this->mailusuarioregistrado);				  	 	 			
-	 			$ultimoIdInsertadoRelacion = $this->InsertarRelacionUsuarioVenta($usuarioBuscado->id,$ultimoIdInsertadoVenta);
-	 			$acumuladorIdsInsertados = $ultimoIdInsertadoVenta + $ultimoIdInsertadoRelacion;
-	 		}
-	 	return $acumuladorIdsInsertados;
-	  } 
-
+	public function Modificarvoto()
+	 {
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("
+				CALL Modificarvoto('$this->id', '$this->candidato','$this->provincia', '$this->sexo', '$this->localidad', '$this->direccion')");
+			return $consulta->execute();
+	 } 
 
   	public static function TraerTodoLosvotos()
 	 {
@@ -129,6 +115,6 @@ class venta
 	public function mostrarDatos()
 	{
 	  	return "Metodo mostar:".$this->dni."  ".$this->provincia."  ".$this->candidato;
-	}
+	}*/
 
 }

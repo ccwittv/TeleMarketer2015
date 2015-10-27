@@ -2,7 +2,6 @@
 require_once("clases/AccesoDatos.php");
 require_once("clases/producto.php");
 require_once("clases/venta.php");
-require_once("clases/voto.php");
 $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
@@ -10,19 +9,16 @@ switch ($queHago) {
 		include("partes/formVenta.php");
 		break;
 	case 'desloguear':
-			include("php/deslogearDni.php");
-		break;	
-	case 'MostarBotones':
-			include("partes/botonesABM.php");
-		break;
-	case 'MostrarGrilla':
-			include("partes/formGrilla.php");
+		include("php/deslogearUsuario.php");
+		break;		
+	case 'MostrarGrillaProductos':
+		include("partes/formGrillaProductos.php");
 		break;
 	case 'MostarLogin':
-			include("partes/formLogin.php");
+		include("partes/formLogin.php");
 		break;
-	case 'MostrarFormAlta':
-			include("partes/formVenta.php");
+	case 'MostrarFormAltaProducto':
+		include("partes/formProducto.php");
 		break;
     case 'VerEnMapa':        
         include("partes/formMapa.php");
@@ -31,12 +27,29 @@ switch ($queHago) {
         $productoBuscado = producto::TraerUnProducto($_POST['idProducto']);
         echo $productoBuscado->preciounitario;	
 		break;	
-	case 'BorrarVoto':
-		$voto = new voto();
-		$voto->id=$_POST['id'];
-		$cantidad=$voto->Borrarvoto();
-		echo $cantidad;
+	case 'BorrarProducto':
+		session_start();
+    	if ($_SESSION['rol'] == 'supervisor') 
+    		{	
+				$producto = new producto();
+				$producto->id=$_POST['id'];
+				$cantidad=$producto->BorrarProducto($producto->id);
+				echo $cantidad; 
+			}
+		else 
+			{ 
+				echo "usted DEBE SER SUPERVISOR para ejecutar esta funcionalidad.";
+			}				
 		break;
+    case 'GuardarProducto':
+		$producto = new producto();
+		$producto->id=$_POST['id'];
+		$producto->nombre=$_POST['nombre'];
+		$producto->descripcion=$_POST['descripcion'];
+		$producto->preciounitario=$_POST['preciounitario'];
+		$idInsertado=$producto->GuardarProducto($producto->id,$producto->nombre,$producto->descripcion,$producto->preciounitario);
+		echo $idInsertado;
+		break;		
 	case 'GuardarVenta':
         session_start();
 		$venta = new venta();
@@ -81,36 +94,10 @@ switch ($queHago) {
 			  echo "Venta agregada";
 			}
 		break;
-	case 'TraerVoto':
-			$voto = voto::TraerUnvoto($_POST['id']);		
-			echo json_encode($voto);
-
-		break;
-    case 'guardarMarcadores':
-        /*session_start();
-        if(isset($_POST["marcadores"]))
-        {
-            $filename = "ArchivosTxt/marcadores" . getdate()[0] . ".txt";
-
-            $_SESSION['file'] = $filename;
-            $puntos = $_POST["marcadores"];
-
-            $file = fopen($filename, "w");
-
-            foreach ($puntos as $valor)
-            {
-                $lat =  $valor["lat"];
-                $lng =  $valor["lng"];
-                $nombre =  $valor["nombre"];
-                fwrite($file, $lat.">".$lng.">".$nombre . PHP_EOL);
-            }
-        fclose($file);
-
-        echo "Marcadores guardados con exito";
-        }
-        else
-            echo "No ingreso marcador/es a guardar";*/
-        break;
+	case 'TraerProducto':
+		$producto = producto::TraerUnProducto($_POST['id']);		
+		echo json_encode($producto);
+		break;    
 	default:
 		# code...
 		break;

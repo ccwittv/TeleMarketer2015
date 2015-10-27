@@ -1,53 +1,72 @@
-function Borrarvoto(idParametro)
+function BorrarProducto(idParametro)
 {
 	//alert(idParametro);
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"BorrarVoto",
+			queHacer:"BorrarProducto",
 			id:idParametro	
 		}
 	});
-	funcionAjax.done(function(retorno){
-		Mostrar("MostrarGrilla");
-		$("#informe").html("cantidad de eliminados "+ retorno);	
-		
+	funcionAjax.done(function(retorno){		
+		Mostrar("MostrarGrillaProductos");		
+		alert(retorno);
 	});
 	funcionAjax.fail(function(retorno){	
-		$("#informe").html(retorno.responseText);	
+		alert(retorno);
 	});	
 }
 
-function Editarvoto(idParametro)
-{
-    Mostrar('MostrarFormAlta');
+function EditarProducto(idParametro)
+{    
+    Mostrar('MostrarFormAltaProducto');
 	//alert("Modificar");
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"TraerVoto",
+			queHacer:"TraerProducto",
 			id:idParametro	
 		}
 	});
-	funcionAjax.done(function(retorno){
-		var voto =JSON.parse(retorno);		
-		$("#id").val(voto.id);
-		$("#provincia").val(voto.provincia);
-        $("#localidad").val(voto.localidad);
-        $("#direccion").val(voto.direccion);
-		$("#candidato").val(voto.candidato);
-        if(voto.sexo == "F")
-             $('input:radio[name="sexo"][value="F"]').prop('checked', true);
-        else
-            $('input:radio[name="sexo"][value="M"]').prop('checked', true);	
-        
+	funcionAjax.done(function(retorno){		
+		var producto =JSON.parse(retorno);		
+		$("#id").val(producto.id);
+		$("#nombre").val(producto.nombre);
+        $("#descripcion").val(producto.descripcion);
+        $("#preciounitario").val(producto.preciounitario);		        
 	});
 	funcionAjax.fail(function(retorno){
-		$("#principal").html(retorno.responseText);	
+		alert(retorno);
 	});
 	
+}
+
+function GuardarProducto()
+{
+        var id = $("#id").val()
+		var nombre=$("#nombre").val();
+		var descripcion=$("#descripcion").val();
+        var preciounitario=$("#preciounitario").val();        
+		var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"POST",
+		data:{
+			queHacer:"GuardarProducto",
+			id:id,
+			nombre:nombre,
+			descripcion:descripcion,
+            preciounitario:preciounitario,
+		}
+	});
+	funcionAjax.done(function(retorno){			
+		//alert(retorno);
+		Mostrar("MostrarGrillaProductos");						
+	});
+	funcionAjax.fail(function(retorno){	
+		alert(retorno);		
+	});	
 }
 
 function VerEnMapa(prov, dire, loc, id)
