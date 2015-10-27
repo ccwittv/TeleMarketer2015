@@ -138,11 +138,11 @@ function GuardarVenta()
 			});
 		funcionAjax.done(function(retorno)
 			{
+		      Mostrar('CargarVenta');
 		      alert(retorno);
 			});
 		funcionAjax.fail(function(retorno)
 			{	
-				//alert(retorno);
-				$("#informe").html(retorno.responseText);	
+  			  alert(retorno);			  
 			});	
 }

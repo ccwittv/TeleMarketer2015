@@ -12,10 +12,22 @@ class usuario
    public static function validarUsuario($usuario,$clave)
      {
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where mail='$usuario' and clave='$clave'");            
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where mail=:pusuario and clave=:pclave");            
+            $consulta->bindValue(':pusuario',$usuario,PDO::PARAM_STR);
+            $consulta->bindValue(':pclave',$clave,PDO::PARAM_STR);
             $consulta->execute();         
             $usuarioBuscado = $consulta->fetchObject('usuario');             
             return $usuarioBuscado; 
      } 
+
+    public static function TraerUnUsuario($usuario)
+     {
+            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where mail=:pusuario");            
+            $consulta->bindValue(':pusuario',$usuario,PDO::PARAM_STR);
+            $consulta->execute();         
+            $usuarioBuscado = $consulta->fetchObject('usuario');             
+            return $usuarioBuscado; 
+     }  
 
 }   

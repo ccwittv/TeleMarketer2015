@@ -129,9 +129,9 @@ if(isset($_SESSION['registrado'])){  ?>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" id="telefonocelular" onclick="HabilitarPorCheckbox('telefonocelular','tcelular')"> Teléfono celular </input> 
-                    <input type="text" id="tcelular" value="" disabled> </input> </br>
+                    <input type="text" id="tcelular" value="" disabled required=""> </input> </br>
                     <input type="checkbox" id="correoelectronico" onclick="HabilitarPorCheckbox('correoelectronico','mail')"> Correo electrónico </input> 
-                    <input type="text" id="mail" value="" disabled> </input> </br>
+                    <input type="text" id="mail" value="" disabled required=""> </input> </br>
                   </label>  
                 </div>
              </leggend>
@@ -142,9 +142,9 @@ if(isset($_SESSION['registrado'])){  ?>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" id="telefonofijo" onclick="HabilitarPorCheckbox('telefonofijo','tfijo')"> Teléfono fijo </input> 
-                    <input type="text"    id="tfijo" value="" disabled> </input> </br>
+                    <input type="text"    id="tfijo" value="" disabled required=""> </input> </br>
                     <input type="checkbox" id="telefonotrabajo" onclick="HabilitarPorCheckbox('telefonotrabajo','ttrabajo')"> Teléfono trabajo </input> 
-                    <input type="text" id="ttrabajo" value="" disabled> </input> </br>                    
+                    <input type="text" id="ttrabajo" value="" disabled required=""> </input> </br>                    
                   </label>  
                 </div>
              </leggend>

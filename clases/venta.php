@@ -1,4 +1,5 @@
 <?php
+require_once("clases/usuario.php");
 class venta
 {
 	public $id;
@@ -16,6 +17,7 @@ class venta
 	public $mail;
 	public $tfijo;
 	public $ttrabajo;
+	public $mailusuarioregistrado;
 
   	public function Borrarvoto()
 	 {
@@ -50,7 +52,7 @@ class venta
   
 	 public function InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
 	 							  	 $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo)
-	 {
+	    {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 //				$consulta =$objetoAccesoDato->RetornarConsulta("
 //					CALL InsertarElvoto('$this->dni','$this->candidato','$this->provincia','$this->sexo', '$this->localidad', '$this->direccion')");
@@ -74,30 +76,44 @@ class venta
 				$consulta->bindValue(':ptrabajo',$ttrabajo,PDO::PARAM_STR);
 				$consulta->execute();
 				return $objetoAccesoDato->RetornarUltimoIdInsertado();				
-	 }
+	    }
 	 
+	 public function InsertarRelacionUsuarioVenta($idusuarioregistrado,$ultimoIdInsertadoVenta)
+	  {
+	  	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+	  	$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into usuariosventas (idusuario,idventa) values (:pidusuario,:pidventa)");
+	  	$consulta->bindValue(':pidusuario',$idusuarioregistrado,PDO::PARAM_INT);
+	  	$consulta->bindValue(':pidventa',$ultimoIdInsertadoVenta,PDO::PARAM_INT);
+	  	$consulta->execute();
+	    return $objetoAccesoDato->RetornarUltimoIdInsertado();				
+	  }
+
 	 public function GuardarVenta($id,$producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
-	 							  $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo)
-	 {
+	 							  $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo,$mailusuarioregistrado)
+	  {
 
 	 	if($this->id>0)
 	 		{
 	 			$this->ModificarVenta();
+	 			$acumuladorIdsInsertados=null;
 	 		}else {
-	 			$this->InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
+	 			$ultimoIdInsertadoVenta = $this->InsertarVenta($producto,$cantidad,$formadepago,$fechaventa,$provincia,$localidad,
 	 							  	 $domicilio,$sexo,$dni,$apeynom,$tcelular,$mail,$tfijo,$ttrabajo);
+	 			$usuarioBuscado= usuario::TraerUnUsuario($this->mailusuarioregistrado);				  	 	 			
+	 			$ultimoIdInsertadoRelacion = $this->InsertarRelacionUsuarioVenta($usuarioBuscado->id,$ultimoIdInsertadoVenta);
+	 			$acumuladorIdsInsertados = $ultimoIdInsertadoVenta + $ultimoIdInsertadoRelacion;
 	 		}
-
-	 }
+	 	return $acumuladorIdsInsertados;
+	  } 
 
 
   	public static function TraerTodoLosvotos()
-	{
+	 {
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodoLosvotos()");
 			$consulta->execute();			
 			return $consulta->fetchAll(PDO::FETCH_CLASS, "voto");		
-	}
+	 }
 
 	public static function TraerUnvoto($id)
 	{
