@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-10-2015 a las 10:51:30
+-- Tiempo de generación: 28-10-2015 a las 19:27:09
 -- Versión del servidor: 5.1.67
 -- Versión de PHP: 5.2.17
 
@@ -33,15 +33,18 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `descripcion` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `preciounitario` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `preciounitario`) VALUES
-(1, 'psncard10', 'Play Station Card de valor U$S 10', 100),
-(2, 'psncard10', 'Play Station Card de valor U$S 20', 200);
+(1, 'psncard10', 'Play Station Card de valor U$S 10', 100.6),
+(2, 'psncard10', 'Play Station Card de valor U$S 20', 200),
+(3, 'psncard30', 'Play Station Card de valor U$S 30', 350.67),
+(4, 'Jarron Ming #1', 'Jarron de la dinastía Ming original joya nunca taxi', 50000000),
+(5, 'pndKingston16', 'Pendrive Kingston 16 gb', 500);
 
 -- --------------------------------------------------------
 
@@ -104,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `mail` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `clave` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `foto` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `rol` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=3 ;
 
@@ -111,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `provincia`, `localidad`, `domicilio`, `fechaingreso`, `mail`, `clave`, `foto`) VALUES
-(1, 'Roberto', 'Pesto', '', '', '', 'Infierno del Dante 678', '2015-10-05', 'robert_pest@averno.com', '123456', 'roberto_pesto_666666.jpg'),
-(2, 'vanesa', 'mane', '', '', '', 'Av. de los Cesares', '2015-10-23', 'vanesa@rockmail.com', 'qwerty', '');
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `provincia`, `localidad`, `domicilio`, `fechaingreso`, `mail`, `clave`, `foto`, `rol`) VALUES
+(1, 'Roberto', 'Pesto', '', '', '', 'Infierno del Dante 678', '2015-10-05', 'robert_pest@averno.com', '123456', 'roberto_pesto_666666.jpg', 'supervisor'),
+(2, 'vanesa', 'mane', '', '', '', 'Av. de los Cesares', '2015-10-23', 'vanesa@rockmail.com', 'qwerty', '', '');
 
 -- --------------------------------------------------------
 
@@ -126,7 +130,15 @@ CREATE TABLE IF NOT EXISTS `usuariosventas` (
   `idusuario` bigint(20) NOT NULL,
   `idventa` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `usuariosventas`
+--
+
+INSERT INTO `usuariosventas` (`id`, `idusuario`, `idventa`) VALUES
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -151,7 +163,15 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `telefonofijo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `telefonotrabajo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id`, `idproducto`, `cantidad`, `formadepago`, `fechaventa`, `provincia`, `localidad`, `domicilio`, `sexo`, `dni`, `apeynom`, `telefonocelular`, `correoelectronico`, `telefonofijo`, `telefonotrabajo`) VALUES
+(1, 3, 4, 'Otra forma de pago', '2015-10-27', '1', 'Avellaneda', 'Mitre 750', 'F', 24567890, 'Legrand, Mirtha', '1543216789', 'chiquita@almuerzos.com', '43013333', '43014444'),
+(2, 4, 2, 'Transferencia o depósito', '2015-10-27', '17', 'San Lorenzo', 'Alvear 1049', 'M', 23444444, 'Concha del Rio, Nancy', '1543250987', 'concha@madre.com', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

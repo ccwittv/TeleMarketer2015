@@ -25,70 +25,59 @@
  <script type="text/javascript" src="js/moduloGeolocalizacion.js"></script>
  <script type="text/javascript" src="js/geolocalizacionCommon.js"></script>
 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Telemarketer 2015</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      	<!--<li><a href="#" onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>-->
+      	<li><a href="#" onclick="Mostrar('CargarVenta')" class="btn">Carga de VENTAS</a> </li>
+        <li><a href="#" onclick="Mostrar('MostrarGrillaVentas')" class="btn">Listado de VENTAS</a> </li>
+      	<li><a href="#" onclick="Mostrar('CargarCliente')" class="btn">Carga de CLIENTES</a> </li>
+        <li><a href="#" onclick="Mostrar('MostrarGrillaClientes')" class="btn">Listado de CLIENTES</a> </li>
+		    <li><a href="#" onclick="Mostrar('MostrarFormAltaProducto')" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
+		    <li><a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn">Listado de PRODUCTOS</a> </li>
+		    <li><a href="#" onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>	
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
+        <li><a href="#" onclick="MostarLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div id="pagewrap">
 
 	<header id="header">
+        
+		<div id="content" style="width:980px;">
+			<article  class="post clearfix">		
+				<div id="principal" >
+					<?php
 
-		<!--<hgroup>
-			<h1 id="site-logo"><a href="#">Trabajo Práctico</a></h1>
-			<h2 id="site-description">Lab 4 2C 2015</h2>
-		</hgroup>-->
-		<nav>
-			<ul id="main-nav" class="clearfix">		
-				<li><a onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>
-				<li><a onclick="Mostrar('CargarVenta')" class="btn">Carga de VENTAS</a> </li>
-				<li><a onclick="Mostrar('MostrarFormAltaProducto')" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
-				<li><a onclick="Mostrar('MostrarGrillaProductos')" class="btn">Listado de PRODUCTOS</a> </li>
-				<li><a onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>				
-			</ul>
-			<!-- /#main-nav --> 
-		</nav>
-
-		<form id="searchform">
-			
-		</form>
+					?>
+				</div>		
+			</article>
+		<!-- /.post -->
+		</div>
 
 	</header>
 	<!-- /#header -->
 	
-	<div id="content" style="width:700px;">
-		<article  class="post clearfix">		
-		    <!-- <header  >
-				<h1 class="post-title"><a href="#" >Nombre.Apellido</a></h1>
-				<p class="post-meta"><time class="post-date" datetime="2011-05-08" pubdate>2015</time> <em>en</em> <a href="#">UTN FRA</a></p>
-			</header>-->
-			<hr>
-			<div id="principal" >
-				<?php
-
-				?>
-			</div>		
-		</article>
-		<!-- /.post -->
-	</div>
-	<!-- /#content --> 
-	<aside id="sidebar">
-		<div id="botonesABM">
-				<!--contenido dinamico cargado por ajax-->
-		</div>
-		<!-- /.widget -->
-		<section class="widget clearfix" >
-			<h4 class="widgettitle">Contador de votos</h4>
-				<div id="Contador">
-				<!--contenido dinamico cargado por ajax-->
-				</div>			
-		</section>
-		<!-- /.widget -->						
-	</aside>
-	<!-- /#sidebar -->
-	<footer id="footer">	
-		<!--<p>templete by <a href="http://www.octavio.com.ar">Octavio Villegas</a></p>-->
-	</footer>
-	<!-- /#footer --> 	
 </div>
 <!-- /#pagewrap -->
 </body>
