@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-10-2015 a las 19:27:09
+-- Tiempo de generación: 29-10-2015 a las 09:30:37
 -- Versión del servidor: 5.1.67
 -- Versión de PHP: 5.2.17
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `u866575402_ejerc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `dni` bigint(20) NOT NULL,
+  `fechanacimiento` date NOT NULL,
+  `sexo` varchar(1) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `apeynom` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `idprovincia` int(11) NOT NULL,
+  `localidad` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `domicilio` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `telefonocelular` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `correoelectronico` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `telefonofijo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `telefonotrabajo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -100,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `nombre` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `apellido` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `sexo` varchar(1) COLLATE utf8_spanish2_ci NOT NULL,
-  `provincia` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `idprovincia` int(11) NOT NULL,
   `localidad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `domicilio` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `fechaingreso` date NOT NULL,
@@ -115,9 +137,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `provincia`, `localidad`, `domicilio`, `fechaingreso`, `mail`, `clave`, `foto`, `rol`) VALUES
-(1, 'Roberto', 'Pesto', '', '', '', 'Infierno del Dante 678', '2015-10-05', 'robert_pest@averno.com', '123456', 'roberto_pesto_666666.jpg', 'supervisor'),
-(2, 'vanesa', 'mane', '', '', '', 'Av. de los Cesares', '2015-10-23', 'vanesa@rockmail.com', 'qwerty', '', '');
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `idprovincia`, `localidad`, `domicilio`, `fechaingreso`, `mail`, `clave`, `foto`, `rol`) VALUES
+(1, 'Roberto', 'Pesto', '', 0, '', 'Infierno del Dante 678', '2015-10-05', 'robert_pest@averno.com', '123456', 'roberto_pesto_666666.jpg', 'supervisor'),
+(2, 'vanesa', 'mane', '', 0, '', 'Av. de los Cesares', '2015-10-23', 'vanesa@rockmail.com', 'qwerty', '', '');
 
 -- --------------------------------------------------------
 
@@ -152,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `cantidad` int(11) NOT NULL,
   `formadepago` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `fechaventa` date NOT NULL,
+  `idcliente` bigint(20) NOT NULL,
   `provincia` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `localidad` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `domicilio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -169,9 +192,9 @@ CREATE TABLE IF NOT EXISTS `venta` (
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`id`, `idproducto`, `cantidad`, `formadepago`, `fechaventa`, `provincia`, `localidad`, `domicilio`, `sexo`, `dni`, `apeynom`, `telefonocelular`, `correoelectronico`, `telefonofijo`, `telefonotrabajo`) VALUES
-(1, 3, 4, 'Otra forma de pago', '2015-10-27', '1', 'Avellaneda', 'Mitre 750', 'F', 24567890, 'Legrand, Mirtha', '1543216789', 'chiquita@almuerzos.com', '43013333', '43014444'),
-(2, 4, 2, 'Transferencia o depósito', '2015-10-27', '17', 'San Lorenzo', 'Alvear 1049', 'M', 23444444, 'Concha del Rio, Nancy', '1543250987', 'concha@madre.com', '', '');
+INSERT INTO `venta` (`id`, `idproducto`, `cantidad`, `formadepago`, `fechaventa`, `idcliente`, `provincia`, `localidad`, `domicilio`, `sexo`, `dni`, `apeynom`, `telefonocelular`, `correoelectronico`, `telefonofijo`, `telefonotrabajo`) VALUES
+(1, 3, 4, 'Otra forma de pago', '2015-10-27', 0, '1', 'Avellaneda', 'Mitre 750', 'F', 24567890, 'Legrand, Mirtha', '1543216789', 'chiquita@almuerzos.com', '43013333', '43014444'),
+(2, 4, 2, 'Transferencia o depósito', '2015-10-27', 0, '17', 'San Lorenzo', 'Alvear 1049', 'M', 23444444, 'Concha del Rio, Nancy', '1543250987', 'concha@yahoo.com', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

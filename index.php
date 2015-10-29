@@ -48,7 +48,7 @@
         <li><a href="#" onclick="Mostrar('MostrarGrillaVentas')" class="btn">Listado de VENTAS</a> </li>
       	<li><a href="#" onclick="Mostrar('CargarCliente')" class="btn">Carga de CLIENTES</a> </li>
         <li><a href="#" onclick="Mostrar('MostrarGrillaClientes')" class="btn">Listado de CLIENTES</a> </li>
-		    <li><a href="#" onclick="Mostrar('MostrarFormAltaProducto')" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
+		    <li><a href="#" onclick="Mostrar('CargarProducto')" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
 		    <li><a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn">Listado de PRODUCTOS</a> </li>
 		    <li><a href="#" onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>	
       </ul>

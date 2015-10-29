@@ -9,11 +9,12 @@ function Mostrar(queMostrar)
 	});
 	funcionAjax.done(function(retorno){
 		$("#principal").html(retorno);
-		$("#sidebar").html("Correcto!!!");	
+		//$("#sidebar").html("Correcto!!!");	
 	});
 	funcionAjax.fail(function(retorno){
-		$("#principal").html(":(");
-		$("#sidebar").html(retorno.responseText);	
+		alert(retorno);
+		//$("#principal").html(":(");
+		//$("#sidebar").html(retorno.responseText);	
 	});
 	funcionAjax.always(function(retorno){
 		//alert("siempre "+retorno.statusText);
@@ -31,11 +32,12 @@ function MostarLogin()
 	});
 	funcionAjax.done(function(retorno){
 		$("#principal").html(retorno);
-		$("#sidebar").html("Correcto Form login!!!");	
+		//$("#sidebar").html("Correcto Form login!!!");	
 	});
 	funcionAjax.fail(function(retorno){
-		$("#botonesABM").html(":(");
-		$("#sidebar").html(retorno.responseText);	
+		alert(retorno);
+		//$("#botonesABM").html(":(");
+		//$("#sidebar").html(retorno.responseText);	
 	});
 	funcionAjax.always(function(retorno){
 		//alert("siempre "+retorno.statusText);

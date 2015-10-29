@@ -11,6 +11,16 @@ class provincia
 			$consulta->execute();			
 			return $consulta->fetchAll(PDO::FETCH_CLASS, "provincia");		
 		}
+
+	 public static function TraerUnaProvincia($id)
+		{	
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("select * from provincias where id = :pid");
+			$consulta->bindValue(':pid',$id,PDO::PARAM_INT);
+			$consulta->execute();			
+			$provinciaBuscada = $consulta->fetchObject('provincia');
+			return $provinciaBuscada;	
+		}	
   }
 
 ?>  

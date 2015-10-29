@@ -2,24 +2,31 @@
 require_once("clases/AccesoDatos.php");
 require_once("clases/producto.php");
 require_once("clases/venta.php");
+require_once("clases/cliente.php");
 $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
 	case 'CargarVenta':
 		include("partes/formVenta.php");
 		break;
-	case 'desloguear':
-		include("php/deslogearUsuario.php");
-		break;		
+	case 'CargarCliente':
+		include("partes/formCliente.php");
+		break;	
+	case 'MostrarGrillaClientes':
+		include("partes/formGrillaClientes.php");
+		break;
+	case 'CargarProducto':
+		include("partes/formProducto.php");
+		break;			
 	case 'MostrarGrillaProductos':
 		include("partes/formGrillaProductos.php");
 		break;
 	case 'MostarLogin':
 		include("partes/formLogin.php");
 		break;
-	case 'MostrarFormAltaProducto':
-		include("partes/formProducto.php");
-		break;
+	case 'desloguear':
+		include("php/deslogearUsuario.php");
+		break;	
     case 'VerEnMapa':        
         include("partes/formMapa.php");
 		break;
@@ -41,6 +48,48 @@ switch ($queHago) {
 				echo "usted DEBE SER SUPERVISOR para ejecutar esta funcionalidad.";
 			}				
 		break;
+	case 'GuardarCliente':
+        session_start();
+		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
+		if (($cliente->id)<>0)
+			{
+				echo "El cliente EXISTE. Modificar datos por grilla de clientes";
+			}
+        else
+        	{
+				$cliente = new cliente();
+				$cliente->id=$_POST['id'];
+				$cliente->dni=$_POST['dni'];		
+				$cliente->fechanacimiento=$_POST['fechanacimiento'];
+				$cliente->sexo=$_POST['sexo'];	
+				$cliente->apeynom=$_POST['apeynom'];
+				$cliente->idprovincia=$_POST['idprovincia'];
+				$cliente->localidad=$_POST['localidad'];
+				$cliente->domicilio=$_POST['domicilio'];		
+				$cliente->tcelular=$_POST['tcelular'];
+				$cliente->mail=$_POST['mail'];
+				$cliente->tfijo=$_POST['tfijo'];
+				$cliente->ttrabajo=$_POST['ttrabajo'];
+				$idInsertado=$cliente->GuardarCliente(
+														$cliente->id,
+														$cliente->dni,	
+														$cliente->fechanacimiento,
+														$cliente->sexo,	
+														$cliente->apeynom,
+														$cliente->idprovincia,
+														$cliente->localidad,
+														$cliente->domicilio,		
+														$cliente->tcelular,
+														$cliente->mail,
+														$cliente->tfijo,
+														$cliente->ttrabajo
+												  	  );
+				if ($idInsertado<>null)
+					{
+					  echo "Cliente agregado";
+					}
+			}		
+		break;							  
     case 'GuardarProducto':
 		$producto = new producto();
 		$producto->id=$_POST['id'];
@@ -97,7 +146,14 @@ switch ($queHago) {
 	case 'TraerProducto':
 		$producto = producto::TraerUnProducto($_POST['id']);		
 		echo json_encode($producto);
-		break;    
+		break;
+	case 'TraerUnClientePorDNI':
+		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
+		if (($cliente->id)<>0)
+			{
+				echo "EXISTE";
+			}
+		break;    	    
 	default:
 		# code...
 		break;

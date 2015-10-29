@@ -1,3 +1,70 @@
+function GuardarCliente()
+{
+        var id = $("#id").val()
+		var dni=$("#dni").val();
+		var fechanacimiento=$("#fechanacimiento").val();
+		var sexo=$('input:radio[name=sexo]:checked').val();
+		var apeynom=$("#apellidonombre").val();
+        var idprovincia=$("#provincia").val();
+        var localidad=$("#localidad").val();
+        var domicilio=$("#domicilio").val();
+
+		var tcelular = null;
+		var mail = null;
+		var tfijo = null;
+		var ttrabajo = null;
+
+		if ($("#telefonocelular").is(':checked'))
+			{
+				tcelular=$("#tcelular").val();				
+			}
+
+		if ($("#correoelectronico").is(':checked'))
+			{
+				mail=$("#mail").val();				
+			}	
+
+		if ($("#telefonofijo").is(':checked'))
+			{
+				tfijo=$("#tfijo").val();				
+			}		
+
+		if ($("#telefonotrabajo").is(':checked'))
+			{
+				ttrabajo=$("#ttrabajo").val();				
+			}			
+
+		var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"POST",
+		data:{
+			queHacer:"GuardarCliente",
+			id:id,
+			dni:dni,
+			fechanacimiento:fechanacimiento,
+			sexo:sexo,
+			apeynom:apeynom,
+            idprovincia:idprovincia,
+            localidad:localidad,
+            domicilio:domicilio,
+            tcelular:tcelular,
+            mail:mail,
+            tfijo:tfijo,
+            ttrabajo:ttrabajo
+		}
+	});
+	funcionAjax.done(function(retorno){			
+		alert(retorno);
+		Mostrar("MostrarGrillaClientes");						
+	});
+	funcionAjax.fail(function(retorno){	
+		//alert(retorno);		
+	});
+	funcionAjax.always(function(retorno){	
+		//alert(retorno);		
+	});		
+}
+
 function BorrarProducto(idParametro)
 {
 	//alert(idParametro);
@@ -20,7 +87,7 @@ function BorrarProducto(idParametro)
 
 function EditarProducto(idParametro)
 {    
-    Mostrar('MostrarFormAltaProducto');
+    Mostrar('CargarProducto');
 	//alert("Modificar");
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
