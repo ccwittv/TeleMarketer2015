@@ -26,9 +26,9 @@ class cliente
      public static function TraerTodosLosClientes()
 		{	
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select * from cliente");
+			$consulta=$objetoAccesoDato->RetornarConsulta("select * from cliente");
 			$consulta->execute();			
-			return $consulta->fetchAll(PDO::FETCH_CLASS, "cliente");		
+			return $consulta->fetchAll(PDO::FETCH_CLASS,"cliente");		
 		}
 
 	 public static function TraerUnCliente($id)
@@ -71,8 +71,8 @@ class cliente
 			$consulta =$objetoAccesoDato->RetornarConsulta("
 				UPDATE cliente set dni=:pdni,fechanacimiento=:pfechanacimiento,sexo=:psexo,apeynom=:papeynom,
 								   idprovincia=:pidprovincia,localidad=:plocalidad,domicilio=:domicilio,
-								   telefonocelular=:ptcelular,correoelectronico=:pmail,
-								   telefonofijo=:ptfijo,telefonotrabajo=:pttrabajo
+								   tcelular=:ptcelular,mail=:pmail,
+								   tfijo=:ptfijo,ttrabajo=:pttrabajo
 				WHERE id = :pid");
 			$consulta->bindValue(':pid',$id,PDO::PARAM_INT);
 			$consulta->bindValue(':pdni',$dni,PDO::PARAM_INT);
@@ -94,7 +94,7 @@ class cliente
 	 {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 				$consulta =$objetoAccesoDato->RetornarConsulta("
-					INSERT into cliente (dni,fechanacimiento,sexo,apeynom,idprovincia,localidad,domicilio,telefonocelular,correoelectronico,telefonofijo,telefonotrabajo)
+					INSERT into cliente (dni,fechanacimiento,sexo,apeynom,idprovincia,localidad,domicilio,tcelular,mail,tfijo,ttrabajo)
 					                     values 
 					                    (:pdni,:pfechanacimiento,:psexo,:papeynom,:pidprovincia,:plocalidad,:pdomicilio,:ptcelular,:pmail,:ptfijo,:pttrabajo)");
 				$consulta->bindValue(':pdni',$dni,PDO::PARAM_INT);

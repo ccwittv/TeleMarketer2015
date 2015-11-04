@@ -76,14 +76,13 @@ if(isset($_SESSION['registrado'])){  ?>
     <div class="container">
 
       <form  class="form-ingreso-ccw" onsubmit="GuardarCliente(); return false;">
-        <h5 class="form-ingreso-heading">Cargar Cliente</h5>
+        <h3 class="form-ingreso-heading">Cargar Cliente</h3>
         
         <label for="DNI" class="sr-only" hidden>DNI</label>
                 <input type="text" id="dni" class="" placeholder="DNI" required="" oninput="ChequearDNI('dni')">
         <br>
-
-        <label for="fechanacimiento" class="sr-only" hidden>Fecha Nacimiento</label>
-                  <input type="date" id="fechanacimiento" class="" placeholder="Fecha Nacimiento" required=""> Fecha de Nacimiento</input>
+        <br> 
+        Fecha Nacimiento <input type="date" id="fechanacimiento" class="" placeholder="Fecha Nacimiento" required="">
         <br>
 
         <label>

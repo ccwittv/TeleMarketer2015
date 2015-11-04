@@ -9,20 +9,20 @@
       LlenarPrecioTotal(idSelect,idInputText1)
    }
 
-  function HabilitarDos(idTextArea1,idTextArea2)
+  /*function HabilitarDos(idTextArea1,idTextArea2)
    {      
       document.getElementById(idTextArea1).disabled=false;
       document.getElementById(idTextArea2).disabled=false;
       document.getElementById(idTextArea1).value = null;
       document.getElementById(idTextArea2).value = null;
-   }
+   }*/
 
-   function HabilitarTres(idTextArea1)
+   /*function HabilitarTres(idTextArea1)
    {      
       document.getElementById(idTextArea1).disabled=false;
-   }
+   }*/
 
-   function HabilitarPorCheckbox(idCheckBox, idTextArea)
+   /*function HabilitarPorCheckbox(idCheckBox, idTextArea)
     {
        
         if (document.getElementById(idCheckBox).checked) 
@@ -34,7 +34,7 @@
           document.getElementById(idTextArea).disabled=true;
         }
 
-    }
+    }*/
 
    function LlenarPrecioTotal(idSelect,idInputText)
     {               
@@ -61,21 +61,65 @@
              //alert(retorno);   
             });        
     }
+
+   function LlenarDatosCliente(idSelect)
+    {               
+        var funcionAjax=$.ajax({
+            url:"nexo.php",
+            type:"post",
+            data:{ queHacer:"TraerUnCliente",
+                   idCliente:document.getElementById(idSelect).value,
+                 }
+            });
+        
+        funcionAjax.done(function(retorno)
+            { 
+          //    alert(retorno);   
+              var cliente =JSON.parse(retorno);                  
+              $("#fechanacimiento").val(cliente.fechanacimiento);              
+              $("#sexo").val(cliente.sexo);                            
+
+              var funcionAjaxTraerProvincia=$.ajax({
+                  url:"nexo.php",
+                  type:"post",
+                  data:{ queHacer:"TraerUnaProvincia",
+                         idProvincia:cliente.idprovincia,
+                       }
+                  });
+              funcionAjaxTraerProvincia.done(function(respuesta)
+                { 
+                  $("#provincia").val(respuesta);
+                }); 
+
+              $("#localidad").val(cliente.localidad);
+
+            });
+
+        funcionAjax.fail(function(retorno)
+            {
+              //alert(retorno); 
+            });
+        funcionAjax.always(function(retorno)
+            {  
+             //alert(retorno);   
+            });        
+    } 
+
 </script>
  
 <?php 
 session_start();
 require_once("clases/AccesoDatos.php");
-require_once("clases/provincia.php");
 require_once("clases/producto.php");
-$arrayDeProvincias=provincia::TraerTodasLasProvincias();
+require_once("clases/cliente.php");
 $arrayDeProductos=producto::TraerTodosLosProductos();
+$arrayDeClientes=cliente::TraerTodosLosClientes();
 
 if(isset($_SESSION['registrado'])){  ?>
     <div class="container">
 
       <form  class="form-ingreso-ccw" onsubmit="GuardarVenta(); return false;">
-        <h5 class="form-ingreso-heading">Carga Venta</h5>
+        <h3 class="form-ingreso-heading">Carga Venta</h3>
         <select id="producto" required="" name="producto" onchange="HabilitarUno('producto','cantidad')">  
           <option value="" disabled selected >Seleccionar producto</option>
           <?php foreach ($arrayDeProductos as $producto) 
@@ -100,15 +144,24 @@ if(isset($_SESSION['registrado'])){  ?>
           </div> 
         </div> 
 
-        <select id="provincia" required="" onchange="HabilitarDos('localidad','domicilio')" name="provincia" >
-            <option value="" disabled selected >Seleccionar provincia</option>
-            <?php foreach ($arrayDeProvincias as $provincia) 
+        <select id="cliente" required="" name="cliente" onchange="LlenarDatosCliente('cliente')" >
+            <option value="" disabled selected >Seleccionar cliente</option>
+            <?php foreach ($arrayDeClientes as $cliente) 
                 {            
-                  echo "<option value=$provincia->id>$provincia->provincia</option>";                    
+                  echo "<option value=$cliente->id>$cliente->dni: $cliente->apeynom</option>";                    
                 }?>
         </select>
         <br>
-        <textarea id="localidad" class="form-control" disabled placeholder="Localidad"></textarea>
+        Fecha Nacimiento: <input type="date" disabled readonly id="fechanacimiento" style="width:150px">
+        <br>
+        Sexo: <input type="text" disabled readonly id="sexo" style="width:50px">
+        <br>
+        Provincia: <input type="text" disabled readonly id="provincia" style="width:300px">
+        <br>
+        Localidad: <input type="text" disabled readonly id="localidad" style="width:300px">
+        <br>
+        
+        <!--<textarea id="localidad" class="form-control" disabled placeholder="Localidad"></textarea>
         <br>
         <textarea id="domicilio" class="form-control" disabled placeholder="Domicilio"></textarea>
         <br>
@@ -148,7 +201,7 @@ if(isset($_SESSION['registrado'])){  ?>
                   </label>  
                 </div>
              </leggend>
-         </fieldset> 
+         </fieldset> -->
           
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
         <input type="hidden" name="id" id="id" readonly>

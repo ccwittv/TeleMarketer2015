@@ -3,6 +3,7 @@ require_once("clases/AccesoDatos.php");
 require_once("clases/producto.php");
 require_once("clases/venta.php");
 require_once("clases/cliente.php");
+require_once("clases/provincia.php");
 $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
@@ -51,7 +52,7 @@ switch ($queHago) {
 	case 'GuardarCliente':
         session_start();
 		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
-		if (($cliente->id)<>0)
+		if (isset($cliente->id))
 			{
 				echo "El cliente EXISTE. Modificar datos por grilla de clientes";
 			}
@@ -84,10 +85,10 @@ switch ($queHago) {
 														$cliente->tfijo,
 														$cliente->ttrabajo
 												  	  );
-				if ($idInsertado<>null)
+				/*if ($idInsertado<>0)
 					{
 					  echo "Cliente agregado";
-					}
+					}*/
 			}		
 		break;							  
     case 'GuardarProducto':
@@ -154,6 +155,14 @@ switch ($queHago) {
 				echo "EXISTE";
 			}
 		break;    	    
+	case 'TraerUnCliente':
+		$cliente=cliente::TraerUnCliente($_POST['idCliente']);		
+		echo json_encode($cliente);
+		break;    	    	
+	case 'TraerUnaProvincia':
+		$provincia=provincia::TraerUnaProvincia($_POST['idProvincia']);		
+		echo $provincia->provincia;
+		break;    	    		
 	default:
 		# code...
 		break;
