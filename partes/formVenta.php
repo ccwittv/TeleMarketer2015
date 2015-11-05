@@ -9,33 +9,6 @@
       LlenarPrecioTotal(idSelect,idInputText1)
    }
 
-  /*function HabilitarDos(idTextArea1,idTextArea2)
-   {      
-      document.getElementById(idTextArea1).disabled=false;
-      document.getElementById(idTextArea2).disabled=false;
-      document.getElementById(idTextArea1).value = null;
-      document.getElementById(idTextArea2).value = null;
-   }*/
-
-   /*function HabilitarTres(idTextArea1)
-   {      
-      document.getElementById(idTextArea1).disabled=false;
-   }*/
-
-   /*function HabilitarPorCheckbox(idCheckBox, idTextArea)
-    {
-       
-        if (document.getElementById(idCheckBox).checked) 
-        {
-          document.getElementById(idTextArea).disabled=false;
-        }
-        else
-        {
-          document.getElementById(idTextArea).disabled=true;
-        }
-
-    }*/
-
    function LlenarPrecioTotal(idSelect,idInputText)
     {               
         var funcionAjax=$.ajax({
@@ -54,7 +27,7 @@
             });
         funcionAjax.fail(function(retorno)
             {
-              //alert(retorno); 
+              alert(retorno); 
             });
         funcionAjax.always(function(retorno)
             {  
@@ -92,12 +65,16 @@
                 }); 
 
               $("#localidad").val(cliente.localidad);
-
+              $("#domicilio").val(cliente.domicilio);
+              $("#tcelular").val(cliente.tcelular);
+              $("#mail").val(cliente.mail);
+              $("#tfijo").val(cliente.tfijo);
+              $("#ttrabajo").val(cliente.trabajo);  
             });
 
         funcionAjax.fail(function(retorno)
             {
-              //alert(retorno); 
+              alert(retorno); 
             });
         funcionAjax.always(function(retorno)
             {  
@@ -160,48 +137,16 @@ if(isset($_SESSION['registrado'])){  ?>
         <br>
         Localidad: <input type="text" disabled readonly id="localidad" style="width:300px">
         <br>
-        
-        <!--<textarea id="localidad" class="form-control" disabled placeholder="Localidad"></textarea>
+        Domicilio: <input type="text" disabled readonly id="domicilio" style="width:300px">
         <br>
-        <textarea id="domicilio" class="form-control" disabled placeholder="Domicilio"></textarea>
+        Teléfono celular: <input type="text" disabled readonly id="tcelular" style="width:300px">
         <br>
-        
-        <label>
-            <input type="radio" Name="sexo" id="sexo" value="M" onclick="HabilitarTres('apellidonombre')">Masculino
-            <input type="radio" Name="sexo" id="sexo" value="F" onclick="HabilitarTres('apellidonombre')">Femenino
-        </label>
+        Correo electrónico: <input type="text" disabled readonly id="mail" style="width:300px">
         <br>
-        
-        <label for="DNI" class="sr-only" hidden>DNI</label>
-                <input type="text" id="dni" class="" placeholder="DNI" required="">
+        Teléfono fijo: <input type="text" disabled readonly id="tfijo" style="width:300px">
         <br>
-        <textarea id="apellidonombre" class="form-control" disabled placeholder="Apellido y nombre"></textarea>      
-
-        <fieldset class="checkbox">
-            <legend class="checkbox"><h5>Contacto 1:</h5></legend> 
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" id="telefonocelular" onclick="HabilitarPorCheckbox('telefonocelular','tcelular')"> Teléfono celular </input> 
-                    <input type="text" id="tcelular" value="" disabled required=""> </input> </br>
-                    <input type="checkbox" id="correoelectronico" onclick="HabilitarPorCheckbox('correoelectronico','mail')"> Correo electrónico </input> 
-                    <input type="text" id="mail" value="" disabled required=""> </input> </br>
-                  </label>  
-                </div>
-             </leggend>
-         </fieldset> 
-
-         <fieldset class="checkbox">
-            <legend class="checkbox"><h5>Contacto 2:</h5></legend> 
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" id="telefonofijo" onclick="HabilitarPorCheckbox('telefonofijo','tfijo')"> Teléfono fijo </input> 
-                    <input type="text"    id="tfijo" value="" disabled required=""> </input> </br>
-                    <input type="checkbox" id="telefonotrabajo" onclick="HabilitarPorCheckbox('telefonotrabajo','ttrabajo')"> Teléfono trabajo </input> 
-                    <input type="text" id="ttrabajo" value="" disabled required=""> </input> </br>                    
-                  </label>  
-                </div>
-             </leggend>
-         </fieldset> -->
+        Teléfono trabajo: <input type="text" disabled readonly id="ttrabajo" style="width:300px">
+        <br>
           
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
         <input type="hidden" name="id" id="id" readonly>

@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-10-2015 a las 09:30:37
+-- Tiempo de generación: 04-11-2015 a las 18:27:00
 -- Versión del servidor: 5.1.67
 -- Versión de PHP: 5.2.17
 
@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `idprovincia` int(11) NOT NULL,
   `localidad` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `domicilio` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `telefonocelular` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `correoelectronico` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `telefonofijo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `telefonotrabajo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `tcelular` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `mail` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `tfijo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `ttrabajo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 --
 
 INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `preciounitario`) VALUES
-(1, 'psncard10', 'Play Station Card de valor U$S 10', 100.6),
+(1, 'psncard10', 'Play Station Card de valor U$S 10', 100.5),
 (2, 'psncard10', 'Play Station Card de valor U$S 20', 200),
 (3, 'psncard30', 'Play Station Card de valor U$S 30', 350.67),
 (4, 'Jarron Ming #1', 'Jarron de la dinastía Ming original joya nunca taxi', 50000000),

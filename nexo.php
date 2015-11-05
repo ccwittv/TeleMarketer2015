@@ -4,6 +4,7 @@ require_once("clases/producto.php");
 require_once("clases/venta.php");
 require_once("clases/cliente.php");
 require_once("clases/provincia.php");
+require_once("clases/usuario.php");
 $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
@@ -85,10 +86,10 @@ switch ($queHago) {
 														$cliente->tfijo,
 														$cliente->ttrabajo
 												  	  );
-				/*if ($idInsertado<>0)
+				if ($idInsertado<>0)
 					{
 					  echo "Cliente agregado";
-					}*/
+					}
 			}		
 		break;							  
     case 'GuardarProducto':
@@ -108,17 +109,9 @@ switch ($queHago) {
 		$venta->cantidad=$_POST['cantidad'];
 		$venta->formadepago=$_POST['formadepago'];
 		$venta->fechaventa=$_POST['fechaventa'];
-		$venta->provincia=$_POST['provincia'];
-		$venta->localidad=$_POST['localidad'];
-		$venta->domicilio=$_POST['domicilio'];
-		$venta->sexo=$_POST['sexo'];
-		$venta->dni=$_POST['dni'];
-		$venta->apeynom=$_POST['apeynom'];
-		$venta->tcelular=$_POST['tcelular'];
-		$venta->mail=$_POST['mail'];
-		$venta->tfijo=$_POST['tfijo'];
-		$venta->ttrabajo=$_POST['ttrabajo'];
-		$venta->mailusuarioregistrado = $_SESSION['registrado'];
+		$venta->idcliente=$_POST['idcliente'];
+		$usuarioBuscado = usuario::TraerUnUsuario($_SESSION['registrado']);
+		$venta->idusuario = $usuarioBuscado->id;
 
 		$acumuladorIdsInsertados=$venta->GuardarVenta(
 											$venta->id,
@@ -126,17 +119,8 @@ switch ($queHago) {
             								$venta->cantidad,
             								$venta->formadepago,
 											$venta->fechaventa,
-            								$venta->provincia,
-            								$venta->localidad,
-            								$venta->domicilio,
-            								$venta->sexo,
-            								$venta->dni,
-            								$venta->apeynom,
-            								$venta->tcelular,
-            								$venta->mail,
-            								$venta->tfijo,
-            								$venta->ttrabajo,
-            								$venta->mailusuarioregistrado
+											$venta->idcliente,
+            								$venta->idusuario
 										  );
 
 		if ($acumuladorIdsInsertados<>null)

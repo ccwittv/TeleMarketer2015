@@ -54,11 +54,15 @@ function GuardarCliente()
 		}
 	});
 	funcionAjax.done(function(retorno){			
-		alert(retorno);
+		if (retorno.trim == "" )
+		 {
+		 	alert(retorno);
+		 }	
+		  
 		Mostrar("MostrarGrillaClientes");						
 	});
 	funcionAjax.fail(function(retorno){	
-		//alert(retorno);		
+		alert(retorno);		
 	});
 	funcionAjax.always(function(retorno){	
 		//alert(retorno);		
@@ -78,10 +82,13 @@ function BorrarProducto(idParametro)
 	});
 	funcionAjax.done(function(retorno){		
 		Mostrar("MostrarGrillaProductos");		
-		alert(retorno);
+		//alert(retorno);
 	});
 	funcionAjax.fail(function(retorno){	
 		alert(retorno);
+	});	
+	funcionAjax.always(function(retorno){	
+		//alert(retorno);		
 	});	
 }
 
@@ -134,6 +141,9 @@ function GuardarProducto()
 	funcionAjax.fail(function(retorno){	
 		alert(retorno);		
 	});	
+	funcionAjax.always(function(retorno){	
+		//alert(retorno);		
+	});	
 }
 
 function VerEnMapa(prov, dire, loc, id)
@@ -167,38 +177,7 @@ function GuardarVenta()
 		
         var fecha = new Date();
 		var fechaventa= fecha.getFullYear() + "-" + (fecha.getMonth() +1) + "-" + fecha.getDate();
-		
-		var provincia=$("#provincia").val();
-        var localidad=$("#localidad").val();
-        var domicilio=$("#domicilio").val();
-		var sexo=$('input:radio[name=sexo]:checked').val();
-		var dni=$("#dni").val();
-		var apeynom=$("#apellidonombre").val();
-
-		var tcelular = null;
-		var mail = null;
-		var tfijo = null;
-		var ttrabajo = null;
-
-		if ($("#telefonocelular").is(':checked'))
-			{
-				tcelular=$("#tcelular").val();				
-			}
-
-		if ($("#correoelectronico").is(':checked'))
-			{
-				mail=$("#mail").val();				
-			}	
-
-		if ($("#telefonofijo").is(':checked'))
-			{
-				tfijo=$("#tfijo").val();				
-			}		
-
-		if ($("#telefonotrabajo").is(':checked'))
-			{
-				ttrabajo=$("#ttrabajo").val();				
-			}			
+		var idcliente= $("#cliente").val();	
 
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
@@ -210,25 +189,19 @@ function GuardarVenta()
             	cantidad:cantidad,
             	formadepago:formadepago,
 				fechaventa:fechaventa,
-            	provincia:provincia,
-            	localidad:localidad,
-            	domicilio:domicilio,
-            	sexo:sexo,
-            	dni:dni,
-            	apeynom:apeynom,
-            	tcelular:tcelular,
-            	mail:mail,
-            	tfijo:tfijo,
-            	ttrabajo:ttrabajo
+				idcliente:idcliente,
 			 }
 			});
 		funcionAjax.done(function(retorno)
 			{
 		      Mostrar('CargarVenta');
-		      alert(retorno);
+		      //alert(retorno);
 			});
 		funcionAjax.fail(function(retorno)
 			{	
   			  alert(retorno);			  
 			});	
+		funcionAjax.always(function(retorno){	
+		//alert(retorno);		
+		});	
 }
