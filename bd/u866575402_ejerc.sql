@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-11-2015 a las 18:27:00
+-- Tiempo de generación: 06-11-2015 a las 13:29:51
 -- Versión del servidor: 5.1.67
 -- Versión de PHP: 5.2.17
 
@@ -41,7 +41,16 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `tfijo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `ttrabajo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `dni`, `fechanacimiento`, `sexo`, `apeynom`, `idprovincia`, `localidad`, `domicilio`, `tcelular`, `mail`, `tfijo`, `ttrabajo`) VALUES
+(1, 24567890, '1927-02-25', 'F', 'Legrand, Mirtha', 21, 'Villa Cañas', 'Av. 50 41', '1543250987', 'chiquita@almuerzos.com', '4301-5434', '4301-4444'),
+(2, 23444444, '1966-06-06', 'M', 'Mesa, Juan Carlos', 1, 'Avellaneda', 'Mitre 750', '1566666666', 'jcm@mesadenoticias.com', '4301-5434', '45678901'),
+(3, 5678900, '1980-08-23', 'M', 'Tapia, Ricardo', 3, 'Resistencia', 'Rivadavia 413', '1543250987', 'rtapia@baticueva.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -144,27 +153,6 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `idprovincia`, `local
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuariosventas`
---
-
-CREATE TABLE IF NOT EXISTS `usuariosventas` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `idusuario` bigint(20) NOT NULL,
-  `idventa` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `usuariosventas`
---
-
-INSERT INTO `usuariosventas` (`id`, `idusuario`, `idventa`) VALUES
-(1, 1, 1),
-(2, 2, 2);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `venta`
 --
 
@@ -175,26 +163,19 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `formadepago` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `fechaventa` date NOT NULL,
   `idcliente` bigint(20) NOT NULL,
-  `provincia` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `localidad` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `domicilio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sexo` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
-  `dni` bigint(20) NOT NULL,
-  `apeynom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `telefonocelular` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `correoelectronico` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `telefonofijo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `telefonotrabajo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `idusuario` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`id`, `idproducto`, `cantidad`, `formadepago`, `fechaventa`, `idcliente`, `provincia`, `localidad`, `domicilio`, `sexo`, `dni`, `apeynom`, `telefonocelular`, `correoelectronico`, `telefonofijo`, `telefonotrabajo`) VALUES
-(1, 3, 4, 'Otra forma de pago', '2015-10-27', 0, '1', 'Avellaneda', 'Mitre 750', 'F', 24567890, 'Legrand, Mirtha', '1543216789', 'chiquita@almuerzos.com', '43013333', '43014444'),
-(2, 4, 2, 'Transferencia o depósito', '2015-10-27', 0, '17', 'San Lorenzo', 'Alvear 1049', 'M', 23444444, 'Concha del Rio, Nancy', '1543250987', 'concha@yahoo.com', '', '');
+INSERT INTO `venta` (`id`, `idproducto`, `cantidad`, `formadepago`, `fechaventa`, `idcliente`, `idusuario`) VALUES
+(1, 3, 4, 'Otra forma de pago', '2015-10-27', 1, 1),
+(2, 4, 2, 'Transferencia o depósito', '2015-10-27', 1, 2),
+(3, 5, 2, 'Transferencia o depósito', '2015-11-05', 2, 1),
+(4, 4, 2, 'Otra forma de pago', '2015-11-05', 3, 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

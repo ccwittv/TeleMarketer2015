@@ -115,12 +115,14 @@ if(isset($_SESSION['registrado'])){  ?>
          <div class="panel-heading">Formas de pago:</div>
           <div class="panel-body">
             <label>
-             <input type="radio" Name="formaspago" id="formaspago" value="Transferencia o depósito" required="">Transferencia o depósito
-             <input type="radio" Name="formaspago" id="formaspago" value="Otra forma de pago" required="">Otra forma de pago
+<!--             <input type="radio" Name="formaspago" id="formaspago" value="Transferencia o depósito" required="">Transferencia o depósito
+             <input type="radio" Name="formaspago" id="formaspago" value="Otra forma de pago" required="">Otra forma de pago-->
+             <input type="radio" Name="formaspago" id="transferencia" value="Transferencia o depósito" required="">Transferenca o depósito
+             <input type="radio" Name="formaspago" id="otra" value="Otra forma de pago" required="">Otra forma de pago
             </label>
           </div> 
         </div> 
-
+        
         <select id="cliente" required="" name="cliente" onchange="LlenarDatosCliente('cliente')" >
             <option value="" disabled selected >Seleccionar cliente</option>
             <?php foreach ($arrayDeClientes as $cliente) 

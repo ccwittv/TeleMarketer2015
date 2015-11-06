@@ -194,8 +194,8 @@ function GuardarVenta()
 			});
 		funcionAjax.done(function(retorno)
 			{
-		      Mostrar('CargarVenta');
-		      //alert(retorno);
+		      alert(retorno);
+		      Mostrar('CargarVenta');		      
 			});
 		funcionAjax.fail(function(retorno)
 			{	
@@ -204,4 +204,46 @@ function GuardarVenta()
 		funcionAjax.always(function(retorno){	
 		//alert(retorno);		
 		});	
+}
+
+function EditarVenta(idParametro)
+{    
+    Mostrar('CargarVenta');
+	//alert("Modificar");
+	var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"TraerVenta",
+			idVenta:idParametro	
+		}
+	});
+	funcionAjax.done(function(retorno){		
+		//alert(retorno);
+		var venta =JSON.parse(retorno);		
+		$("#id").val(venta.id);
+		$("#producto").val(venta.idproducto);
+        $("#cantidad").val(venta.cantidad);
+        //$("#precio").val('7');
+        //$("#formadepago").val(venta.formadepago);		        
+        switch (venta.formadepago)
+        {
+        	case 'Transferencia o depósito':
+        		$("#transferencia").attr('checked', true);
+        		//$("#transferencia").val('true');		        
+        		break;
+        	case 'Otra forma de pago':
+        		$("#otra").attr('checked', true);
+        		//$("#otra").val('true');		        
+        		break;	
+        	default:
+				break;	
+        }         
+        //$("#fechaventa").val(venta.fechaventa);		        
+        $("#cliente").val(venta.idcliente);		                
+	});
+	funcionAjax.fail(function(retorno){
+		alert(retorno);
+	});
+	
 }

@@ -108,17 +108,17 @@ switch ($queHago) {
         session_start();
 		$venta = new venta();
 		$venta->id=$_POST['id'];			
-		$venta->producto=$_POST['producto'];
+		$venta->idproducto=$_POST['producto'];
 		$venta->cantidad=$_POST['cantidad'];
 		$venta->formadepago=$_POST['formadepago'];
 		$venta->fechaventa=$_POST['fechaventa'];
 		$venta->idcliente=$_POST['idcliente'];
-		$usuarioBuscado = usuario::TraerUnUsuario($_SESSION['registrado']);
+		$usuarioBuscado = usuario::TraerUnUsuarioMail($_SESSION['registrado']);
 		$venta->idusuario = $usuarioBuscado->id;
 
 		$acumuladorIdsInsertados=$venta->GuardarVenta(
 											$venta->id,
-											$venta->producto,
+											$venta->idproducto,
             								$venta->cantidad,
             								$venta->formadepago,
 											$venta->fechaventa,
@@ -150,6 +150,12 @@ switch ($queHago) {
 		$provincia=provincia::TraerUnaProvincia($_POST['idProvincia']);		
 		echo $provincia->provincia;
 		break;    	    		
+	case 'TraerVenta':
+		$venta=venta::TraerUnaVenta($_POST['idVenta']);		
+		//$datosmodifventa objeto que tiene todos los datos para pasar a la pantalla de venta
+		// porque venta solo tiene pocos datos. Armar una clase aparte para armar y pasarlo todo de una vez
+		echo json_encode($venta);
+		break;    	    			
 	default:
 		# code...
 		break;

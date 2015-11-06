@@ -25,7 +25,7 @@
 				echo"<tr>
 						<td><a onclick='EditarCliente($cliente->id)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Editar</a></td>
 						<td><a onclick='BorrarCliente($cliente->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>Borrar</a></td>
-						<td><a onclick='VerEnMapacliente($cliente->id)' class='btn btn-info'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>Ver en mapa</a></td>
+						<td><a onclick='VerEnMapacliente($cliente->id)' class='btn btn-info'>   <span class='glyphicon glyphicon-map-marker'>&nbsp;</span>Ver en mapa</a></td>
 						<td>$cliente->dni</td>
             			<td>$cliente->fechanacimiento</td>
             			<td>$cliente->sexo</td>		
