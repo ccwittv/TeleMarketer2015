@@ -11,9 +11,12 @@ switch ($queHago) {
 	case 'CargarVenta':
 		include("partes/formVenta.php");
 		break;
+	case 'MostrarGrillaVentas':
+		include("partes/formGrillaVentas.php");
+		break;	
 	case 'CargarCliente':
 		include("partes/formCliente.php");
-		break;	
+		break;			
 	case 'MostrarGrillaClientes':
 		include("partes/formGrillaClientes.php");
 		break;

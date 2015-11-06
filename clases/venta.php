@@ -10,6 +10,14 @@ class venta
 	public $idcliente;
 	public $idusuario;
 	
+	public static function TraerTodasLasVentas()
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("select * from venta");
+			$consulta->execute();			
+			return $consulta->fetchAll(PDO::FETCH_CLASS, "venta");		
+	}
+
 	public function GuardarVenta($id,$producto,$cantidad,$formadepago,$fechaventa,$idcliente,$idusuario)
 	  {
 

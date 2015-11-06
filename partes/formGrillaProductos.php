@@ -11,7 +11,7 @@
 		<table class="table"  style=" background-color: beige;">
 			<thead>
 				<tr>
-					<th>Editar</th><th>Borrar</th><th>Id</th><th>Nombre</th><th>Descripción</th><th>Precio Unitario</th>
+					<th>Editar</th><th>Borrar</th><th>Nombre</th><th>Descripción</th><th>Precio Unitario</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,7 +21,6 @@
 				echo"<tr>
 						<td><a onclick='EditarProducto($producto->id)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Editar</a></td>
 						<td><a onclick='BorrarProducto($producto->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>Borrar</a></td>
-						<td>$producto->id</td>
 						<td>$producto->nombre</td>
             			<td>$producto->descripcion</td>
             			<td>$producto->preciounitario</td>			
