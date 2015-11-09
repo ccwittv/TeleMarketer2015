@@ -1,3 +1,103 @@
+function EditarCliente(idParametro)
+{    
+    Mostrar('CargarCliente');
+	//alert("Modificar");
+	var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"TraerUnCliente",
+			idCliente:idParametro	
+		}
+	});
+	funcionAjax.done(function(retorno){		
+		//alert(retorno);
+		var cliente =JSON.parse(retorno);		
+		$("#id").val(cliente.id);
+		$("#dni").val(cliente.dni);
+        $("#fechanacimiento").val(cliente.fechanacimiento);
+        switch (cliente.sexo)
+        {
+        	case 'M':
+        		$("#sexom").attr('checked', true);      
+        		break;
+        	case 'F':
+        		$("#sexof").attr('checked', true);
+        		break;	
+        	default:
+				break;	
+        }
+        $("#apellidonombre").val(cliente.apeynom);	
+        $("#apellidonombre").attr('disabled',false);
+        $("#provincia").val(cliente.idprovincia);	
+        $("#localidad").val(cliente.localidad);
+        $("#localidad").attr('disabled',false);		  
+        $("#domicilio").val(cliente.domicilio);
+        $("#domicilio").attr('disabled',false);	
+        $cadena = cliente.tcelular;
+        $cadena = $cadena.trim();
+        if ($cadena.length > 0)
+         {
+         	$("#telefonocelular").attr('checked', true);
+         	$("#tcelular").val(cliente.tcelular);
+         	$("#tcelular").attr('disabled', false);
+         } 	
+        $cadena = cliente.mail;
+        $cadena = $cadena.trim();
+        if ($cadena.length > 0)
+         {
+         	$("#correoelectronico").attr('checked', true);
+         	$("#mail").val(cliente.mail);
+         	$("#mail").attr('disabled', false);
+         } 	 
+        $cadena = cliente.tfijo;
+        $cadena = $cadena.trim();
+        if ($cadena.length > 0)
+         {
+         	$("#telefonofijo").attr('checked', true);
+         	$("#tfijo").val(cliente.tfijo);
+         	$("#tfijo").attr('disabled', false);
+         } 	
+        $cadena = cliente.ttrabajo;
+        $cadena = $cadena.trim();
+        if ($cadena.length > 0)
+         {
+         	$("#telefonotrabajo").attr('checked', true);
+         	$("#ttrabajo").val(cliente.ttrabajo);
+         	$("#ttrabajo").attr('disabled', false);
+         } 	   	      
+	});
+
+	funcionAjax.fail(function(retorno){
+		alert(retorno);
+	});
+	
+}
+
+function BorrarCliente(idParametro)
+{
+	//alert(idParametro);
+		var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"BorrarCliente",
+			id:idParametro	
+		}
+	});
+	funcionAjax.done(function(retorno){		
+		Mostrar("MostrarGrillaClientes");		
+		//alert(retorno);
+	});
+	funcionAjax.fail(function(retorno){	
+		alert(retorno);
+	});	
+	funcionAjax.always(function(retorno){	
+		//alert(retorno);		
+	});	
+}
+
+
 function GuardarCliente()
 {
         var id = $("#id").val()
@@ -53,7 +153,8 @@ function GuardarCliente()
             ttrabajo:ttrabajo
 		}
 	});
-	funcionAjax.done(function(retorno){			
+	funcionAjax.done(function(retorno){	
+		//alert(retorno);		
 		if (retorno.trim == "" )
 		 {
 		 	alert(retorno);
@@ -220,13 +321,14 @@ function EditarVenta(idParametro)
 	});
 	funcionAjax.done(function(retorno){		
 		//alert(retorno);
-		var venta =JSON.parse(retorno);		
-		$("#id").val(venta.id);
-		$("#producto").val(venta.idproducto);
-        $("#cantidad").val(venta.cantidad);
-        //$("#precio").val('7');
-        //$("#formadepago").val(venta.formadepago);		        
-        switch (venta.formadepago)
+		var ventaCompletaBuscada =JSON.parse(retorno);		
+		$("#id").val(ventaCompletaBuscada.id);
+		$("#producto").val(ventaCompletaBuscada.idproducto);
+        $("#cantidad").val(ventaCompletaBuscada.cantidad);
+        $("#precio").val(ventaCompletaBuscada.preciounitarioproducto);
+        $preciototal = ventaCompletaBuscada.cantidad * ventaCompletaBuscada.preciounitarioproducto;
+        $("#total").val($preciototal);	        
+        switch (ventaCompletaBuscada.formadepago)
         {
         	case 'Transferencia o depósito':
         		$("#transferencia").attr('checked', true);
@@ -238,12 +340,43 @@ function EditarVenta(idParametro)
         		break;	
         	default:
 				break;	
-        }         
-        //$("#fechaventa").val(venta.fechaventa);		        
-        $("#cliente").val(venta.idcliente);		                
+        }         	        
+        $("#cliente").val(ventaCompletaBuscada.idcliente);
+        $("#fechanacimiento").val(ventaCompletaBuscada.fechanacimientocliente);	
+        $("#sexo").val(ventaCompletaBuscada.sexocliente);
+        $("#provincia").val(ventaCompletaBuscada.provinciacliente);
+        $("#localidad").val(ventaCompletaBuscada.localidadcliente);
+        $("#domicilio").val(ventaCompletaBuscada.domiciliocliente);		
+        $("#tcelular").val(ventaCompletaBuscada.tcelularcliente);
+        $("#mail").val(ventaCompletaBuscada.mailcliente);	
+        $("#tfijo").val(ventaCompletaBuscada.tfijocliente);
+        $("#ttrabajo").val(ventaCompletaBuscada.ttrabajocliente);						                					                
 	});
 	funcionAjax.fail(function(retorno){
 		alert(retorno);
 	});
 	
+}
+
+function BorrarVenta(idParametro)
+{
+	//alert(idParametro);
+		var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"BorrarVenta",
+			id:idParametro	
+		}
+	});
+	funcionAjax.done(function(retorno){		
+		Mostrar("MostrarGrillaVentas");		
+		//alert(retorno);
+	});
+	funcionAjax.fail(function(retorno){	
+		alert(retorno);
+	});	
+	funcionAjax.always(function(retorno){	
+		//alert(retorno);		
+	});	
 }

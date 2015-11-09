@@ -70,7 +70,7 @@ class cliente
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
 				UPDATE cliente set dni=:pdni,fechanacimiento=:pfechanacimiento,sexo=:psexo,apeynom=:papeynom,
-								   idprovincia=:pidprovincia,localidad=:plocalidad,domicilio=:domicilio,
+								   idprovincia=:pidprovincia,localidad=:plocalidad,domicilio=:pdomicilio,
 								   tcelular=:ptcelular,mail=:pmail,
 								   tfijo=:ptfijo,ttrabajo=:pttrabajo
 				WHERE id = :pid");
@@ -85,7 +85,7 @@ class cliente
 			$consulta->bindValue(':ptcelular',$tcelular,PDO::PARAM_STR);
 			$consulta->bindValue(':pmail',$mail,PDO::PARAM_STR);
 			$consulta->bindValue(':ptfijo',$tfijo,PDO::PARAM_STR);
-			$consulta->bindValue(':ptrabajo',$ttrabajo,PDO::PARAM_STR);
+			$consulta->bindValue(':pttrabajo',$ttrabajo,PDO::PARAM_STR);
 			return $consulta->execute();
 	 }
 	

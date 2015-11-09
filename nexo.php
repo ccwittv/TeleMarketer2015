@@ -5,6 +5,7 @@ require_once("clases/venta.php");
 require_once("clases/cliente.php");
 require_once("clases/provincia.php");
 require_once("clases/usuario.php");
+require_once("clases/datoscompletosventa.php");
 $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
@@ -54,7 +55,67 @@ switch ($queHago) {
 			}				
 		break;
 	case 'GuardarCliente':
-        session_start();
+		session_start();
+		$idCliente = $_POST['id'];
+		if ($idCliente > 0) //si idCliente es mayor que cero quiere decir que es una modificacion de un cliente existente
+		  {
+                $cliente = cliente::TraerUnCliente($idCliente);
+                $cliente->dni=$_POST['dni'];		
+				$cliente->fechanacimiento=$_POST['fechanacimiento'];
+				$cliente->sexo=$_POST['sexo'];	
+				$cliente->apeynom=$_POST['apeynom'];
+				$cliente->idprovincia=$_POST['idprovincia'];
+				$cliente->localidad=$_POST['localidad'];
+				$cliente->domicilio=$_POST['domicilio'];		
+				$cliente->tcelular=$_POST['tcelular'];
+				$cliente->mail=$_POST['mail'];
+				$cliente->tfijo=$_POST['tfijo'];
+				$cliente->ttrabajo=$_POST['ttrabajo'];
+		  }
+		else
+		  {  
+				$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
+				if (isset($cliente->id))
+					{
+						echo "El cliente EXISTE. Modificar datos por grilla de clientes";
+					}
+		        else
+		        	{
+						$cliente = new cliente();
+						$cliente->id=$_POST['id'];
+						$cliente->dni=$_POST['dni'];		
+						$cliente->fechanacimiento=$_POST['fechanacimiento'];
+						$cliente->sexo=$_POST['sexo'];	
+						$cliente->apeynom=$_POST['apeynom'];
+						$cliente->idprovincia=$_POST['idprovincia'];
+						$cliente->localidad=$_POST['localidad'];
+						$cliente->domicilio=$_POST['domicilio'];		
+						$cliente->tcelular=$_POST['tcelular'];
+						$cliente->mail=$_POST['mail'];
+						$cliente->tfijo=$_POST['tfijo'];
+						$cliente->ttrabajo=$_POST['ttrabajo'];
+						
+						if ($idInsertado<>0)
+							{
+							  echo "Cliente agregado";
+							}
+					}
+		   }
+		$idInsertado=$cliente->GuardarCliente(
+												$cliente->id,
+												$cliente->dni,	
+												$cliente->fechanacimiento,
+												$cliente->sexo,	
+												$cliente->apeynom,
+												$cliente->idprovincia,
+												$cliente->localidad,
+												$cliente->domicilio,		
+												$cliente->tcelular,
+												$cliente->mail,
+												$cliente->tfijo,
+												$cliente->ttrabajo
+											);   
+        /*session_start();
 		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
 		if (isset($cliente->id))
 			{
@@ -93,7 +154,7 @@ switch ($queHago) {
 					{
 					  echo "Cliente agregado";
 					}
-			}		
+			}*/		
 		break;							  
     case 'GuardarProducto':
 		$producto = new producto();
@@ -106,15 +167,27 @@ switch ($queHago) {
 		break;		
 	case 'GuardarVenta':
         session_start();
-		$venta = new venta();
-		$venta->id=$_POST['id'];			
-		$venta->idproducto=$_POST['producto'];
-		$venta->cantidad=$_POST['cantidad'];
-		$venta->formadepago=$_POST['formadepago'];
-		$venta->fechaventa=$_POST['fechaventa'];
-		$venta->idcliente=$_POST['idcliente'];
-		$usuarioBuscado = usuario::TraerUnUsuarioMail($_SESSION['registrado']);
-		$venta->idusuario = $usuarioBuscado->id;
+        $idVenta = $_POST['id'];			
+		if ($idVenta > 0) //solo cargar el id del usuario a una venta nueva 
+			{
+				$venta = venta::TraerUnaVenta($idVenta);
+				$venta->idproducto=$_POST['producto'];
+				$venta->cantidad=$_POST['cantidad'];
+				$venta->formadepago=$_POST['formadepago'];
+				$venta->idcliente=$_POST['idcliente'];
+			}
+        else
+			{			
+				$venta = new venta();
+				$venta->id=$idVenta;
+				$venta->idproducto=$_POST['producto'];
+				$venta->cantidad=$_POST['cantidad'];
+				$venta->formadepago=$_POST['formadepago'];
+				$venta->fechaventa=$_POST['fechaventa'];
+				$venta->idcliente=$_POST['idcliente'];
+				$usuarioBuscado = usuario::TraerUnUsuarioMail($_SESSION['registrado']);
+				$venta->idusuario = $usuarioBuscado->id;
+			}	
 
 		$acumuladorIdsInsertados=$venta->GuardarVenta(
 											$venta->id,
@@ -129,6 +202,10 @@ switch ($queHago) {
 		if ($acumuladorIdsInsertados<>null)
 			{
 			  echo "Venta agregada";
+			}
+		else
+			{
+			  echo "Cambio registrada";
 			}
 		break;
 	case 'TraerProducto':
@@ -145,17 +222,27 @@ switch ($queHago) {
 	case 'TraerUnCliente':
 		$cliente=cliente::TraerUnCliente($_POST['idCliente']);		
 		echo json_encode($cliente);
-		break;    	    	
+		break;
+	case 'BorrarCliente':
+		session_start();
+    	$cliente = new cliente();
+		$cliente->id=$_POST['id'];
+		$cantidad=$cliente->BorrarCliente($cliente->id);				
+		break;	    	    		    	    	
 	case 'TraerUnaProvincia':
 		$provincia=provincia::TraerUnaProvincia($_POST['idProvincia']);		
 		echo $provincia->provincia;
 		break;    	    		
 	case 'TraerVenta':
-		$venta=venta::TraerUnaVenta($_POST['idVenta']);		
-		//$datosmodifventa objeto que tiene todos los datos para pasar a la pantalla de venta
-		// porque venta solo tiene pocos datos. Armar una clase aparte para armar y pasarlo todo de una vez
-		echo json_encode($venta);
-		break;    	    			
+		$ventaCompletaBuscada=datoscompletosventa::TraerUnaVentaCompleta($_POST['idVenta']);		
+		echo json_encode($ventaCompletaBuscada);
+		break;
+	case 'BorrarVenta':
+		session_start();
+    	$venta = new venta();
+		$venta->id=$_POST['id'];
+		$cantidad=$venta->BorrarVenta($venta->id);				
+		break;	    	    			
 	default:
 		# code...
 		break;

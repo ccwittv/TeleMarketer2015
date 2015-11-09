@@ -10,6 +10,15 @@ class venta
 	public $idcliente;
 	public $idusuario;
 	
+ 	public function BorrarVenta($id)
+	 {
+	 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("Delete from venta where id = :pid");
+			$consulta->bindValue(':pid',$id, PDO::PARAM_INT);		
+			$consulta->execute();
+			return $consulta->rowCount();
+	 }
+
 	public static function TraerTodasLasVentas()
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

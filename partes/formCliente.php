@@ -86,8 +86,8 @@ if(isset($_SESSION['registrado'])){  ?>
         <br>
 
         <label>
-            <input type="radio" Name="sexo" id="sexo" value="M" onclick="HabilitarTres('apellidonombre')">Masculino
-            <input type="radio" Name="sexo" id="sexo" value="F" onclick="HabilitarTres('apellidonombre')">Femenino
+            <input type="radio" Name="sexo" id="sexom" value="M" onclick="HabilitarTres('apellidonombre')">Masculino
+            <input type="radio" Name="sexo" id="sexof" value="F" onclick="HabilitarTres('apellidonombre')">Femenino
         </label>
         <br>
 
