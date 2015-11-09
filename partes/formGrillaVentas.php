@@ -40,7 +40,7 @@
 				echo"<tr>
 						<td><a onclick='EditarVenta($venta->id)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Editar</a></td>
 						<td><a onclick='BorrarVenta($venta->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>Borrar</a></td>
-						<td><a onclick='DetallesVenta($venta->id)' class='btn btn-info'>   <span class='glyphicon glyphicon-info-sign'>&nbsp;</span>Detalles</a></td>
+						<!--<td><a onclick='DetallesVenta($venta->id)' class='btn btn-info'>   <span class='glyphicon glyphicon-info-sign'>&nbsp;</span>Detalles</a></td>-->
 						<td>$venta->id</td>
 						<td>$cliente->apeynom</td>
 						<td>$provincia->provincia</td>						

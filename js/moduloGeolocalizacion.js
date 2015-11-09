@@ -50,7 +50,7 @@ Geolocalizacion.Marcador = Geolocalizacion.Marcador || {};
               var p = {
                 "lat" : lat,
                 "lng": lng,
-                "nombre": "Estoy en este lugar! (Eso dice mi navegador)",
+                "idcliente": "Estoy en este lugar! (Eso dice mi navegador)",
                 "direccion" : "",
                 "codPostal" : ""
                 }
@@ -78,13 +78,12 @@ Geolocalizacion.Marcador = Geolocalizacion.Marcador || {};
 
     self.verMarcador = function verMarcador(){
 
-        var nombre = "voto: " + $("#id").val();
+        var unCliente = $("#id").val();        
         var dire = $("#punto").val();
-        
-       
+               
         if(dire != "") {
 
-          Geolocalizacion.encontrarDireccion(map, dire, nombre, geocoder, puntos, infoWindow);
+          Geolocalizacion.encontrarDireccion(map, dire, unCliente, geocoder, puntos, infoWindow);
         }
     }
 

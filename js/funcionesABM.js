@@ -247,7 +247,7 @@ function GuardarProducto()
 	});	
 }
 
-function VerEnMapa(prov, dire, loc, id)
+/*function VerEnMapa(prov, dire, loc, id)
 {
     //alert(prov + dire +  loc);
     var punto = dire +", " +  loc  +", " +  prov +", Argentina";
@@ -266,7 +266,7 @@ function VerEnMapa(prov, dire, loc, id)
 	Geolocalizacion.Marcador.iniciar();
 	Geolocalizacion.Marcador.verMarcador();	
 	});
-}
+}*/
 
 function GuardarVenta()
 {
