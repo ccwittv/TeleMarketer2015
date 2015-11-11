@@ -224,6 +224,7 @@ function GuardarProducto()
 		var nombre=$("#nombre").val();
 		var descripcion=$("#descripcion").val();
         var preciounitario=$("#preciounitario").val();        
+
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"POST",
@@ -236,7 +237,7 @@ function GuardarProducto()
 		}
 	});
 	funcionAjax.done(function(retorno){			
-		//alert(retorno);
+		alert(retorno);
 		Mostrar("MostrarGrillaProductos");						
 	});
 	funcionAjax.fail(function(retorno){	
@@ -246,27 +247,6 @@ function GuardarProducto()
 		//alert(retorno);		
 	});	
 }
-
-/*function VerEnMapa(prov, dire, loc, id)
-{
-    //alert(prov + dire +  loc);
-    var punto = dire +", " +  loc  +", " +  prov +", Argentina";
-    console.log(punto);
-    var funcionAjax=$.ajax({
-		url:"nexo.php",
-		type:"post",
-		data:{
-			queHacer:"VerEnMapa"
-		}
-	});
-    funcionAjax.done(function(retorno){
-		$("#principal").html(retorno);
-        $("#punto").val(punto);
-        $("#id").val(id);
-	Geolocalizacion.Marcador.iniciar();
-	Geolocalizacion.Marcador.verMarcador();	
-	});
-}*/
 
 function GuardarVenta()
 {

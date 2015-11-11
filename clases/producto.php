@@ -5,6 +5,7 @@ class producto
      public $nombre;
      public $descripcion;
      public $preciounitario;
+     public $foto;
 
      public function BorrarProducto($id)
 	 {
@@ -33,43 +34,45 @@ class producto
 			return $productoBuscado;	
 		}	
 
-	public function GuardarProducto($id,$nombre,$descripcion,$preciounitario)
+	public function GuardarProducto($id,$nombre,$descripcion,$preciounitario,$foto)
 	 {
 
 	 	if($id>0)
 	 		{
-	 			$this->ModificarProducto($id,$nombre,$descripcion,$preciounitario);
+	 			$this->ModificarProducto($id,$nombre,$descripcion,$preciounitario,$foto);
 	 		}else {
-	 			$this->InsertarProducto($nombre,$descripcion,$preciounitario);
+	 			$this->InsertarProducto($nombre,$descripcion,$preciounitario,$foto);
 	 		}
 
 	 }
 
-	public function ModificarProducto($id,$nombre,$descripcion,$preciounitario)
+	public function ModificarProducto($id,$nombre,$descripcion,$preciounitario,$foto)
 	 {
 
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				UPDATE producto set nombre = :pnombre, descripcion = :pdescripcion, preciounitario = :ppreciounitario
+				UPDATE producto set nombre = :pnombre, descripcion = :pdescripcion, preciounitario = :ppreciounitario, foto = :pfoto,
 				WHERE id = :pid");
 			$consulta->bindValue(':pid',$id,PDO::PARAM_INT);
 			$consulta->bindValue(':pnombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindValue(':pdescripcion',$descripcion,PDO::PARAM_STR);
 			$consulta->bindValue(':ppreciounitario',$preciounitario,PDO::PARAM_STR);
+			$consulta->bindValue(':pfoto',$foto,PDO::PARAM_STR);
 			return $consulta->execute();
 	 }
 	
   
-	 public function InsertarProducto($nombre,$descripcion,$preciounitario)
+	 public function InsertarProducto($nombre,$descripcion,$preciounitario,$foto)
 	 {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 				$consulta =$objetoAccesoDato->RetornarConsulta("
-					INSERT into producto (nombre,descripcion,preciounitario)
+					INSERT into producto (nombre,descripcion,preciounitario,foto)
 					                       values 
-					                       (:pnombre,:pdescripcion,:ppreciounitario)");
+					                       (:pnombre,:pdescripcion,:ppreciounitario,:pfoto)");
 				$consulta->bindValue(':pnombre',$nombre,PDO::PARAM_STR);
 				$consulta->bindValue(':pdescripcion',$descripcion,PDO::PARAM_STR);
 				$consulta->bindValue(':ppreciounitario',$preciounitario,PDO::PARAM_STR);
+				$consulta->bindValue(':pfoto',$foto,PDO::PARAM_STR);
 				$consulta->execute();
 				return $objetoAccesoDato->RetornarUltimoIdInsertado();			
 	 }

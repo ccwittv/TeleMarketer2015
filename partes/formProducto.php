@@ -2,12 +2,22 @@
 <link href="css/ingreso.css" rel="stylesheet">
 
 <?php  
-session_start();
+session_start();    
+require_once("clases\producto.php");
+
+$titulo = "ALTA";
+$idPara=0;
+if(isset($_POST['idProductoParaModificar'])) /*viene de la grilla*/
+  {
+    $idPara = $_POST['idProductoParaModificar'];
+    $unaPersona = Persona::TraerUnProducto($_POST['idProductoParaModificar']);
+    $titulo = "MODIFICACIÓN";
+  } 
 if(isset($_SESSION['registrado'])){  
     if ($_SESSION['rol'] == 'supervisor') { ?>
       <div class="container">
-        <form  class="form-ingreso " onsubmit="GuardarProducto(); return false;">
-           <h2 class="form-ingreso-heading">Producto</h2>
+        <form  class="form-ingreso " onsubmit="GuardarProducto(); return false;" id="formProducto" enctype="multipart/form-data">
+           <h2 class="form-ingreso-heading"> <?php echo $titulo." Producto"; ?></h2>
             <label for="nombre" class="sr-only" hidden>Nombre</label>
                  <input type="text" id="nombre" class="form-control" placeholder="Nombre" required="" autofocus="">
             <label for="descripcion" class="sr-only" hidden>Descripción</label>
@@ -15,6 +25,11 @@ if(isset($_SESSION['registrado'])){
             <label for="preciounitario" class="sr-only" hidden>Precio Unitario</label>
                  <input type="text" id="preciounitario" class="form-control" placeholder="Precio Unitario" required="" autofocus="">        
           
+            <input type="file" name="foto"  id="fichero" onchange="cargarFoto()" />
+            <img  src="fotos/<?php echo isset($unProducto) ? $unaProducto->GetFoto() : "no_image_for_this_product.gif" ; ?>" class="fotoform" id="imagen"/>
+            <p style="color: black;">*La foto se actualiza al guardar.</p>
+            <span id="error" class='error1' style="display: none;"></span>
+            
             <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
             <input type="hidden" name="id" id="id" readonly>
         </form>

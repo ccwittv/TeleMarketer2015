@@ -157,12 +157,54 @@ switch ($queHago) {
 			}*/		
 		break;							  
     case 'GuardarProducto':
+		session_start();
 		$producto = new producto();
 		$producto->id=$_POST['id'];
 		$producto->nombre=$_POST['nombre'];
 		$producto->descripcion=$_POST['descripcion'];
 		$producto->preciounitario=$_POST['preciounitario'];
-		$idInsertado=$producto->GuardarProducto($producto->id,$producto->nombre,$producto->descripcion,$producto->preciounitario);
+
+		$ruta=getcwd();  //ruta directorio actual
+        $rutaDestino=$ruta."/Fotos/";
+    	$NOMEXT=explode(".", $_FILES['fichero0']['name']);
+        $EXT=end($NOMEXT);
+        $nomarch=$NOMEXT[0].".".$EXT;  // no olvidar el "." separador de nombre/ext
+        $rutaActual = $ruta."/FotosTemp/".$nomarch;
+
+        $nuevoNombreDeFoto = $producto->nombre.".".$EXT;
+        //Renombro con el email/usuario
+        rename ($ruta."/FotosTemp/".$nomarch,$ruta."/FotosTemp/".$nuevoNombreDeFoto);
+        $rutaActual = $ruta."/FotosTemp/".$nuevoNombreDeFoto;
+        echo $nomarch;
+        echo "	</br>";
+        echo $rutaActual;
+         echo "	</br>";
+        echo $rutaDestino.$nuevoNombreDeFoto;
+         echo "	</br>";
+        //Muevo a carpeta Fotos
+		rename($rutaActual,$rutaDestino.$nuevoNombreDeFoto);
+		$producto->foto=$nuevoNombreDeFoto;
+		echo "	</br>";
+        var_dump($ruta);
+        echo "	</br>";
+        var_dump($rutaDestino);
+        echo "	</br>";
+        var_dump($NOMEXT);
+        echo "	</br>";
+        var_dump($EXT);
+        echo "	</br>";
+        var_dump($nomarch);
+        echo "	</br>";
+        var_dump($rutaActual);
+        echo "	</br>";
+        var_dump($nuevoNombreDeFoto);
+        echo "	</br>";
+
+		$idInsertado=$producto->GuardarProducto($producto->id,
+												$producto->nombre,
+												$producto->descripcion,
+												$producto->preciounitario,
+												$producto->foto);
 		echo $idInsertado;
 		break;		
 	case 'GuardarVenta':
