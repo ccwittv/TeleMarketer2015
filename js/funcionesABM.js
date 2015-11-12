@@ -223,18 +223,32 @@ function GuardarProducto()
         var id = $("#id").val()
 		var nombre=$("#nombre").val();
 		var descripcion=$("#descripcion").val();
-        var preciounitario=$("#preciounitario").val();        
+        var preciounitario=$("#preciounitario").val();
+        var foto=$("#fichero").val();  
+
+        var files = $("#fichero").get(0).files;
+    	var envio = new FormData();
+	    for (var i = 0; i < files.length; i++) 
+	    	{
+	    		envio.append("fichero0", files[i]);
+	    	}      
 
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"POST",
 		data:{
-			queHacer:"GuardarProducto",
-			id:id,
-			nombre:nombre,
-			descripcion:descripcion,
-            preciounitario:preciounitario,
-		}
+				queHacer:"GuardarProducto",
+				id:id,
+				nombre:nombre,
+				descripcion:descripcion,
+	            preciounitario:preciounitario,
+	            foto:foto,
+	            data:envio,
+	            contentType: false,
+	    		processData: false,
+	    		/*cache: false,
+            	dataType: "text"*/
+			 }
 	});
 	funcionAjax.done(function(retorno){			
 		alert(retorno);

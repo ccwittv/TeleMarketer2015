@@ -163,10 +163,12 @@ switch ($queHago) {
 		$producto->nombre=$_POST['nombre'];
 		$producto->descripcion=$_POST['descripcion'];
 		$producto->preciounitario=$_POST['preciounitario'];
-
+        $foto = $_POST['foto'];
+        
 		$ruta=getcwd();  //ruta directorio actual
         $rutaDestino=$ruta."/Fotos/";
     	$NOMEXT=explode(".", $_FILES['fichero0']['name']);
+    	//$NOMEXT=explode(".", $foto);
         $EXT=end($NOMEXT);
         $nomarch=$NOMEXT[0].".".$EXT;  // no olvidar el "." separador de nombre/ext
         $rutaActual = $ruta."/FotosTemp/".$nomarch;
@@ -184,21 +186,7 @@ switch ($queHago) {
         //Muevo a carpeta Fotos
 		rename($rutaActual,$rutaDestino.$nuevoNombreDeFoto);
 		$producto->foto=$nuevoNombreDeFoto;
-		echo "	</br>";
-        var_dump($ruta);
-        echo "	</br>";
-        var_dump($rutaDestino);
-        echo "	</br>";
-        var_dump($NOMEXT);
-        echo "	</br>";
-        var_dump($EXT);
-        echo "	</br>";
-        var_dump($nomarch);
-        echo "	</br>";
-        var_dump($rutaActual);
-        echo "	</br>";
-        var_dump($nuevoNombreDeFoto);
-        echo "	</br>";
+		var_dump($_FILES);
 
 		$idInsertado=$producto->GuardarProducto($producto->id,
 												$producto->nombre,

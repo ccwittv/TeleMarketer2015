@@ -48,7 +48,8 @@ function MostarLogin()
 function cargarFoto(){
     var files = $("#fichero").get(0).files; // $("#fichero") slector por id de jquery  
     //var envio = new FormData();
-    var envio = new FormData($("#formProducto")[0]);
+    //var envio = new FormData($("#formProducto")[0]);
+    var envio = new FormData();
     for (var i = 0; i < files.length; i++) {
     envio.append("fichero0", files[i]);
     }

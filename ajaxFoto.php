@@ -9,7 +9,7 @@ if(isset($_FILES['fichero0']))
 			//echo "<br>";
 			$NOMEXT=explode(".", $_FILES['fichero0']['name']);
 			$EXT=end($NOMEXT);
-			$arrayDeExtValida = array("jpg", "jpeg", "gif", "bmp");  //defino antes las extensiones que seran validas
+			$arrayDeExtValida = array("jpg", "jpeg", "gif", "bmp","png");  //defino antes las extensiones que seran validas
 
 			if(!in_array($EXT, $arrayDeExtValida))
 			{
@@ -26,6 +26,7 @@ if(isset($_FILES['fichero0']))
     			{
     				
     			$ruta=getcwd();  //ruta directorio actual
+    			//$ruta=$ruta."\\FotosTemp\\";
     			$ruta=$ruta."\\FotosTemp\\";
 				
 				//Se borra contenido directorio para limpiar de fotos de previws anteriores
@@ -44,7 +45,9 @@ if(isset($_FILES['fichero0']))
     			$nomarch=$NOMEXT[0].".".$EXT;  // no olvidar el "." separador de nombre/ext
     			move_uploaded_file($_FILES['fichero0']['tmp_name'], $ruta.$nomarch);
 
-    			echo  $ruta.$email.".".$EXT;
+    			echo  $ruta.$nomarch;
+    			echo "<br>";
+    			var_dump($_FILES);
     			}
 			}
 		}
