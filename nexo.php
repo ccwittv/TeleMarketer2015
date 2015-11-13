@@ -165,28 +165,27 @@ switch ($queHago) {
 		$producto->preciounitario=$_POST['preciounitario'];
         $foto = $_POST['foto'];
         
-		$ruta=getcwd();  //ruta directorio actual
-        $rutaDestino=$ruta."/Fotos/";
-    	$NOMEXT=explode(".", $_FILES['fichero0']['name']);
-    	//$NOMEXT=explode(".", $foto);
-        $EXT=end($NOMEXT);
-        $nomarch=$NOMEXT[0].".".$EXT;  // no olvidar el "." separador de nombre/ext
-        $rutaActual = $ruta."/FotosTemp/".$nomarch;
+			$ruta=getcwd();  //ruta directorio actual
+	        $rutaDestino=$ruta."/Fotos/";
+	    	//$NOMEXT=explode(".", $_FILES['fichero0']['name']);
+	    	$NOMEXT=explode(".", $foto);
+	        $EXT=end($NOMEXT);
+	        $nomarch=$NOMEXT[0].".".$EXT;  // no olvidar el "." separador de nombre/ext
+	        $rutaActual = $ruta."/FotosTemp/".$nomarch;
 
-        $nuevoNombreDeFoto = $producto->nombre.".".$EXT;
-        //Renombro con el email/usuario
-        rename ($ruta."/FotosTemp/".$nomarch,$ruta."/FotosTemp/".$nuevoNombreDeFoto);
-        $rutaActual = $ruta."/FotosTemp/".$nuevoNombreDeFoto;
-        echo $nomarch;
-        echo "	</br>";
-        echo $rutaActual;
-         echo "	</br>";
-        echo $rutaDestino.$nuevoNombreDeFoto;
-         echo "	</br>";
-        //Muevo a carpeta Fotos
-		rename($rutaActual,$rutaDestino.$nuevoNombreDeFoto);
-		$producto->foto=$nuevoNombreDeFoto;
-		var_dump($_FILES);
+	        $nuevoNombreDeFoto = $producto->nombre.".".$EXT;
+	        //Renombro con el email/usuario
+	        rename ($ruta."/FotosTemp/".$nomarch,$ruta."/FotosTemp/".$nuevoNombreDeFoto);
+	        $rutaActual = $ruta."/FotosTemp/".$nuevoNombreDeFoto;
+	        echo $nomarch;
+	        echo "	</br>";
+	        echo $rutaActual;
+	         echo "	</br>";
+	        echo $rutaDestino.$nuevoNombreDeFoto;
+	         echo "	</br>";
+	        //Muevo a carpeta Fotos
+			rename($rutaActual,$rutaDestino.$nuevoNombreDeFoto);
+			$producto->foto=$nuevoNombreDeFoto;							
 
 		$idInsertado=$producto->GuardarProducto($producto->id,
 												$producto->nombre,

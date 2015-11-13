@@ -210,7 +210,8 @@ function EditarProducto(idParametro)
 		$("#id").val(producto.id);
 		$("#nombre").val(producto.nombre);
         $("#descripcion").val(producto.descripcion);
-        $("#preciounitario").val(producto.preciounitario);		        
+        $("#preciounitario").val(producto.preciounitario);
+        $("#imagen").attr('src','fotos/'+producto.foto);        
 	});
 	funcionAjax.fail(function(retorno){
 		alert(retorno);
@@ -224,14 +225,16 @@ function GuardarProducto()
 		var nombre=$("#nombre").val();
 		var descripcion=$("#descripcion").val();
         var preciounitario=$("#preciounitario").val();
-        var foto=$("#fichero").val();  
+        //var foto=$("#fichero").val();  
 
         var files = $("#fichero").get(0).files;
-    	var envio = new FormData();
+        var foto = files[0].name;
+        	
+    	/*var envio = new FormData();
 	    for (var i = 0; i < files.length; i++) 
 	    	{
 	    		envio.append("fichero0", files[i]);
-	    	}      
+	    	}*/      
 
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
@@ -243,7 +246,7 @@ function GuardarProducto()
 				descripcion:descripcion,
 	            preciounitario:preciounitario,
 	            foto:foto,
-	            data:envio,
+	            /*data:envio,
 	            contentType: false,
 	    		processData: false,
 	    		/*cache: false,

@@ -11,7 +11,7 @@
 		<table class="table"  style=" background-color: beige;">
 			<thead>
 				<tr>
-					<th>Editar</th><th>Borrar</th><th>Nombre</th><th>Descripción</th><th>Precio Unitario</th>
+					<th>Editar</th><th>Borrar</th><th>Nombre</th><th>Descripción</th><th>Precio Unitario</th><th>Foto</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,8 @@
 						<td><a onclick='BorrarProducto($producto->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>Borrar</a></td>
 						<td>$producto->nombre</td>
             			<td>$producto->descripcion</td>
-            			<td>$producto->preciounitario</td>			
+            			<td>$producto->preciounitario</td>
+            			<td><img  class='fotoGrilla' style='width:70px;height:70px;' src='fotos/".$producto->foto."' /></td>			
 					</tr>";
 			}			  
 		}
