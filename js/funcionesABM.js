@@ -211,7 +211,8 @@ function EditarProducto(idParametro)
 		$("#nombre").val(producto.nombre);
         $("#descripcion").val(producto.descripcion);
         $("#preciounitario").val(producto.preciounitario);
-        $("#imagen").attr('src','fotos/'+producto.foto);        
+        //$("#fichero").attr('name',producto.foto); 
+        $("#imagen").attr('src','Fotos/'+producto.foto);        
 	});
 	funcionAjax.fail(function(retorno){
 		alert(retorno);
@@ -225,10 +226,26 @@ function GuardarProducto()
 		var nombre=$("#nombre").val();
 		var descripcion=$("#descripcion").val();
         var preciounitario=$("#preciounitario").val();
-        //var foto=$("#fichero").val();  
+        var foto=$("#imagen").attr('src');  
 
         var files = $("#fichero").get(0).files;
-        var foto = files[0].name;
+        if (files[0] != null)
+        	{
+        		foto = files[0].name;
+        		var accionFoto = 'nueva';
+            }
+        else
+            {
+            	foto = foto.replace("Fotos/", "");
+            	if (foto == "")
+            	 {
+            		var accionFoto = 'noesta';		
+            	 }
+            	else
+            	 {
+            	 	var accionFoto = 'existe';
+            	 } 	
+            }    	
         	
     	/*var envio = new FormData();
 	    for (var i = 0; i < files.length; i++) 
@@ -246,6 +263,7 @@ function GuardarProducto()
 				descripcion:descripcion,
 	            preciounitario:preciounitario,
 	            foto:foto,
+	            queHacerConLaFoto:accionFoto,
 	            /*data:envio,
 	            contentType: false,
 	    		processData: false,
@@ -254,7 +272,7 @@ function GuardarProducto()
 			 }
 	});
 	funcionAjax.done(function(retorno){			
-		alert(retorno);
+		//alert(retorno);
 		Mostrar("MostrarGrillaProductos");						
 	});
 	funcionAjax.fail(function(retorno){	

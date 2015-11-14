@@ -164,7 +164,10 @@ switch ($queHago) {
 		$producto->descripcion=$_POST['descripcion'];
 		$producto->preciounitario=$_POST['preciounitario'];
         $foto = $_POST['foto'];
-        
+        $queHagoConLaFoto = $_POST['queHacerConLaFoto']; 
+		
+		if ($queHagoConLaFoto == 'nueva')
+		  {        
 			$ruta=getcwd();  //ruta directorio actual
 	        $rutaDestino=$ruta."/Fotos/";
 	    	//$NOMEXT=explode(".", $_FILES['fichero0']['name']);
@@ -173,8 +176,10 @@ switch ($queHago) {
 	        $nomarch=$NOMEXT[0].".".$EXT;  // no olvidar el "." separador de nombre/ext
 	        $rutaActual = $ruta."/FotosTemp/".$nomarch;
 
-	        $nuevoNombreDeFoto = $producto->nombre.".".$EXT;
-	        //Renombro con el email/usuario
+	        $nuevoNombreDeFoto = str_replace(' ', '', $producto->nombre);
+	        $nuevoNombreDeFoto = $nuevoNombreDeFoto.date("Y").date("m").date("d").date("H").date("i").date("s").".".$EXT;
+	        $nuevoNombreDeFoto = str_replace(' ', '', $nuevoNombreDeFoto); 
+
 	        rename ($ruta."/FotosTemp/".$nomarch,$ruta."/FotosTemp/".$nuevoNombreDeFoto);
 	        $rutaActual = $ruta."/FotosTemp/".$nuevoNombreDeFoto;
 	        echo $nomarch;
@@ -185,7 +190,19 @@ switch ($queHago) {
 	         echo "	</br>";
 	        //Muevo a carpeta Fotos
 			rename($rutaActual,$rutaDestino.$nuevoNombreDeFoto);
-			$producto->foto=$nuevoNombreDeFoto;							
+			$producto->foto=$nuevoNombreDeFoto;	
+		  }	
+		 
+		if 	($queHagoConLaFoto == 'existe')
+		  {
+		  	$producto->foto = $foto;
+		  }					
+  	
+		  
+		if 	($queHagoConLaFoto == 'noesta')
+		  {
+		  	$producto->foto = 'no_image_for_this_product.gif';
+		  }					
 
 		$idInsertado=$producto->GuardarProducto($producto->id,
 												$producto->nombre,

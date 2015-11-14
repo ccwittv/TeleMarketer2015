@@ -50,9 +50,8 @@ class producto
 	 {
 
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("
-				UPDATE producto set nombre = :pnombre, descripcion = :pdescripcion, preciounitario = :ppreciounitario, foto = :pfoto,
-				WHERE id = :pid");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto set nombre = :pnombre, descripcion = :pdescripcion, preciounitario = :ppreciounitario, foto = :pfoto 
+															WHERE id = :pid");
 			$consulta->bindValue(':pid',$id,PDO::PARAM_INT);
 			$consulta->bindValue(':pnombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindValue(':pdescripcion',$descripcion,PDO::PARAM_STR);

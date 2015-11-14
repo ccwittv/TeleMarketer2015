@@ -17,8 +17,8 @@ if(isset($_SESSION['registrado'])){
             <label for="preciounitario" class="sr-only" hidden>Precio Unitario</label>
                  <input type="text" id="preciounitario" class="form-control" placeholder="Precio Unitario" required="" autofocus="">        
           
-            <input type="file" name="foto"  id="fichero" onchange="cargarFoto()" required="" autofocus="" />
-            <img  src="Fotos/no_image_for_this_product.gif" class="fotoform" id="imagen" required="" autofocus="" />
+            <input type="file" name="foto"  id="fichero" onchange="cargarFoto()" autofocus="" />
+            <img  src="Fotos/no_image_for_this_product.gif" class="fotoform" id="imagen" autofocus="" />
             <p style="color: black;">*La foto se actualiza al guardar.</p>
             <span id="error" class='error1' style="display: none;"></span>
             

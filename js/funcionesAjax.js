@@ -66,7 +66,7 @@ function cargarFoto(){
             
     // la funcion Ajax me devuelve una promesa de javascript, algo que va a hacerse. Cuando el servidor responde y si la respuesta del servidor es exitosa ingresa al done y ejecuta la función que se le pasa
     promise.done(function (dato){ 
-                    alert(dato);
+                    //alert(dato);
                     $('#error').hide();
                     console.log(dato);
                     var strIndex = dato.indexOf('Error');
