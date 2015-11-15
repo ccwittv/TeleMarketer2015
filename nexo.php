@@ -288,7 +288,10 @@ switch ($queHago) {
     	$venta = new venta();
 		$venta->id=$_POST['id'];
 		$cantidad=$venta->BorrarVenta($venta->id);				
-		break;	    	    			
+		break;
+	case 'MostrarEstadisticasVentas':
+			include("partes/estadisticas.php");
+		break;		    	    			
 	default:
 		# code...
 		break;

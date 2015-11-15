@@ -96,7 +96,7 @@ if(isset($_SESSION['registrado'])){  ?>
     <div class="container">
 
       <form  class="form-ingreso-ccw" onsubmit="GuardarVenta(); return false;">
-        <h3 class="form-ingreso-heading">Carga Venta</h3>
+        <h3 class="form-ingreso-heading">Venta</h3>
         <select id="producto" required="" name="producto" onchange="HabilitarUno('producto','cantidad')">  
           <option value="" disabled selected >Seleccionar producto</option>
           <?php foreach ($arrayDeProductos as $producto) 

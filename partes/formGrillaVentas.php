@@ -15,7 +15,7 @@
 		<table class="table"  style=" background-color: beige;">
 			<thead>
 				<tr>
-					<th>Editar</th><th>Borrar</th><th>Detalles</th>
+					<th>Editar</th><th>Borrar</th>
 					<th>ID</th>
 					<th>Nombre_Cliente</th>
 					<th>Provincia</th>

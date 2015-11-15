@@ -92,4 +92,20 @@ class venta
 				return $objetoAccesoDato->RetornarUltimoIdInsertado();				
 	    }
 
+	public static function TraerEstadisticas() 
+    {
+            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("select count(*) as CantidadVenta, 
+																   venta.id as NroVenta, 
+																   venta.idusuario as NroVendedor,  
+																   usuario.nombre as NombreVendedor,
+																   usuario.apellido as ApellidoVendedor 
+																   from venta
+																   inner join usuario
+																   on venta.idusuario = usuario.id 
+																   group by NroVendedor order by CantidadVenta desc limit 5");
+			$consulta->execute();
+      		return $consulta->fetchAll();		
+    }    
+
 }

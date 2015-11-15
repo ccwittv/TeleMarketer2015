@@ -8,6 +8,7 @@ function Mostrar(queMostrar)
 		data:{queHacer:queMostrar}
 	});
 	funcionAjax.done(function(retorno){
+		//alert(retorno);
 		$("#principal").html(retorno);
 		//$("#sidebar").html("Correcto!!!");	
 	});

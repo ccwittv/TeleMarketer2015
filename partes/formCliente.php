@@ -76,7 +76,7 @@ if(isset($_SESSION['registrado'])){  ?>
     <div class="container">
 
       <form  class="form-ingreso-ccw" onsubmit="GuardarCliente(); return false;">
-        <h3 class="form-ingreso-heading">Cargar Cliente</h3>
+        <h3 class="form-ingreso-heading">Cliente</h3>
         
         <label for="DNI" class="sr-only" hidden>DNI</label>
                 <input type="text" id="dni" class="" placeholder="DNI" required="" oninput="ChequearDNI('dni')">

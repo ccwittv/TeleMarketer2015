@@ -21,10 +21,16 @@
     <script type="text/javascript" src="js/funcionesLogin.js"></script>
     <script type="text/javascript" src="js/funcionesABM.js"></script>
     <script type="text/javascript" src="js/funcionesMapa.js"></script>
+    
     <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
     <script type="text/javascript" src="js/moduloGeolocalizacion.js"></script>
     <script type="text/javascript" src="js/geolocalizacionCommon.js"></script>
+    
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
  </head>
  <body>
     <div id="pagewrap">
@@ -56,7 +62,7 @@
                        <li><a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn">Listado de PRODUCTOS</a> </li>
                     </ul>   
                   </li>         
-                  <li><a href="#" onclick="" class="btn">Ventas y Estadísticas <br> (Solo Supervisor) </a> </li>  
+                  <li><a href="#" onclick="Mostrar('MostrarEstadisticasVentas')" class="btn">Estadísticas de Ventas <br> (Solo Supervisor) </a> </li>  
                   <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
                   <li><a href="#" onclick="MostarLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
