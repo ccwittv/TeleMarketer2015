@@ -8,8 +8,8 @@ $clave=$_POST['clave'];
 $recordar=$_POST['recordarme'];
 $usuarioBuscado = usuario::validarUsuario($usuario,$clave);
 
-var_dump($_POST);
-echo("<br>");
+//var_dump($_POST);
+//echo("<br>");
 
  if(isset($usuarioBuscado->id))
     {

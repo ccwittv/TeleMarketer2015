@@ -1,3 +1,47 @@
+function GuardarUsuario()
+{
+        var nombre = $("#nombre").val()
+		var apellido=$("#apellido").val();
+		var email=$("#email").val();
+        var pass=$("#pass").val();
+        var pass2=$("#pass2").val();
+
+        var fecha = new Date();
+		var fechaingreso= fecha.getFullYear() + "-" + (fecha.getMonth() +1) + "-" + fecha.getDate();  
+        	
+		var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+				queHacer:"GuardarUsuario",				
+				nombre:nombre,
+				apellido:apellido,
+	            email:email,
+	            fechaingreso:fechaingreso,
+	            pass:pass,	            
+	            pass2:pass2,	            
+			 }
+	});
+	funcionAjax.done(function(retorno){			
+		alert(retorno);
+		if (retorno.trim() == "PassNoCoincide")
+			{
+	          alert("La confirmacion no coincide con la contraseña");
+			}
+		else
+		    {
+              alert("Vendedor / usuario creado");
+              MostarLogin();							
+		    }	
+	});
+	funcionAjax.fail(function(retorno){	
+		alert(retorno);		
+	});	
+	funcionAjax.always(function(retorno){	
+		//alert(retorno);		
+	});	
+}
+
 function EditarCliente(idParametro)
 {    
     Mostrar('CargarCliente');

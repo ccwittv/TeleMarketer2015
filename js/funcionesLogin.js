@@ -19,15 +19,17 @@ $("#sidebar").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>")
 
 
 	funcionAjax.done(function(retorno){
-		alert(retorno);
+		//alert(retorno);
 		if(retorno.trim()=="ingreso")
 			{	
-				Mostrar('CargarVenta');
 				//MostarLogin();
+				$("#MensajeError").val("Ingreso Correcto");
+				//Mostrar('CargarVenta');				
 			}
-        else
+        else if (retorno.trim()=="No registrado")
         	{
-				MostarLogin();
+				//MostarLogin();
+				$("#MensajeError").val("NO esta registrado... ");
         	}
 	});
 	funcionAjax.fail(function(retorno){
@@ -36,6 +38,7 @@ $("#sidebar").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>")
 	});
 	
 }
+
 function deslogear()
 {	
 	var funcionAjax=$.ajax({

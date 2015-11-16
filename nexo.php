@@ -33,6 +33,9 @@ switch ($queHago) {
 	case 'desloguear':
 		include("php/deslogearUsuario.php");
 		break;	
+	case 'RegistracionUsuario':
+		include("partes/formUsuarioJquery.php");
+		break;		
     case 'VerEnMapa':        
         include("partes/formMapa.php");
 		break;
@@ -254,6 +257,40 @@ switch ($queHago) {
 			  echo "Cambio registrada";
 			}
 		break;
+	case 'GuardarUsuario':
+        session_start();
+        $nombre=$_POST['nombre'];        
+		$apellido=$_POST['apellido'];        
+		$email=$_POST['email'];
+		$fechaingreso=$_POST['fechaingreso'];
+        $pass=$_POST['pass'];
+        $pass2=$_POST['pass2'];
+        if ($pass == $pass2)
+        	{
+        		$usuario = new usuario();
+        		$usuario->nombre = $nombre;
+        		$usuario->apellido = $apellido;
+        		$usuario->mail = $email;
+        		$usuario->fechaingreso = $fechaingreso;
+        		$usuario->clave = $pass;
+        		$IdInsertado = $usuario->InsertarUsuario( 
+        									$usuario->nombre,        									
+  											$usuario->apellido,
+    										$usuario->sexo,
+    										$usuario->idprovincia,
+    										$usuario->localidad,
+    										$usuario->domicilio,
+    										$usuario->fechaingreso,
+  											$usuario->mail,
+  											$usuario->clave,
+    										$usuario->foto,
+    										$usuario->rol );
+        	}
+        else
+            {
+            	echo "PassNoCoincide";
+            }			
+		break;	
 	case 'TraerProducto':
 		$producto = producto::TraerUnProducto($_POST['id']);		
 		echo json_encode($producto);

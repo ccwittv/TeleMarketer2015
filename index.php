@@ -63,7 +63,7 @@
                     </ul>   
                   </li>         
                   <li><a href="#" onclick="Mostrar('MostrarEstadisticasVentas')" class="btn">Estadísticas de Ventas <br> (Solo Supervisor) </a> </li>  
-                  <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
+                  <li><a href="#" ><span class="glyphicon glyphicon-lock"></span> Cambiar Clave </a></li>
                   <li><a href="#" onclick="MostarLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
               </div>
