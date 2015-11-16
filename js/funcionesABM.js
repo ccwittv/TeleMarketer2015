@@ -183,7 +183,7 @@ function BorrarProducto(idParametro)
 	});
 	funcionAjax.done(function(retorno){		
 		Mostrar("MostrarGrillaProductos");		
-		//alert(retorno);
+		alert(retorno);
 	});
 	funcionAjax.fail(function(retorno){	
 		alert(retorno);

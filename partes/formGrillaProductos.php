@@ -24,7 +24,7 @@
 						<td>$producto->nombre</td>
             			<td>$producto->descripcion</td>
             			<td>$producto->preciounitario</td>
-            			<td><img  class='fotoGrilla' style='width:70px;height:70px;' src='fotos/".$producto->foto."' /></td>			
+            			<td><img  class='fotoGrilla' style='width:70px;height:70px;' src='Fotos/".$producto->foto."' /></td>			
 					</tr>";
 			}			  
 		}
