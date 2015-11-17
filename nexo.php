@@ -263,8 +263,9 @@ switch ($queHago) {
 		$apellido=$_POST['apellido'];        
 		$email=$_POST['email'];
 		$fechaingreso=$_POST['fechaingreso'];
-        $pass=$_POST['pass'];
-        $pass2=$_POST['pass2'];
+//la contraseña se encripta        
+        $pass= sha1($_POST['pass']); 
+        $pass2=sha1($_POST['pass2']);
         if ($pass == $pass2)
         	{
         		$usuario = new usuario();

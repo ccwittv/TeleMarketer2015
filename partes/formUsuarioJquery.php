@@ -19,8 +19,8 @@ if(!isset($_SESSION['registrado'])){  ?>
         		<p>Direccion<input class="form-control" name="dire" type="text" maxlength="50" value="lalala 1320" id="dire" ></p>-->
         		<p>E-mail (sera su nombre de usuario)<input class="form-control" name="email" type="text" value="" id="email" maxlength="50" required="" autofocus=""></p>
         		<!--<p>Fecha de nacimiento<input class="form-control" name="fecha" type="date" value="07 29 1999" id="fecha"></p>-->
-        		<p>Password<input class="form-control" name="pass" type="password" value="" id="pass" required="" autofocus=""></p>
-        		<p>Confirmar Password<input class="form-control" name="pass2" type="password" value="" id="pass2" required="" autofocus=""></p>
+        		<p>Clave<input class="form-control" name="pass" type="password" value="" id="pass" minlength="6" required="" autofocus=""></p>
+        		<p>Confirmar Clave<input class="form-control" name="pass2" type="password" value="" id="pass2" required="" autofocus=""></p>
         		<!--<p>Foto<input class="form-control btn btn-info"  name="fichero" type="file" id="fichero"></p>
         		<span id="error" class='error1' style="display: none;"></span>
                 <p>Preview</p><img  name="imagen" id="imagen" src="" alt="Imagen aqui" width="280" height="250">-->

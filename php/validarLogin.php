@@ -4,7 +4,7 @@ require_once"../clases/AccesoDatos.php";
 require_once"../clases/usuario.php";
 
 $usuario=$_POST['usuario'];
-$clave=$_POST['clave'];
+$clave=sha1($_POST['clave']);
 $recordar=$_POST['recordarme'];
 $usuarioBuscado = usuario::validarUsuario($usuario,$clave);
 
