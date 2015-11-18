@@ -1,7 +1,8 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/ingreso.css" rel="stylesheet">
-
+<script type="text/javascript">  
+</script>
  
 <?php 
  
@@ -21,7 +22,7 @@ if(!isset($_SESSION['registrado'])){  ?>
           </label>
           
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>        
       </form>
       
       <br>
@@ -29,7 +30,9 @@ if(!isset($_SESSION['registrado'])){  ?>
         <h5 class="form-ingreso-heading">Información</h5>
         <input type="text"  class="form-control" readonly id="MensajeError" >
         <h3 class="form-ingreso-heading">Registrar</h3>
-                <button class="btn btn-lg btn-warning btn-block" onclick="Mostrar('RegistracionUsuario')" type="button">Registrar</button>          
+                <button class="btn btn-lg btn-warning btn-block" onclick="Mostrar('RegistracionUsuario')" type="button">Registrar</button> <br>    
+                <!-- <a href='resetearclave/index.html' >Olvidé mi clave</a> -->
+                <button class="btn btn-lg btn-success btn-block" onClick="location.href = 'resetearclave/index.html'" type="button">Olvidé mi clave</button>
       </form>
 
     </div> <!-- /container -->

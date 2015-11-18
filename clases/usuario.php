@@ -79,4 +79,14 @@ class usuario
             return $usuarioBuscado; 
      }  
 
+    public function ModificarPass($id,$clave)
+     {
+            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+            $consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET clave = :pclave WHERE id = :pid");
+            $consulta->bindValue(':pid',$id,PDO::PARAM_INT);
+            $consulta->bindValue(':pclave',$clave,PDO::PARAM_INT);            
+            return $consulta->execute();
+            
+     }   
+
 }   
