@@ -27,7 +27,15 @@ if(isset($_FILES['fichero0']))
     				
     			$ruta=getcwd();  //ruta directorio actual
     			//$ruta=$ruta."\\FotosTemp\\";
-    			$ruta=$ruta."\\FotosTemp\\";
+    			//Esto se hace debido a que cuando se sube a tuars no detecta la \\ como directorio
+    			if ($_SERVER['SERVER_NAME'] == 'localhost' or $_SERVER['SERVER_NAME'] == 'localhost:8080' )
+    				{
+    					$ruta=$ruta."\\FotosTemp\\";
+    				}
+    			else
+    				{
+    					$ruta=$ruta."/FotosTemp/";
+    				}
 				
 				//Se borra contenido directorio para limpiar de fotos de previws anteriores
     			$handle = opendir($ruta); 
