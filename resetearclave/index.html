@@ -54,7 +54,7 @@
             dataType:'json',
             data:$("#frmRestablecer").serializeArray()
           }).done(function(respuesta){
-            alert(respuesta);
+            //alert(respuesta);
             $("#mensaje").html(respuesta.mensaje);
             $("#email").val('');
           });

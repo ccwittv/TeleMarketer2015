@@ -9,6 +9,9 @@ require_once("clases/datoscompletosventa.php");
 $queHago=$_POST['queHacer'];
 
 switch ($queHago) {
+	case 'MostrarListadoVendedores':
+		include("partes/formListadoVendedores.php");
+		break;
 	case 'CargarVenta':
 		include("partes/formVenta.php");
 		break;
@@ -50,7 +53,7 @@ switch ($queHago) {
 				$producto = new producto();
 				$producto->id=$_POST['id'];
 				$cantidad=$producto->BorrarProducto($producto->id);
-				echo $cantidad; 
+				echo "Producto borrado";
 			}
 		else 
 			{ 

@@ -17,7 +17,14 @@
 		$tokenbuscado = resetkey::TraerUnTokenId($idinsertado);
 		
 		if(isset($tokenbuscado->token)){
-			$enlace = $_SERVER["SERVER_NAME"].'/TeleMarketer2015/resetearclave/restablecer.php?idusuario='.sha1($tokenbuscado->idusuario).'&token='.$tokenbuscado->token;
+			if ($_SERVER['SERVER_NAME'] == 'localhost' or $_SERVER['SERVER_NAME'] == 'localhost:8080' )
+				{
+					$enlace = $_SERVER["SERVER_NAME"].'/TeleMarketer2015/resetearclave/restablecer.php?idusuario='.sha1($tokenbuscado->idusuario).'&token='.$tokenbuscado->token;
+				}
+			else
+			    {
+			    	$enlace = 'http://'.$_SERVER["SERVER_NAME"].'/resetearclave/restablecer.php?idusuario='.sha1($tokenbuscado->idusuario).'&token='.$tokenbuscado->token;
+			    }		
 			return $enlace;
 		}
 		else
@@ -62,7 +69,7 @@
 // no lleva	a la direccion cuando se le hace click. Es por eso  que cuando se trabaja en localhost
 // hay que copiar y pegar la direccion que llega por correo en el navegador.
 // Con la pagina de tuars no deberia pasar esto
-		if ($_SERVER['SERVER_NAME'] == 'localhost' or $_SERVER['SERVER_NAME'] == 'localhost:8080' )
+		/*if ($_SERVER['SERVER_NAME'] == 'localhost' or $_SERVER['SERVER_NAME'] == 'localhost:8080' )
 			{
 				$correo->MsgHTML( '<html>
 				<head>
@@ -93,8 +100,23 @@
  					</p>
 				</body>
 				</html>');	
-			}	
+			}	*/
 
+
+		$correo->MsgHTML( '<html>
+				<head>
+		 			<title>Restablece tu contraseña</title>
+				</head>
+				<body>
+		 			<p>Hemos recibido una petición para restablecer la contraseña de tu cuenta.</p>
+		 			<p>Si hiciste esta petición, haz clic en el siguiente enlace, si no hiciste esta petición puedes ignorar este correo.</p>
+		 			<p>
+		 				<strong>Enlace para restablecer tu contraseña</strong><br>
+		 				<a href="'.$link.'"> Restablecer contraseña </a>
+ 					</p>
+				</body>
+				</html>');	
+				
         $correo->Send();
 	}
 	

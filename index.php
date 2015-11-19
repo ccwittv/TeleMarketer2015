@@ -22,6 +22,10 @@
     <script type="text/javascript" src="js/funcionesABM.js"></script>
     <script type="text/javascript" src="js/funcionesMapa.js"></script>
     
+<!-- scripts para webservice-->
+    <!--<script type="text/javascript" src="js/url.js"></script>
+    <script type="text/javascript" src="js/controlGrilla.js"></script>-->
+    
     <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
     <script type="text/javascript" src="js/moduloGeolocalizacion.js"></script>
     <script type="text/javascript" src="js/geolocalizacionCommon.js"></script>
@@ -63,7 +67,7 @@
                     </ul>   
                   </li>         
                   <li><a href="#" onclick="Mostrar('MostrarEstadisticasVentas')" class="btn">Estadísticas de Ventas <br> (Solo Supervisor) </a> </li>  
-                  <!--<li><a href="#" ><span class="glyphicon glyphicon-lock"></span> Cambiar Clave </a></li>-->
+                  <li><a href="#" onclick="Mostrar('MostrarListadoVendedores')"><span class="glyphicon glyphicon-list"></span> Listado Vendedores (WS) </a></li>
                   <li><a href="#" onclick="MostarLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
               </div>
