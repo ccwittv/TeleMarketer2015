@@ -266,7 +266,7 @@ switch ($queHago) {
 //la contraseña se encripta        
         $pass= sha1($_POST['pass']); 
         $pass2=sha1($_POST['pass2']);
-        if ($pass == $pass2)
+        if ($pass === $pass2)
         	{
         		$usuario = new usuario();
         		$usuario->nombre = $nombre;

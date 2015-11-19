@@ -23,7 +23,7 @@ function GuardarUsuario()
 			 }
 	});
 	funcionAjax.done(function(retorno){			
-		//alert(retorno);
+		alert(retorno);
 		if (retorno.trim() == "PassNoCoincide")
 			{
 	          alert("La confirmacion no coincide con la contraseña");
