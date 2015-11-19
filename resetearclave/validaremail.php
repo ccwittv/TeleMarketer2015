@@ -3,6 +3,7 @@
     require '../clases/usuario.php';
     require '../clases/resetkey.php';
     require '../clases/phpmailer/PHPMailerAutoload.php';
+    require '../clases/admintelem2015.php';
 	
 	function generarLinkTemporal($idusuario, $mail){
 
@@ -45,13 +46,13 @@
 		$correo->CharSet = 'UTF-8';
 		$correo->Timeout=30;
 
-		$correo->Username   = '';
+		$correo->Username   = admintelem2015::TraerMailAdminTelem2015('webmaster');
 
-		$correo->Password   = '';
+		$correo->Password   = admintelem2015::TraerPassAdminTelem2015('webmaster');
 
-		$correo->SetFrom('', 'Administrador Telemarketer2015');
+		$correo->SetFrom( $correo->Username, 'Administrador Telemarketer2015');
 
-		$correo->AddReplyTo('','Administrador Telemarketer2015');
+		$correo->AddReplyTo( $correo->Username,'Administrador Telemarketer2015');
 
 		$correo->AddAddress($email, $remitente->apellido.', '.$remitente->nombre);
 
@@ -92,7 +93,7 @@
  					</p>
 				</body>
 				</html>');	
-			}		
+			}	
 
         $correo->Send();
 	}
