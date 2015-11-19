@@ -45,13 +45,13 @@
 		$correo->CharSet = 'UTF-8';
 		$correo->Timeout=30;
 
-		$correo->Username   = 'akrom1999@gmail.com';
+		$correo->Username   = '';
 
 		$correo->Password   = '';
 
-		$correo->SetFrom('akrom1999@gmail.com', 'Administrador Telemarketer2015');
+		$correo->SetFrom('', 'Administrador Telemarketer2015');
 
-		$correo->AddReplyTo('akrom1999@gmail.com','Administrador Telemarketer2015');
+		$correo->AddReplyTo('','Administrador Telemarketer2015');
 
 		$correo->AddAddress($email, $remitente->apellido.', '.$remitente->nombre);
 
