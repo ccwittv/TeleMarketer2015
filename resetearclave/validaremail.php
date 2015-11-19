@@ -47,7 +47,7 @@
 
 		$correo->Username   = 'akrom1999@gmail.com';
 
-		$correo->Password   = 'metalo21';
+		$correo->Password   = '';
 
 		$correo->SetFrom('akrom1999@gmail.com', 'Administrador Telemarketer2015');
 
