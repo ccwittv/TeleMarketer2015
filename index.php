@@ -35,6 +35,26 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+   <script type="text/javascript">
+       function TraerClima()
+        {
+          alert("Voy a buscar el clima");
+          var funcionAjax=$.ajax({ url:"traerclima.php",});
+          funcionAjax.done(function(retorno){
+          //alert(retorno);
+              document.getElementById("temperatura").value = retorno;
+        });
+        funcionAjax.fail(function(retorno){
+          
+        });
+        funcionAjax.always(function(retorno){
+          //alert("siempre "+retorno.statusText);
+
+        });
+        }
+   </script>
+
  </head>
  <body>
     <div id="pagewrap">
@@ -80,6 +100,8 @@
         <div id="botonesRSS">
           <h5> BOTONES RSS </H5> 
              <!--contenido dinamico cargado por ajax-->
+            <button class='btn btn-danger' id="traerclima" name='traerclima' onclick='TraerClima()'>Traer Clima </button> 
+            <input type="text" id="temperatura"> </input>             
         </div>
 <!--      </section>  -->
     <!-- /.widget -->            
