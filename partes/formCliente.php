@@ -86,12 +86,12 @@ if(isset($_SESSION['registrado'])){  ?>
         <br>
 
         <label>
-            <input type="radio" Name="sexo" id="sexom" value="M" onclick="HabilitarTres('apellidonombre')">Masculino
-            <input type="radio" Name="sexo" id="sexof" value="F" onclick="HabilitarTres('apellidonombre')">Femenino
+            <input required="" type="radio" Name="sexo" id="sexom" value="M" onclick="HabilitarTres('apellidonombre')">Masculino
+            <input required="" type="radio" Name="sexo" id="sexof" value="F" onclick="HabilitarTres('apellidonombre')">Femenino
         </label>
         <br>
 
-        <textarea id="apellidonombre" class="form-control" disabled placeholder="Apellido y nombre"></textarea>      
+        <textarea id="apellidonombre" class="form-control" required="" disabled placeholder="Apellido y nombre"></textarea>      
         <br>
 
         <select id="provincia" required="" onchange="HabilitarDos('localidad','domicilio')" name="provincia" >
@@ -102,9 +102,9 @@ if(isset($_SESSION['registrado'])){  ?>
                 }?>
         </select>
         <br>
-        <textarea id="localidad" class="form-control" disabled placeholder="Localidad"></textarea>
+        <textarea required="" id="localidad" class="form-control" disabled placeholder="Localidad"></textarea>
         <br>
-        <textarea id="domicilio" class="form-control" disabled placeholder="Domicilio"></textarea>
+        <textarea required="" id="domicilio" class="form-control" disabled placeholder="Domicilio"></textarea>
         <br>
         
         <fieldset class="checkbox">
