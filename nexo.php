@@ -266,9 +266,10 @@ switch ($queHago) {
 		$apellido=$_POST['apellido'];        
 		$email=$_POST['email'];
 		$fechaingreso=$_POST['fechaingreso'];
+		$rol=$_POST['rol'];
 //la contraseña se encripta        
         $pass= sha1($_POST['pass']); 
-        $pass2=sha1($_POST['pass2']);
+        $pass2=sha1($_POST['pass2']);        
         if ($pass === $pass2)
         	{
         		$usuario = new usuario();
@@ -277,6 +278,7 @@ switch ($queHago) {
         		$usuario->mail = $email;
         		$usuario->fechaingreso = $fechaingreso;
         		$usuario->clave = $pass;
+        		$usuario->rol = $rol;
         		$IdInsertado = $usuario->InsertarUsuario( 
         									$usuario->nombre,        									
   											$usuario->apellido,

@@ -24,7 +24,8 @@ if(!isset($_SESSION['registrado'])){  ?>
         		<!--<p>Foto<input class="form-control btn btn-info"  name="fichero" type="file" id="fichero"></p>
         		<span id="error" class='error1' style="display: none;"></span>
                 <p>Preview</p><img  name="imagen" id="imagen" src="" alt="Imagen aqui" width="280" height="250">-->
-                <p><input class="btn btn-info" type="submit" value="Registrarse" name="btnRegistro"></p
+            <p><input type="hidden" name="rol" id="rol" value="usuario" readonly></p>
+            <p><input class="btn btn-info" type="submit" value="Registrarse" name="btnRegistro"></p>
     	    </fieldset>
     	   
     		</form>

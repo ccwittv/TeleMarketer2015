@@ -5,6 +5,7 @@ function GuardarUsuario()
 		var email=$("#email").val();
         var pass=$("#pass").val();
         var pass2=$("#pass2").val();
+        var rol=$("#rol").val();
 
         var fecha = new Date();
 		var fechaingreso= fecha.getFullYear() + "-" + (fecha.getMonth() +1) + "-" + fecha.getDate();  
@@ -18,6 +19,7 @@ function GuardarUsuario()
 				apellido:apellido,
 	            email:email,
 	            fechaingreso:fechaingreso,
+	            rol:rol,
 	            pass:pass,	            
 	            pass2:pass2,	            
 			 }

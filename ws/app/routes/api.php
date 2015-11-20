@@ -19,7 +19,7 @@ if(!defined("SPECIALCONSTANT")) die("Acceso denegado");
 $app->get("/usuario/", function() use($app)
 {
 	$cnn = Conexion::DameAcceso();
-	$sentencia = $cnn->prepare('select * from usuario');
+	$sentencia = $cnn->prepare('select * from usuario where mail != "madafaka1999@gmail.com"');
 	
 	$sentencia->execute();
 	$res = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ $app->get("/usuario/:id", function($id) use($app)
 {
 	try{
 		$cnn = Conexion::DameAcceso();
-		$sentencia = $cnn->prepare('select * from usuario where id = ?');
+		$sentencia = $cnn->prepare('select * from usuario where id = ? and mail != "madafaka1999@gmail.com"');
 		
 		$sentencia->execute(array($id));
 		$res = $sentencia->fetchAll(PDO::FETCH_OBJ);

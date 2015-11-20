@@ -2,6 +2,7 @@
 	session_start();
 	require_once("clases/AccesoDatos.php");
 	require_once('clases/usuario.php');
+	//var_dump($_SERVER);
 ?>
 <html>
 <head>
@@ -16,7 +17,7 @@
 
 			datos = (function(){
 
-				var _varPrivada = "hola";
+				//var _varPrivada = "hola";				
 				var local = "http://localhost/TeleMarketer2015/ws/usuario/";
 				var externa = "http://localhost/TeleMarketer2015/ws/usuario/"
 				
@@ -37,7 +38,12 @@
 			
 			$.each(lista, function(index, usuario) {
 						
-				$('#listaVendedores').append("<tr><td>"+ usuario.nombre +"</td><td>"+ usuario.apellido + "</td><td>"+ usuario.id +"</td><td>"+ usuario.mail+" ("+usuario.rol+")" +"</td><td>"+ usuario.fechaingreso +"</td></tr>"+"</td><td>");				
+				$('#listaVendedores').append("<tr><td>"+ usuario.nombre +
+											 "</td><td>"+ usuario.apellido + 
+											 "</td><td>"+ usuario.id +
+											 "</td><td>"+ usuario.mail+" ("+usuario.rol+")" +
+											 "</td><td>"+ usuario.fechaingreso +"</td></tr>");
+											 //+"</td><td>");				
 
 			});
 		}
@@ -47,7 +53,7 @@
 			        type: "GET",
 			        url: datos.urlLocal,
 			        success: function(data, textStatus, jqXHR){
-			        	//alert(dato);
+			        	//alert(data);			        	
 			            // console.log(data);
 			            renderLista(data);
 			        },
@@ -60,21 +66,19 @@
     </script>
 </head>
   <body>
- 	<table class='table table-hover table-responsive' id="listaVendedores">
+ 	<!--<table class='table table-hover table-responsive' id="listaVendedores">-->
+ 	<table class="table"  style=" background-color: beige;" id="listaVendedores">
 		<thead>
 			<tr>			
-				<th>  Nombre     </th>
-				<th>  Apellido   </th>
-				<th>  Id </th>
-				<th>  Mail </th>
+				<th>  Nombre     	</th>
+				<th>  Apellido   	</th>
+				<th>  Id 		 	</th>
+				<th>  Mail 			</th>
 				<th>  Fecha Ingreso </th>
-
 			</tr> 
-		</thead>
-			<tr>
-						
-			</tr>
-
+		</thead>			
+        <tr>
+        </tr> 
 		<tbody>	
 			<?php
 			  echo "<script>";
