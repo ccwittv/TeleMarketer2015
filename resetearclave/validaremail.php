@@ -19,7 +19,7 @@
 		if(isset($tokenbuscado->token)){
 			if ($_SERVER['SERVER_NAME'] == 'localhost' or $_SERVER['SERVER_NAME'] == 'localhost:8080' )
 				{
-					$enlace = $_SERVER["SERVER_NAME"].'/TeleMarketer2015/resetearclave/restablecer.php?idusuario='.sha1($tokenbuscado->idusuario).'&token='.$tokenbuscado->token;
+					$enlace = 'http://'.$_SERVER["SERVER_NAME"].'/TeleMarketer2015/resetearclave/restablecer.php?idusuario='.sha1($tokenbuscado->idusuario).'&token='.$tokenbuscado->token;
 				}
 			else
 			    {

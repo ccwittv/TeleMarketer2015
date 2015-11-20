@@ -17,7 +17,7 @@ class cliente
      public function BorrarCliente($id)
 	 {
 	 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("Delete from cliente where id = :pid");
+			$consulta =$objetoAccesoDato->RetornarConsulta("CALL BorrarCliente(:pid)");
 			$consulta->bindValue(':pid',$id, PDO::PARAM_INT);		
 			$consulta->execute();
 			return $consulta->rowCount();
@@ -26,7 +26,7 @@ class cliente
      public static function TraerTodosLosClientes()
 		{	
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta=$objetoAccesoDato->RetornarConsulta("select * from cliente");
+			$consulta=$objetoAccesoDato->RetornarConsulta("CALL TraerTodosLosClientes");
 			$consulta->execute();			
 			return $consulta->fetchAll(PDO::FETCH_CLASS,"cliente");		
 		}
@@ -34,7 +34,7 @@ class cliente
 	 public static function TraerUnCliente($id)
 		{	
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select * from cliente where id = :pid");
+			$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnCliente(:pid)");
 			$consulta->bindValue(':pid',$id, PDO::PARAM_INT);
 			$consulta->execute();			
 			$clienteBuscado= $consulta->fetchObject('cliente');
@@ -44,7 +44,7 @@ class cliente
 	public static function TraerUnClientePorDNI($dni)
 		{	
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select * from cliente where dni = :pdni");
+			$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnClientePorDNI(:pdni)");
 			$consulta->bindValue(':pdni',$dni, PDO::PARAM_INT);
 			$consulta->execute();			
 			$clienteBuscado= $consulta->fetchObject('cliente');
@@ -68,12 +68,9 @@ class cliente
 	 {
 
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("
-				UPDATE cliente set dni=:pdni,fechanacimiento=:pfechanacimiento,sexo=:psexo,apeynom=:papeynom,
-								   idprovincia=:pidprovincia,localidad=:plocalidad,domicilio=:pdomicilio,
-								   tcelular=:ptcelular,mail=:pmail,
-								   tfijo=:ptfijo,ttrabajo=:pttrabajo
-				WHERE id = :pid");
+			$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarCliente(:pid,:pdni,:pfechanacimiento,
+																:psexo,:papeynom,:pidprovincia,:plocalidad,
+																:pdomicilio,:ptcelular,:pmail,:ptfijo,:pttrabajo)");
 			$consulta->bindValue(':pid',$id,PDO::PARAM_INT);
 			$consulta->bindValue(':pdni',$dni,PDO::PARAM_INT);
 			$consulta->bindValue(':pfechanacimiento',$fechanacimiento,PDO::PARAM_STR);
@@ -93,10 +90,10 @@ class cliente
 	 public function InsertarCliente($dni,$fechanacimiento,$sexo,$apeynom,$idprovincia,$localidad,$domicilio,$tcelular,$mail,$tfijo,$ttrabajo)
 	 {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-				$consulta =$objetoAccesoDato->RetornarConsulta("
-					INSERT into cliente (dni,fechanacimiento,sexo,apeynom,idprovincia,localidad,domicilio,tcelular,mail,tfijo,ttrabajo)
-					                     values 
-					                    (:pdni,:pfechanacimiento,:psexo,:papeynom,:pidprovincia,:plocalidad,:pdomicilio,:ptcelular,:pmail,:ptfijo,:pttrabajo)");
+				$consulta =$objetoAccesoDato->RetornarConsulta("CALL InsertarCliente(:pdni,:pfechanacimiento,:psexo,
+																					 :papeynom,:pidprovincia,:plocalidad,
+																					 :pdomicilio,:ptcelular,:pmail,
+																					 :ptfijo,:pttrabajo)");
 				$consulta->bindValue(':pdni',$dni,PDO::PARAM_INT);
 				$consulta->bindValue(':pfechanacimiento',$fechanacimiento,PDO::PARAM_STR);
 				$consulta->bindValue(':psexo',$sexo,PDO::PARAM_STR);

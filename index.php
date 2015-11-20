@@ -38,7 +38,7 @@
  </head>
  <body>
     <div id="pagewrap">
-      <header id="header">
+      <header id="header">  
            <nav class="navbar navbar">
             <div class="container-fluid">
               <div class="navbar-header">
@@ -73,7 +73,18 @@
               </div>
             </div>
           </nav>
-                      
+<!-- /#aside --> 
+<!--    <aside id="sidebar"> -->    
+<!--      <section id="seccion"> -->
+<!--          <h4 class="widgettitle">Botones ABM</h4> -->
+        <div id="botonesRSS">
+          <h5> BOTONES RSS </H5> 
+             <!--contenido dinamico cargado por ajax-->
+        </div>
+<!--      </section>  -->
+    <!-- /.widget -->            
+<!--     </aside>  -->
+  <!-- /#sidebar -->                                                        
       <div id="content" style="width:980px"> 
           <article  class="post clearfix">    
             <div id="principal">
@@ -87,5 +98,6 @@
      </header>
 
     </div> 
+
  </body>
 </html>
