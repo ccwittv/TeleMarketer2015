@@ -17,7 +17,7 @@ class admintelem2015
     public static function TraerMailAdminTelem2015($rol)
      {
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-            $consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUsuarioRol(:prol)");            
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where rol= :prol");            
             $consulta->bindValue(':prol',$rol,PDO::PARAM_STR);
             $consulta->execute();         
             $adminBuscado = $consulta->fetchObject('admintelem2015');             
@@ -27,7 +27,7 @@ class admintelem2015
     public static function TraerPassAdminTelem2015($rol)
      {
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-            $consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUsuarioRol(:prol)");            
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where rol= :prol");            
             $consulta->bindValue(':prol',$rol,PDO::PARAM_STR);
             $consulta->execute();         
             $adminBuscado = $consulta->fetchObject('admintelem2015');             
@@ -37,7 +37,7 @@ class admintelem2015
      public static function TraerNombreAdminTelem2015($rol)
      {
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-            $consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUsuarioRol(:prol)");            
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where rol= :prol");            
             $consulta->bindValue(':prol',$rol,PDO::PARAM_STR);
             $consulta->execute();         
             $adminBuscado = $consulta->fetchObject('admintelem2015');             
@@ -47,7 +47,7 @@ class admintelem2015
       public static function TraerApellidoAdminTelem2015($rol)
      {
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-            $consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUsuarioRol(:prol)");            
+            $consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where rol= :prol");            
             $consulta->bindValue(':prol',$rol,PDO::PARAM_STR);
             $consulta->execute();         
             $adminBuscado = $consulta->fetchObject('admintelem2015');             

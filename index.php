@@ -53,6 +53,24 @@
 
         });
         }
+
+       function TraerNoticia()
+        {
+          //alert("Voy a buscar la noticia");
+          var funcionAjax=$.ajax({ url:"traernoticia.php",});
+          funcionAjax.done(function(retorno){
+              alert(retorno);
+              //document.getElementById("principal").value = "Solo se que no se nada";
+              $("#principal").html(retorno);
+        });
+        funcionAjax.fail(function(retorno){
+          
+        });
+        funcionAjax.always(function(retorno){
+          //alert("siempre "+retorno.statusText);
+
+        });
+        } 
    </script>
 
  </head>
@@ -72,22 +90,28 @@
               <div class="collapse navbar-collapse"> <!--id="myNavbar">-->
                 <ul class="nav">
                   <!--<li><a href="#" onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>-->
-                  <li><a href="#" class="btn">Cargas</a>
+                  <li><a href="#" class="btn glyphicon glyphicon-floppy-saved"> Cargas</a>
                     <ul> 
                       <li><a href="#" onclick="Mostrar('CargarVenta')" class="btn">Carga de VENTAS</a> </li>      
                       <li><a href="#" onclick="Mostrar('CargarCliente')" class="btn">Carga de CLIENTES</a> </li>
                       <li><a href="#" onclick="Mostrar('CargarProducto')" class="btn">Carga de PRODUCTOS <br> (Solo Supervisor)</a> </li>
                     </ul>
                   </li>  
-                  <li><a href="#" class="btn">Listados</a>
+                  <li><a href="#" class="btn glyphicon glyphicon-list"> Listados</a>
                     <ul> 
                        <li><a href="#" onclick="Mostrar('MostrarGrillaVentas')" class="btn">Listado de VENTAS</a> </li>
                        <li><a href="#" onclick="Mostrar('MostrarGrillaClientes')" class="btn">Listado de CLIENTES</a> </li>
                        <li><a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn">Listado de PRODUCTOS</a> </li>
+                       <li><a href="#" onclick="Mostrar('MostrarListadoVendedores')" class="btn"> Listado Vendedores (WS) </a> </li>
                     </ul>   
                   </li>         
-                  <li><a href="#" onclick="Mostrar('MostrarEstadisticasVentas')" class="btn">Estadísticas de Ventas <br> (Solo Supervisor) </a> </li>  
-                  <li><a href="#" onclick="Mostrar('MostrarListadoVendedores')"><span class="glyphicon glyphicon-list"></span> Listado Vendedores (WS) </a></li>
+                  <li><a href="#" onclick="Mostrar('MostrarEstadisticasVentas')" class="btn glyphicon glyphicon-stats"> Estadísticas <br> (Solo Supervisor) </a> </li>
+                  <li><a href="#" class="btn glyphicon glyphicon-list-alt"> Reportes <br> (Solo Supervisor) </a>
+                    <ul> 
+                      <li><a href="php/reporte_pdf.php" class="btn"><img src="imagenes/pdf.png" style='width:20px;height:20px;'/> PDF Ventas</a> </li>
+                      <li><a href="php/reporte_excel.php" class="btn"><img src="imagenes/excel.png" style='width:20px;height:20px;'/> Excel Ventas</a> </li>    
+                    </ul>
+                  </li>
                   <li><a href="#" onclick="MostarLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
               </div>
@@ -97,11 +121,11 @@
 <!--    <aside id="sidebar"> -->    
 <!--      <section id="seccion"> -->
 <!--          <h4 class="widgettitle">Botones ABM</h4> -->
-        <div id="botonesRSS">
+        <div id="botonesRSS" class="">
           <h5> BOTONES RSS </H5> 
              <!--contenido dinamico cargado por ajax-->
             <button class='btn btn-danger' id="traerclima" name='traerclima' onclick='TraerClima()'>Traer Clima </button> 
-            <input type="text" id="temperatura"> </input>             
+            <input type="text" id="temperatura"> </input>          
         </div>
 <!--      </section>  -->
     <!-- /.widget -->            
@@ -111,7 +135,7 @@
           <article  class="post clearfix">    
             <div id="principal">
               <?php
-
+                //echo "Solo se que no se nada";
               ?>
             </div>              
           </article>  

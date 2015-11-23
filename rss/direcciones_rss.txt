@@ -1,0 +1,4 @@
+http://www.cdmarket.com.ar/feeds/
+http://www.infodolar.com/blog/index.php/feed/
+http://contenidos.lanacion.com.ar/herramientas/rss/origen=2
+http://servicios.lanacion.com.ar/herramientas/rss/ayuda
