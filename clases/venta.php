@@ -130,12 +130,19 @@ class venta
 																   venta.cantidad as Cantidad,
 																   (producto.preciounitario * venta.cantidad) as Precio_Final,
 																   venta.formadepago as Forma_Pago,
-																   venta.fechaventa as Fecha_Venta
+																   venta.fechaventa as Fecha_Venta,
+																   usuario.nombre as Nombre_Usuario,
+																   usuario.apellido as Apellido_Usuario,
+																   usuario.fechaingreso as Fecha_Ingreso,
+																   usuario.mail as Mail_Usuario,
+																   usuario.rol as Rol_Usuario
 																   from venta
 																   inner join producto
 																   on venta.idproducto = producto.id
 																   inner join cliente
-																   on venta.idcliente = cliente.id");
+																   on venta.idcliente = cliente.id
+																   inner join usuario
+																   on venta.idusuario = usuario.id");
 			$consulta->execute();
       		return $consulta->fetchAll();		
     }        
