@@ -37,40 +37,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
    <script type="text/javascript">
-       function TraerClima()
-        {
-          alert("Voy a buscar el clima");
-          var funcionAjax=$.ajax({ url:"traerclima.php",});
-          funcionAjax.done(function(retorno){
-          //alert(retorno);
-              document.getElementById("temperatura").value = retorno;
-        });
-        funcionAjax.fail(function(retorno){
-          
-        });
-        funcionAjax.always(function(retorno){
-          //alert("siempre "+retorno.statusText);
-
-        });
-        }
-
-       function TraerNoticia()
-        {
-          //alert("Voy a buscar la noticia");
-          var funcionAjax=$.ajax({ url:"traernoticia.php",});
-          funcionAjax.done(function(retorno){
-              alert(retorno);
-              //document.getElementById("principal").value = "Solo se que no se nada";
-              $("#principal").html(retorno);
-        });
-        funcionAjax.fail(function(retorno){
-          
-        });
-        funcionAjax.always(function(retorno){
-          //alert("siempre "+retorno.statusText);
-
-        });
-        } 
+       
    </script>
 
  </head>
@@ -122,10 +89,16 @@
 <!--      <section id="seccion"> -->
 <!--          <h4 class="widgettitle">Botones ABM</h4> -->
         <div id="botonesRSS" class="">
-          <h5> BOTONES RSS </H5> 
+          <h5> Fuentes RSS </H5> 
              <!--contenido dinamico cargado por ajax-->
-            <button class='btn btn-danger' id="traerclima" name='traerclima' onclick='TraerClima()'>Traer Clima </button> 
-            <input type="text" id="temperatura"> </input>          
+            <!--<button class='btn btn-danger' id="traerclima" name='traerclima' onclick='TraerRSS()'>Traer RSS o WS </button> 
+            <input type="text" id="temperatura"> </input> -->
+            <select onchange="TraerRSS(this.value)">
+              <option value="">Seleccionar RSS:</option>
+              <option value="http://www.cdmarket.com.ar/feeds/">CD Market</option>
+              <option value="http://cdn01.am.infobae.com/adjuntos/163/rss/ahora.xml">Infobae</option>
+              <option value="http://www.infodolar.com/blog/index.php/feed/">Info Dolar</option>
+            </select>          
         </div>
 <!--      </section>  -->
     <!-- /.widget -->            

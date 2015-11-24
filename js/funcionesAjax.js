@@ -86,3 +86,26 @@ function cargarFoto(){
     });
 
 }
+
+function TraerRSS(str_rss_ws)
+        {
+          
+          var funcionAjax=$.ajax({ 
+                                    url:"traerRSS.php",
+                                    type:"post",
+                                    data:{
+                                            direccion_web:str_rss_ws
+                                         }   
+                                });
+          funcionAjax.done(function(retorno){
+              //alert(retorno);
+              //document.getElementById("principal").value = "Solo se que no se nada";
+                  $("#principal").html(retorno);
+              });
+          funcionAjax.fail(function(retorno){
+                  alert(retorno);          
+              });
+          funcionAjax.always(function(retorno){
+            //alert("siempre "+retorno.statusText);
+          });
+        }

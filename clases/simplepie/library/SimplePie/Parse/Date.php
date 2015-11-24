@@ -33,7 +33,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package SimplePie
- * @version 1.3.1
+ * @version 1.4-dev
  * @copyright 2004-2012 Ryan Parman, Geoffrey Sneddon, Ryan McCue
  * @author Ryan Parman
  * @author Geoffrey Sneddon
@@ -332,6 +332,7 @@ class SimplePie_Parse_Date
 		'CDT' => -18000,
 		'CEDT' => 7200,
 		'CET' => 3600,
+		'CEST' => 7200,
 		'CGST' => -7200,
 		'CGT' => -10800,
 		'CHADT' => 49500,
