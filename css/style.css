@@ -50,7 +50,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 GENERAL STYLING
 *************************************************************************************/
 body {
-	background: #0d1424 url(../imagenes/TelemarketerZombie.jpg) no-repeat center top !important;
+	background: #0d1424 url(../imagenes/dontry.jpeg) no-repeat center top !important;
 	font: .81em/150% Arial, Helvetica, sans-serif;
 	color: #666;
 }
@@ -119,6 +119,11 @@ STRUCTURE
 #pagewrap {
 	width: 980px;
 	margin: 0 auto;
+}
+#pagewrapCCW {
+	width: 150%;
+	margin: 0 auto;
+	padding: 55px;
 }
 
 /************************************************************************************

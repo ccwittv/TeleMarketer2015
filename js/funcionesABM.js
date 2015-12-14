@@ -11,7 +11,7 @@ function GuardarUsuario()
 		var fechaingreso= fecha.getFullYear() + "-" + (fecha.getMonth() +1) + "-" + fecha.getDate();  
         	
 		var funcionAjax=$.ajax({
-		url:"nexo.php",
+		url:"../nexo.php",
 		type:"post",
 		data:{
 				queHacer:"GuardarUsuario",				
@@ -25,16 +25,49 @@ function GuardarUsuario()
 			 }
 	});
 	funcionAjax.done(function(retorno){			
-		alert(retorno);
-		if (retorno.trim() == "PassNoCoincide")
+		//alert(retorno);
+		if (retorno.search("UserExiste") != -1)
 			{
-	          alert("La confirmacion no coincide con la contraseña");
+	          //alert("La confirmacion no coincide con la contraseña");
+	          $("#MensajeError").val("Usuario existe");
+			}
+		else if (retorno.search("PassNoCoincide") != -1)
+			{
+	          //alert("La confirmacion no coincide con la contraseña");
+	          $("#MensajeError").val("Confirmación no coincide con clave");
 			}
 		else
 		    {
-              alert("Vendedor / usuario creado");
-              MostarLogin();							
-		    }	
+              //alert("Vendedor / usuario creado");
+              //MostrarLogin("MostrarLogin");
+              $("#MensajeError").val("Vendedor / usuario creado");
+              location.href = '../index.php'
+            }  	
+		/*switch (retorno.trim())
+		 {
+		 	case "UserExiste":
+		 	 $("#MensajeError").val("Usuario existe");
+		 	 break;
+		 	case  "PassNoCoincide":
+		 	 $("#MensajeError").val("Confirmación no coincide con clave");
+		 	 break;
+		 	default:
+		 	 $("#MensajeError").val("Vendedor / usuario creado");
+             location.href = '../index.php'
+		 	 break; 
+		 }*/
+		/*if (retorno.trim() == "PassNoCoincide")
+			{
+	          //alert("La confirmacion no coincide con la contraseña");
+	          $("#MensajeError").val("Confirmación no coincide con clave");
+			}
+		else
+		    {
+              //alert("Vendedor / usuario creado");
+              //MostrarLogin("MostrarLogin");
+              $("#MensajeError").val("Vendedor / usuario creado");
+              location.href = '../index.php'							
+		    }	*/
 	});
 	funcionAjax.fail(function(retorno){	
 		alert(retorno);		

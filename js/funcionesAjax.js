@@ -23,16 +23,18 @@ function Mostrar(queMostrar)
 	});
 }
 
-function MostarLogin()
+/*function MostrarLogin(queMostrar)
 {
 		//alert(queMostrar);
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
-		data:{queHacer:"MostarLogin"}
+		data:{queHacer:queMostrar}
 	});
 	funcionAjax.done(function(retorno){
-		$("#principal").html(retorno);
+    $("#pagewrapCCW").html(retorno);
+    //location.href = 'index.php';
+		//$("#principal").html(retorno);
 		//$("#sidebar").html("Correcto Form login!!!");	
 	});
 	funcionAjax.fail(function(retorno){
@@ -44,7 +46,7 @@ function MostarLogin()
 		//alert("siempre "+retorno.statusText);
 
 	});
-}
+}*/
 
 function cargarFoto(){
     var files = $("#fichero").get(0).files; // $("#fichero") slector por id de jquery  

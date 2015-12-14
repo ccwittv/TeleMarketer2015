@@ -73,7 +73,7 @@ $arrayDeProvincias=provincia::TraerTodasLasProvincias();
 $arrayDeProductos=producto::TraerTodosLosProductos();
 
 if(isset($_SESSION['registrado'])){  ?>
-    <div class="container">
+    <div class="container" >
 
       <form  class="form-ingreso-ccw" onsubmit="GuardarCliente(); return false;">
         <h3 class="form-ingreso-heading">Cliente</h3>

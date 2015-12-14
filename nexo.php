@@ -30,14 +30,15 @@ switch ($queHago) {
 	case 'MostrarGrillaProductos':
 		include("partes/formGrillaProductos.php");
 		break;
-	case 'MostarLogin':
-		include("partes/formLogin.php");
+	/*case 'MostrarLogin':
+		//include("partes/formLogin.php");
+		include("index.php");
 		break;
-	case 'desloguear':
-		include("php/deslogearUsuario.php");
-		break;	
 	case 'RegistracionUsuario':
 		include("partes/formUsuarioJquery.php");
+		break;*/		
+	case 'desloguear':
+		include("php/deslogearUsuario.php");
 		break;		
     case 'VerEnMapa':        
         include("partes/formMapa.php");
@@ -269,33 +270,41 @@ switch ($queHago) {
 		$rol=$_POST['rol'];
 //la contraseña se encripta        
         $pass= sha1($_POST['pass']); 
-        $pass2=sha1($_POST['pass2']);        
-        if ($pass === $pass2)
-        	{
-        		$usuario = new usuario();
-        		$usuario->nombre = $nombre;
-        		$usuario->apellido = $apellido;
-        		$usuario->mail = $email;
-        		$usuario->fechaingreso = $fechaingreso;
-        		$usuario->clave = $pass;
-        		$usuario->rol = $rol;
-        		$IdInsertado = $usuario->InsertarUsuario( 
-        									$usuario->nombre,        									
-  											$usuario->apellido,
-    										$usuario->sexo,
-    										$usuario->idprovincia,
-    										$usuario->localidad,
-    										$usuario->domicilio,
-    										$usuario->fechaingreso,
-  											$usuario->mail,
-  											$usuario->clave,
-    										$usuario->foto,
-    										$usuario->rol );
-        	}
-        else
-            {
-            	echo "PassNoCoincide";
-            }			
+        $pass2=sha1($_POST['pass2']);
+        $usuario=usuario::TraerUnUsuarioMail($email);
+        if ($usuario->mail === $email)
+         {
+        	echo "UserExiste";
+         }
+        else 
+         {         
+	        if ($pass === $pass2)
+	        	{
+		        		$usuario = new usuario();
+		        		$usuario->nombre = $nombre;
+		        		$usuario->apellido = $apellido;
+		        		$usuario->mail = $email;
+		        		$usuario->fechaingreso = $fechaingreso;
+		        		$usuario->clave = $pass;
+		        		$usuario->rol = $rol;
+		        		$IdInsertado = $usuario->InsertarUsuario( 
+		        									$usuario->nombre,        									
+		  											$usuario->apellido,
+		    										$usuario->sexo,
+		    										$usuario->idprovincia,
+		    										$usuario->localidad,
+		    										$usuario->domicilio,
+		    										$usuario->fechaingreso,
+		  											$usuario->mail,
+		  											$usuario->clave,
+		    										$usuario->foto,
+		    										$usuario->rol );
+	        	}
+	        else
+	            {
+	            	echo "PassNoCoincide";
+	            }
+	     }      			
 		break;	
 	case 'TraerProducto':
 		$producto = producto::TraerUnProducto($_POST['id']);		

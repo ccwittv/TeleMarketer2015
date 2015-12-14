@@ -24,15 +24,17 @@ $("#sidebar").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>")
 			{	
 				//MostarLogin();
 				$("#MensajeError").val("Ingreso Correcto");
-				//Mostrar('CargarVenta');				
+				//Mostrar('CargarVenta');
+				location.href = 'index_empleados.php';				
 			}
         else if (retorno.trim()=="No registrado")
         	{
 				//MostarLogin();
-				$("#MensajeError").val("NO esta registrado... ");
+				$("#MensajeError").val("Usuario o contraseña no válida... ");
         	}
 	});
 	funcionAjax.fail(function(retorno){
+		alert(retorno);
 		$("#botonesABM").html(":(");
 		$("#sidebar").html(retorno.responseText);	
 	});
@@ -47,6 +49,7 @@ function deslogear()
 	});
 	funcionAjax.done(function(retorno){
 			//MostarBotones();
-			MostarLogin();
+			//MostrarLogin("MostrarLogin");
+			location.href = 'index.php';
 	});	
 }
