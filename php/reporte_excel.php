@@ -21,7 +21,7 @@ if(isset($_SESSION['registrado']))
     if ($_SESSION['rol'] == 'supervisor') 
     {             	
       header("Content-type: application/vnd.ms-excel");
-	  header("Content-Disposition: attachment; filename=Reporte_Personal_usuarios.xls"); ?>
+	  header("Content-Disposition: attachment; filename=Reporte_ventas_usuarios.xls"); ?>
 	  
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml">

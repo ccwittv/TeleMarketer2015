@@ -74,8 +74,14 @@ $arrayDeProductos=producto::TraerTodosLosProductos();
 
 if(isset($_SESSION['registrado'])){  ?>
     <div class="container" >
-
-      <form  class="form-ingreso-ccw" onsubmit="GuardarCliente(); return false;">
+      <?php if ($_SESSION['rol'] === 'usuario') 
+      {
+         echo "<form  style='margin: 30px 0 0 269px'>";        
+         echo '<button class="btn btn-success" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
+         echo "</form>";        
+         echo "<br>";         
+      } ?> 
+      <form  class="form-ingreso-ccw" onsubmit="GuardarCliente(); return false;" style="margin: 0 auto">
         <h3 class="form-ingreso-heading">Cliente</h3>
         
         <label for="DNI" class="sr-only" hidden>DNI</label>
@@ -134,6 +140,10 @@ if(isset($_SESSION['registrado'])){  ?>
          </fieldset> 
           
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+        <?php if ($_SESSION['rol'] === 'usuario') 
+          { ?>
+             <a href="#" onclick="Mostrar('CargarVenta')" class="btn btn-lg btn-success btn-block">Volver a venta</a>               
+         <?php } ?>   
         <input type="hidden" name="id" id="id" readonly>
       </form>
 

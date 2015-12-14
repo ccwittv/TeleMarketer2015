@@ -299,6 +299,30 @@ function EditarProducto(idParametro)
 	
 }
 
+function VenderProducto(idParametro)
+{    
+    Mostrar('CargarVenta');
+	//alert("Modificar");
+	var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"TraerProducto",
+			id:idParametro	
+		}
+	});
+	funcionAjax.done(function(retorno){		
+		var producto =JSON.parse(retorno);		
+		$("#producto").val(producto.id);
+		$("#cantidad").attr('disabled',false);
+		$("#precio").val(producto.preciounitario);
+	});
+	funcionAjax.fail(function(retorno){
+		alert(retorno);
+	});
+	
+}
+
 function GuardarProducto()
 {
         var id = $("#id").val()

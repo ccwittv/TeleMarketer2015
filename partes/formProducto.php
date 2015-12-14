@@ -8,7 +8,7 @@ session_start();
 if(isset($_SESSION['registrado'])){  
     if ($_SESSION['rol'] == 'supervisor') { ?>
       <div class="container">
-        <form  class="form-ingreso " onsubmit="GuardarProducto(); return false;" id="formProducto" enctype="multipart/form-data">
+        <form  class="form-ingreso " onsubmit="GuardarProducto(); return false;" id="formProducto" enctype="multipart/form-data" style="margin: 0 auto">
            <h2 class="form-ingreso-heading"> Producto </h2>
             <label for="nombre" class="sr-only" hidden>Nombre</label>
                  <input type="text" id="nombre" class="form-control" placeholder="Nombre" required="" autofocus="">

@@ -29,10 +29,10 @@
 session_start();
 if(!isset($_SESSION['registrado'])){  ?>
    <body>
-    <div id="pagewrapCCW">
+    <div id="container">
       <header id="header"> 
         <div id="formLogin" class="container">
-          <form  class="form-ingreso " onsubmit="validarLogin();return false;">
+          <form  class="form-ingreso " onsubmit="validarLogin();return false;" style="margin: 0 auto">
             <h2 class="form-ingreso-heading">Ingrese sus Datos</h2>
             <label for="correo" class="sr-only">Usuario (correo electrónico)</label>
                     <input type="email" id="correo" class="form-control" placeholder="Usuario (correo electrónico)" required="" autofocus="" value="<?php  if(isset($_COOKIE["registro"])){echo $_COOKIE["registro"];}?>">
@@ -49,7 +49,7 @@ if(!isset($_SESSION['registrado'])){  ?>
           </form>
           
           <br>
-          <form  class="form-ingreso" >
+          <form  class="form-ingreso" style="margin:auto">
             <h3 class="form-ingreso-heading"></h3>
                     <button class="btn btn-lg btn-warning btn-block" onclick="location.href = 'partes/formUsuarioJquery.php'" type="button">Registrarse</button> <br> 
                     <!--<button class="btn btn-lg btn-warning btn-block" onclick="MostrarLogin('RegistracionUsuario')" type="button">Registrar</button> <br> -->   

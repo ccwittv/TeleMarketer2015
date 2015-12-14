@@ -8,12 +8,11 @@
 		<script type="text/javascript">
 		$("#content").css("width", "900px");
 		</script>
-	    <br>
+
 	    <?php 
          if ($_SESSION['rol'] === 'supervisor')
      	  {	
-            echo "<br>
-				<table class='table'  style='background-color: beige;'>
+            echo "<table class='table'  style='background-color: beige;'>
 				<thead>
 					<tr>
 						<th>Editar</th><th>Borrar</th><th>Nombre</th><th>Descripción</th><th>Precio Unitario</th><th>Foto</th>

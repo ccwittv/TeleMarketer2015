@@ -92,10 +92,16 @@ require_once("clases/cliente.php");
 $arrayDeProductos=producto::TraerTodosLosProductos();
 $arrayDeClientes=cliente::TraerTodosLosClientes();
 
-if(isset($_SESSION['registrado'])){  ?>
-    <div class="container">
-
-      <form  class="form-ingreso-ccw" onsubmit="GuardarVenta(); return false;">
+if(isset($_SESSION['registrado'])){  ?>    
+   <div class="container">
+      <?php if ($_SESSION['rol'] === 'usuario') 
+      {
+         echo "<form  style='margin: 30px 0 0 269px'>";        
+         echo '<button class="btn btn-success" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
+         echo "</form>";        
+         echo "<br>";         
+      } ?>
+      <form  class="form-ingreso-ccw" onsubmit="GuardarVenta(); return false;" style="margin: 0 auto">        
         <h3 class="form-ingreso-heading">Venta</h3>
         <select id="producto" required="" name="producto" onchange="HabilitarUno('producto','cantidad')">  
           <option value="" disabled selected >Seleccionar producto</option>
@@ -130,6 +136,10 @@ if(isset($_SESSION['registrado'])){  ?>
                   echo "<option value=$cliente->id>$cliente->dni: $cliente->apeynom</option>";                    
                 }?>
         </select>
+        <?php if ($_SESSION['rol'] === 'usuario') 
+          { ?>
+            <a href="#" onclick="Mostrar('CargarCliente')" class="btn btn-primary btn-xs">Cargar Nuevo Cliente</a>
+          <?php } ?>          
         <br>
         Fecha Nacimiento: <input type="date" disabled readonly id="fechanacimiento" style="width:150px">
         <br>
@@ -151,12 +161,14 @@ if(isset($_SESSION['registrado'])){  ?>
         <br>
           
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+         <?php if ($_SESSION['rol'] === 'usuario') 
+          { ?>
+             <a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn btn-lg btn-success btn-block">Volver a Lista de Productos</a>               
+         <?php } ?>        
         <input type="hidden" name="id" id="id" readonly>
       </form>
 
-
-
-    </div> <!-- /container -->
+ </div> <!-- /container -->
 
   <?php }else{    echo"<h3>usted no esta logeado. </h3>"; }
 

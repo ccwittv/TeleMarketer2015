@@ -42,10 +42,10 @@ session_start();
 if(!isset($_SESSION['registrado'])){  ?>
 
 	<body>
-		<div id="pagewrapCCW">
+		<div id="container">
      <header id="header"> 
       <div id="formLogin" class="container">			
-    		<form id="frmRegistro" class="form-ingreso" onsubmit="GuardarUsuario();return false;">    
+    		<form id="frmRegistro" class="form-ingreso" onsubmit="GuardarUsuario();return false;" style="margin: 0 auto">    
           <fieldset>
         		<legend>Registración de usuario</legend>
         		<p>Nombre<input class="form-control" name="nombre" type="text" maxlength="50" value="" id="nombre" required="" autofocus=""></p>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['registrado'])){  ?>
         		<span id="error" class='error1' style="display: none;"></span>
                 <p>Preview</p><img  name="imagen" id="imagen" src="" alt="Imagen aqui" width="280" height="250">-->
             <p><input type="hidden" name="rol" id="rol" value="usuario" readonly></p>
-            <p><input class="btn btn-info" type="submit" value="Guardar Usuario" name="btnRegistro"></p>
+            <p><input class="btn btn-primary" type="submit" value="Guardar Usuario" name="btnRegistro"></p>
             <p><input class="btn btn-success" onClick="location.href = '../index.php'" type="button" value="Volver al Login"></p>
     	    </fieldset>
     	   

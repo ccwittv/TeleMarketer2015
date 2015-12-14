@@ -50,7 +50,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 GENERAL STYLING
 *************************************************************************************/
 body {
-	background: #0d1424 url(../imagenes/dontry.jpeg) no-repeat center top !important;
+	/*background: #0d1424 url(../imagenes/dontry.jpeg) no-repeat center top !important;*/
+	background: #b3d8ff no-repeat center top !important;
 	font: .81em/150% Arial, Helvetica, sans-serif;
 	color: #666;
 }
@@ -121,9 +122,23 @@ STRUCTURE
 	margin: 0 auto;
 }
 #pagewrapCCW {
-	width: 150%;
+    position: absolute;
+	/*nos posicionamos en el centro del navegador*/
+	top:20%;
+	left:50%;
+	/*determinamos una anchura*/
+	width:400px;
+	/*indicamos que el margen izquierdo, es la mitad de la anchura*/
+	margin-left:-200px;
+	/*determinamos una altura*/
+	height:300px;
+	/*indicamos que el margen superior, es la mitad de la altura*/
+	margin-top:-150px;
+	/*border:1px solid #808080;*/
+	padding:5px;			
+	/*width: 150%;
 	margin: 0 auto;
-	padding: 55px;
+	padding: 55px;*/
 }
 
 /************************************************************************************

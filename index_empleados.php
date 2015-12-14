@@ -3,7 +3,8 @@
  <head>
     <meta charset="utf-8">
     <!-- disable iPhone inital scale -->
-    <meta name="viewport" content=" initial-scale=1.0">
+    <!--<meta name="viewport" content=" initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Telemarketer</title>
 
@@ -30,6 +31,9 @@
     <script type="text/javascript" src="js/moduloGeolocalizacion.js"></script>
     <script type="text/javascript" src="js/geolocalizacionCommon.js"></script>
     
+    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -44,12 +48,42 @@
 <?php session_start();
 if(isset($_SESSION['registrado'])){  ?>
  <body>
-    <div id="pagewrap">
+    <div id="container">
       <header id="header">  
        <?php
         if($_SESSION['rol'] === "supervisor")
-          {  ?> 
-             <nav class="navbar navbar">
+          {  ?>                                                      
+              <div class="container">              
+                <div class="btn-group btn-group-justified">                  
+                   <a href="#" onclick="Mostrar('CargarVenta')" class="btn btn-primary">Carga de Ventas</a>
+                   <a href="#" onclick="Mostrar('CargarCliente')" class="btn btn-primary">Carga de Clientes</a>
+                   <a href="#" onclick="Mostrar('CargarProducto')" class="btn btn-primary">Carga de Productos</a>
+                </div>
+                <div class="btn-group btn-group-justified">                  
+                   <a href="#" onclick="Mostrar('MostrarGrillaVentas')" class="btn btn-info">Listado de Ventas</a>
+                   <a href="#" onclick="Mostrar('MostrarGrillaClientes')" class="btn btn-info">Listado de Clientes</a>
+                   <a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn btn-info">Listado de Productos</a>
+                   <a href="#" onclick="Mostrar('MostrarListadoVendedores')" class="btn btn-info">Listado Vendedores (WS)</a>                   
+                </div>
+                <div class="btn-group btn-group-justified">                  
+                   <a href="#" onclick="Mostrar('MostrarEstadisticasVentas')" class="btn btn-primary">Estadísticas</a>
+                   <a href="php/reporte_pdf.php" class="btn btn-primary"><img src="imagenes/pdf.png" style='width:20px;height:20px;'/> PDF Ventas</a>
+                   <a href="php/reporte_excel.php" class="btn btn-primary"><img src="imagenes/excel.png" style='width:20px;height:20px;'/> Excel Ventas</a>
+                   
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">RSS<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#" onclick='TraerRSS("http://www.cdmarket.com.ar/feeds/")'>CD Market</a></li>
+                      <li><a href="#" onclick='TraerRSS("http://cdn01.am.infobae.com/adjuntos/163/rss/ahora.xml")'>Infobae</a></li>
+                      <li><a href="#" onclick='TraerRSS("http://www.infodolar.com/blog/index.php/feed/")'>Info Dolar</a></li>
+                    </ul>
+                   </div>
+                   
+
+                   <a href="#" onclick="deslogear()" class="btn btn-danger glyphicon glyphicon-log-out"> SALIR</a>
+                </div>
+              </div> 
+             <!--<nav class="navbar navbar">
               <div class="container-fluid">
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -57,11 +91,9 @@ if(isset($_SESSION['registrado'])){  ?>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                   </button>
-                  <!--<a class="navbar-brand" href="#">Telemarketer 2015</a>-->
                 </div>
-                <div class="collapse navbar-collapse"> <!--id="myNavbar">-->
+                <div class="collapse navbar-collapse"> 
                   <ul class="nav">
-                    <!--<li><a href="#" onclick="MostarLogin()" class="btn">Ingreso <br> (Login para sesión) </a></li>-->
                     <li><a href="#" class="btn glyphicon glyphicon-floppy-saved"> Cargas</a>
                       <ul> 
                         <li><a href="#" onclick="Mostrar('CargarVenta')" class="btn">Carga de VENTAS</a> </li>      
@@ -88,7 +120,7 @@ if(isset($_SESSION['registrado'])){  ?>
                   </ul>
                 </div>
               </div>
-            </nav>
+            </nav>-->
         <?php }
         else if ($_SESSION['rol'] === "usuario")
         {  
@@ -96,29 +128,31 @@ if(isset($_SESSION['registrado'])){  ?>
           echo "Mostrar('MostrarGrillaProductos')";
           echo "</script>";
         } ?>   
+    
 <!-- /#aside --> 
 <!--    <aside id="sidebar"> -->    
 <!--      <section id="seccion"> -->
 <!--          <h4 class="widgettitle">Botones ABM</h4> -->
-        <div id="botonesRSS" class="">
-          <h5> Fuentes RSS </H5> 
-             <!--contenido dinamico cargado por ajax-->
+        
+        <!--<div id="botonesRSS" class="">
+          <h5> Fuentes RSS </H5> -->
+            <!--contenido dinamico cargado por ajax-->
             <!--<button class='btn btn-danger' id="traerclima" name='traerclima' onclick='TraerRSS()'>Traer RSS o WS </button> 
             <input type="text" id="temperatura"> </input> -->
-            <select onchange="TraerRSS(this.value)">
+          <!--  <select onchange="TraerRSS(this.value)">
               <option value="">Seleccionar RSS:</option>
               <option value="http://www.cdmarket.com.ar/feeds/">CD Market</option>
               <option value="http://cdn01.am.infobae.com/adjuntos/163/rss/ahora.xml">Infobae</option>
               <option value="http://www.infodolar.com/blog/index.php/feed/">Info Dolar</option>
             </select>          
-        </div>
+        </div> -->
 <!--      </section>  -->
     <!-- /.widget -->            
 <!--     </aside>  -->
   <!-- /#sidebar -->                                                        
       <!--<div id="content" style="width:980px"> -->
-          <article  class="post clearfix">    
-            <div id="principal">
+          <article  class="post clearfix" style="margin: 10px 10px 10px 10px">    
+            <div id="principal" >
               <?php
                 //echo "Solo se que no se nada";
               ?>
@@ -126,9 +160,8 @@ if(isset($_SESSION['registrado'])){  ?>
           </article>  
       <!--</div>-->      
 
-     </header>
-
-    </div> 
+    </header>
+   </div>
 
  </body>
 <?php }
