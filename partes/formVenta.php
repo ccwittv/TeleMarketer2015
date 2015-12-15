@@ -97,7 +97,7 @@ if(isset($_SESSION['registrado'])){  ?>
       <?php if ($_SESSION['rol'] === 'usuario') 
       {
          echo "<form  style='margin: 30px 0 0 269px'>";        
-         echo '<button class="btn btn-success" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
+         echo '<button class="btn btn-danger" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
          echo "</form>";        
          echo "<br>";         
       } ?>

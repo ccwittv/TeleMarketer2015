@@ -22,7 +22,7 @@
      	  }
 	     else if ($_SESSION['rol'] === 'usuario') 
 		  {
-	       echo '<button class="btn btn-success" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
+	       echo '<button class="btn btn-danger" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
 	       echo "<br>";	
 		   echo "<table class='table'  style='background-color: beige;'>
 				<thead>

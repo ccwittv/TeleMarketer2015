@@ -77,7 +77,7 @@ if(isset($_SESSION['registrado'])){  ?>
       <?php if ($_SESSION['rol'] === 'usuario') 
       {
          echo "<form  style='margin: 30px 0 0 269px'>";        
-         echo '<button class="btn btn-success" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
+         echo '<button class="btn btn-danger" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
          echo "</form>";        
          echo "<br>";         
       } ?> 
@@ -118,9 +118,9 @@ if(isset($_SESSION['registrado'])){  ?>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" id="telefonocelular" onclick="HabilitarPorCheckbox('telefonocelular','tcelular')"> Teléfono celular </input> 
-                    <input type="text" id="tcelular" value="" disabled required=""> </input> </br>
+                    <input type="number" id="tcelular" value="" disabled required=""> </input> </br>
                     <input type="checkbox" id="correoelectronico" onclick="HabilitarPorCheckbox('correoelectronico','mail')"> Correo electrónico </input> 
-                    <input type="text" id="mail" value="" disabled required=""> </input> </br>
+                    <input type="email" id="mail" value="" disabled required=""> </input> </br>
                   </label>  
                 </div>
              </leggend>
@@ -131,9 +131,9 @@ if(isset($_SESSION['registrado'])){  ?>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" id="telefonofijo" onclick="HabilitarPorCheckbox('telefonofijo','tfijo')"> Teléfono fijo </input> 
-                    <input type="text"    id="tfijo" value="" disabled required=""> </input> </br>
+                    <input type="number"    id="tfijo" value="" disabled required=""> </input> </br>
                     <input type="checkbox" id="telefonotrabajo" onclick="HabilitarPorCheckbox('telefonotrabajo','ttrabajo')"> Teléfono trabajo </input> 
-                    <input type="text" id="ttrabajo" value="" disabled required=""> </input> </br>                    
+                    <input type="number" id="ttrabajo" value="" disabled required=""> </input> </br>                    
                   </label>  
                 </div>
              </leggend>
