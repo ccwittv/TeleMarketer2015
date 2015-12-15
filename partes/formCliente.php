@@ -48,10 +48,13 @@
         
         funcionAjax.done(function(retorno)
             { 
-              if (retorno.trim()=="EXISTE")
+               var cliente =JSON.parse(retorno);
+              //if (retorno.trim()=="EXISTE")              
+               if (cliente.id > 0)
                 {
                   alert("El cliente EXISTE. Modificar datos por grilla de clientes");    
-                }           
+                }
+              
             });
         funcionAjax.fail(function(retorno)
             {
@@ -142,7 +145,7 @@ if(isset($_SESSION['registrado'])){  ?>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
         <?php if ($_SESSION['rol'] === 'usuario') 
           { ?>
-             <a href="#" onclick="Mostrar('CargarVenta')" class="btn btn-lg btn-success btn-block">Volver a venta</a>               
+             <a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn btn-lg btn-success btn-block">Volver a venta</a>               
          <?php } ?>   
         <input type="hidden" name="id" id="id" readonly>
       </form>

@@ -1,7 +1,7 @@
 
 function Mostrar(queMostrar)
 {
-		//alert(queMostrar);
+		//alert(queMostrar);      
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",

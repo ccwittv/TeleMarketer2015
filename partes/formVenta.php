@@ -103,7 +103,7 @@ if(isset($_SESSION['registrado'])){  ?>
       } ?>
       <form  class="form-ingreso-ccw" onsubmit="GuardarVenta(); return false;" style="margin: 0 auto">        
         <h3 class="form-ingreso-heading">Venta</h3>
-        <select id="producto" required="" name="producto" onchange="HabilitarUno('producto','cantidad')">  
+        <select id="producto" value="" required="" name="producto" onchange="HabilitarUno('producto','cantidad')">  
           <option value="" disabled selected >Seleccionar producto</option>
           <?php foreach ($arrayDeProductos as $producto) 
                 {            
@@ -111,7 +111,7 @@ if(isset($_SESSION['registrado'])){  ?>
                 }?>
         </select>
         <br>
-        <input type="text" id="cantidad" min="1000000" max="99000000" 
+        <input type="text" id="cantidad" min="1000000" max="99000000" value="<?php if(isset($_COOKIE["cantidad"])){echo $_COOKIE["cantidad"];} ?>"
                placeholder="Cantidad" required="" disabled style="width:100px" oninput="LlenarPrecioTotal('producto','cantidad')">
         <input type="text" disabled readonly id="precio" placeholder="Precio Unitario" style="width:100px" value="">
         <input type="text" disabled readonly id="total"  placeholder="Total" style="width:100px" value="">
@@ -136,10 +136,6 @@ if(isset($_SESSION['registrado'])){  ?>
                   echo "<option value=$cliente->id>$cliente->dni: $cliente->apeynom</option>";                    
                 }?>
         </select>
-        <?php if ($_SESSION['rol'] === 'usuario') 
-          { ?>
-            <a href="#" onclick="Mostrar('CargarCliente')" class="btn btn-primary btn-xs">Cargar Nuevo Cliente</a>
-          <?php } ?>          
         <br>
         Fecha Nacimiento: <input type="date" disabled readonly id="fechanacimiento" style="width:150px">
         <br>

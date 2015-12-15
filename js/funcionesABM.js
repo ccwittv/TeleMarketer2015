@@ -238,8 +238,10 @@ function GuardarCliente()
 		 {
 		 	alert(retorno);
 		 }	
-		  
-		Mostrar("MostrarGrillaClientes");						
+	if (retorno.search('supervisor') != -1)
+		Mostrar("MostrarGrillaClientes");
+	else (retorno.search('usuario') != -1)
+	    Mostrar('MostrarGrillaProductos');
 	});
 	funcionAjax.fail(function(retorno){	
 		alert(retorno);		
@@ -299,7 +301,7 @@ function EditarProducto(idParametro)
 	
 }
 
-function VenderProducto(idParametro)
+function VenderProducto(idParametro,dnicliente)
 {    
     Mostrar('CargarVenta');
 	//alert("Modificar");
@@ -316,6 +318,23 @@ function VenderProducto(idParametro)
 		$("#producto").val(producto.id);
 		$("#cantidad").attr('disabled',false);
 		$("#precio").val(producto.preciounitario);
+	});
+	funcionAjax.fail(function(retorno){
+		alert(retorno);
+	});
+
+    //var dnicliente = $("#dni").val;
+	var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"TraerUnClientePorDNI",
+			id:dnicliente	
+		}
+	});
+	funcionAjax.done(function(retorno){		
+		var cliente =JSON.parse(retorno);		
+		$("#cliente").val(cliente.id);		
 	});
 	funcionAjax.fail(function(retorno){
 		alert(retorno);

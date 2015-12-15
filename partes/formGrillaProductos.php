@@ -7,6 +7,42 @@
 	if(isset($_SESSION['registrado'])){  ?>
 		<script type="text/javascript">
 		$("#content").css("width", "900px");
+
+         function ChequearDNI(idInputText) 
+		    {
+		      var funcionAjax=$.ajax({
+		            url:"nexo.php",
+		            type:"post",
+		            data:{ queHacer:"TraerUnClientePorDNI",
+		                   dni:document.getElementById(idInputText).value,
+		                 }
+		            });
+		        
+		        funcionAjax.done(function(retorno)
+		            { 
+		              var cliente =JSON.parse(retorno);
+		              document.getElementById('apeynom').value = cliente.apeynom;
+		              		              		              
+		              var botonesproductos = document.getElementsByName('venderproducto');     				  
+    				  for (var i=0; i<botonesproductos.length; i++)
+    				   { 
+        				 if (cliente.apeynom == null)
+        				    botonesproductos[i].disabled= true; 
+						 else
+		               		botonesproductos[i].disabled= false;          				
+    				   } 
+		              		              
+		            });
+		        funcionAjax.fail(function(retorno)
+		            {
+		              alert(retorno); 
+		            });
+		        funcionAjax.always(function(retorno)
+		            {  
+		             //alert(retorno);   
+		            });     
+		    }
+
 		</script>
 
 	    <?php 
@@ -21,8 +57,9 @@
 				<tbody>";
      	  }
 	     else if ($_SESSION['rol'] === 'usuario') 
-		  {
-	       echo '<button class="btn btn-danger" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out"> SALIR</button> <br>';  
+		  { ?>
+		   		<input type="number" oninput="ChequearDNI('dni')" class="form-control" placeholder="DNI" required="" id="dni" style="width:200px">
+		  <?php  echo '<input type="text" value class="form-control" placeholder="Nombre Cliente" required="" id="apeynom" disabled style="width:200px">';       
 	       echo "<br>";	
 		   echo "<table class='table'  style='background-color: beige;'>
 				<thead>
@@ -30,9 +67,9 @@
 						<th>Vender</th><th>Nombre</th><th>Descripción</th><th>Precio Unitario</th><th>Foto</th>
 					</tr>
 				</thead>
-				<tbody>";
+				<tbody>";           				
 		  } ?>			
-    	<?php 
+    	<?php     	
 		foreach ($arrayDeProductos as $producto) 
 			{    
 				echo"<tr>";
@@ -42,8 +79,9 @@
 						       <td><a onclick='BorrarProducto($producto->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>Borrar</a></td>";
 					   }
 					 else if ($_SESSION['rol'] === 'usuario')
-					   {
-					   	 echo "<td><a onclick='VenderProducto($producto->id)' class='btn btn-primary'> <span class='glyphicon glyphicon-shopping-cart'>&nbsp;</span>Vender</a></td>";
+					   { 
+					   	 //echo "<td><a onclick='VenderProducto($producto->id)' id='$producto->id' disabled class='btn btn-primary'> <span class='glyphicon glyphicon-shopping-cart'>&nbsp;</span>Vender</a></td>";
+					   	 echo "<td><button onclick='VenderProducto($producto->id,dni)' name='venderproducto' id='$producto->id' disabled class='btn btn-primary'> <span class='glyphicon glyphicon-shopping-cart'>&nbsp;</span>Vender</button></td>";
 					   }  
 
 					echo "<td>$producto->nombre</td>
@@ -51,11 +89,18 @@
             			<td>$producto->preciounitario</td>
             			<td><img  class='fotoGrilla' style='width:70px;height:70px;' src='Fotos/".$producto->foto."' /></td>			
 					</tr>";
-			}			  
-		}
+			}		
+		
+		echo	"</tbody>		
+			</table>";
+
+		if ($_SESSION['rol'] === 'usuario') 	
+		 {	?>		 	
+		 		<button class='btn btn-info' onclick='Mostrar("CargarCliente")' type='button'>Cargar Cliente</button>
+	     <?php	echo '<button class="btn btn-danger" onclick="deslogear()" type="button"> <span class="glyphicon glyphicon-log-out">&nbsp;</span> SALIR</button>';  				  
+		 }	 		
+	}	
 	else 
 	{ 
       echo"<h3>usted no esta logeado. </h3>"; 
 	} ?>
-	</tbody>
-</table>

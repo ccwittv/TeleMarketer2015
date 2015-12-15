@@ -26,7 +26,7 @@ class cliente
      public static function TraerTodosLosClientes()
 		{	
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta=$objetoAccesoDato->RetornarConsulta("select * from cliente");
+			$consulta=$objetoAccesoDato->RetornarConsulta("select * from cliente order by dni");
 			$consulta->execute();			
 			return $consulta->fetchAll(PDO::FETCH_CLASS,"cliente");		
 		}

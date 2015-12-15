@@ -18,7 +18,7 @@ switch ($queHago) {
 	case 'MostrarGrillaVentas':
 		include("partes/formGrillaVentas.php");
 		break;	
-	case 'CargarCliente':
+	case 'CargarCliente':	    
 		include("partes/formCliente.php");
 		break;			
 	case 'MostrarGrillaClientes':
@@ -27,7 +27,7 @@ switch ($queHago) {
 	case 'CargarProducto':
 		include("partes/formProducto.php");
 		break;			
-	case 'MostrarGrillaProductos':
+	case 'MostrarGrillaProductos':	    
 		include("partes/formGrillaProductos.php");
 		break;
 	/*case 'MostrarLogin':
@@ -121,7 +121,8 @@ switch ($queHago) {
 												$cliente->mail,
 												$cliente->tfijo,
 												$cliente->ttrabajo
-											);   
+											);
+		var_dump($_SESSION['rol']); 									   
         /*session_start();
 		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
 		if (isset($cliente->id))
@@ -218,8 +219,7 @@ switch ($queHago) {
 												$producto->foto);
 		echo $idInsertado;
 		break;		
-	case 'GuardarVenta':
-        session_start();
+	case 'GuardarVenta':        
         $idVenta = $_POST['id'];			
 		if ($idVenta > 0) //solo cargar el id del usuario a una venta nueva 
 			{
@@ -312,10 +312,11 @@ switch ($queHago) {
 		break;
 	case 'TraerUnClientePorDNI':
 		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
-		if (($cliente->id)<>0)
+		echo json_encode($cliente);
+		/*if (($cliente->id)<>0)
 			{
 				echo "EXISTE";
-			}
+			}*/
 		break;    	    
 	case 'TraerUnCliente':
 		$cliente=cliente::TraerUnCliente($_POST['idCliente']);		
