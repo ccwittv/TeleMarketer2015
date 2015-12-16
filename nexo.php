@@ -219,7 +219,8 @@ switch ($queHago) {
 												$producto->foto);
 		echo $idInsertado;
 		break;		
-	case 'GuardarVenta':        
+	case 'GuardarVenta':
+	    session_start();        
         $idVenta = $_POST['id'];			
 		if ($idVenta > 0) //solo cargar el id del usuario a una venta nueva 
 			{
@@ -310,8 +311,50 @@ switch ($queHago) {
 		$producto = producto::TraerUnProducto($_POST['id']);		
 		echo json_encode($producto);
 		break;
+	case 'CargarCookiesClientes':
+		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);
+		setcookie('idcliente',$cliente->id,  time()+36000 , '/');
+		setcookie('dnicliente',$cliente->dni,  time()+36000 , '/');	
+		setcookie('apeynomcliente',$cliente->apeynom,  time()+36000 , '/');
+		setcookie('fechanacimientocliente',$cliente->fechanacimiento,  time()+36000 , '/');
+		setcookie('sexocliente',$cliente->sexo,  time()+36000 , '/');
+		$provincia=provincia::TraerUnaProvincia($cliente->idprovincia);
+		setcookie('provinciacliente',$provincia->provincia,  time()+36000 , '/');
+		setcookie('localidadcliente',$cliente->localidad,  time()+36000 , '/');
+		setcookie('domiciliocliente',$cliente->domicilio,  time()+36000 , '/');
+		setcookie('tcelularcliente',$cliente->tcelular,  time()+36000 , '/');
+		setcookie('mailcliente',$cliente->mail,  time()+36000 , '/');
+		setcookie('tfijocliente',$cliente->tfijo,  time()+36000 , '/');
+		setcookie('ttrabajocliente',$cliente->ttrabajo,  time()+36000 , '/');
+		break;
+	case 'BorrarCookiesClientes':
+		unset($_COOKIE['idcliente']);
+        setcookie('idcliente', null, -1, '/');
+		unset($_COOKIE['dnicliente']);
+        setcookie('dnicliente', null, -1, '/');
+		unset($_COOKIE['apeynomcliente']);
+        setcookie('apeynomcliente', null, -1, '/');
+		unset($_COOKIE['fechanacimientocliente']);
+        setcookie('fechanacimientocliente', null, -1, '/');
+		unset($_COOKIE['sexocliente']);
+        setcookie('sexocliente', null, -1, '/');
+		unset($_COOKIE['provinciacliente']);
+        setcookie('provinciacliente', null, -1, '/');
+		unset($_COOKIE['localidadcliente']);
+        setcookie('localidadcliente', null, -1, '/');
+		unset($_COOKIE['domiciliocliente']);
+        setcookie('domiciliocliente', null, -1, '/');
+		unset($_COOKIE['tcelularcliente']);
+        setcookie('tcelularcliente', null, -1, '/');
+        unset($_COOKIE['mailcliente']);
+        setcookie('mailcliente', null, -1, '/');
+        unset($_COOKIE['tfijocliente']);
+        setcookie('tfijocliente', null, -1, '/');
+        unset($_COOKIE['ttrabajocliente']);
+        setcookie('ttrabajocliente', null, -1, '/');
+		break;  	  	
 	case 'TraerUnClientePorDNI':
-		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);		
+		$cliente=cliente::TraerUnClientePorDNI($_POST['dni']);
 		echo json_encode($cliente);
 		/*if (($cliente->id)<>0)
 			{

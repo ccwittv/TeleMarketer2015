@@ -69,7 +69,7 @@
               $("#tcelular").val(cliente.tcelular);
               $("#mail").val(cliente.mail);
               $("#tfijo").val(cliente.tfijo);
-              $("#ttrabajo").val(cliente.trabajo);  
+              $("#ttrabajo").val(cliente.ttrabajo);  
             });
 
         funcionAjax.fail(function(retorno)
@@ -111,7 +111,7 @@ if(isset($_SESSION['registrado'])){  ?>
                 }?>
         </select>
         <br>
-        <input type="text" id="cantidad" min="1000000" max="99000000" value="<?php if(isset($_COOKIE["cantidad"])){echo $_COOKIE["cantidad"];} ?>"
+        <input type="text" id="cantidad" min="1000000" max="99000000" value=""
                placeholder="Cantidad" required="" disabled style="width:100px" oninput="LlenarPrecioTotal('producto','cantidad')">
         <input type="text" disabled readonly id="precio" placeholder="Precio Unitario" style="width:100px" value="">
         <input type="text" disabled readonly id="total"  placeholder="Total" style="width:100px" value="">
@@ -129,33 +129,37 @@ if(isset($_SESSION['registrado'])){  ?>
           </div> 
         </div> 
         
-        <select id="cliente" required="" name="cliente" onchange="LlenarDatosCliente('cliente')" >
-            <option value="" disabled selected >Seleccionar cliente</option>
+        <select id="cliente" required="" name="cliente" onchange="LlenarDatosCliente('cliente')">
+            <option value="<?php if(isset($_COOKIE["idcliente"])){echo $_COOKIE["idcliente"];} ?>" selected ><?php if(isset($_COOKIE["idcliente"])){echo $_COOKIE["dnicliente"].": ".$_COOKIE["apeynomcliente"];} else { echo "Seleccionar Cliente";}?></option>
             <?php foreach ($arrayDeClientes as $cliente) 
                 {            
-                  echo "<option value=$cliente->id>$cliente->dni: $cliente->apeynom</option>";                    
-                }?>
+                  if ($cliente->id != $_COOKIE["idcliente"])
+                   {
+                    echo "<option value=$cliente->id>$cliente->dni: $cliente->apeynom</option>";  
+                   }                   
+                }?>  
         </select>
         <br>
-        Fecha Nacimiento: <input type="date" disabled readonly id="fechanacimiento" style="width:150px">
+        Fecha Nacimiento: <input type="date" disabled readonly id="fechanacimiento" style="width:150px" value="<?php if(isset($_COOKIE["fechanacimientocliente"])){echo $_COOKIE["fechanacimientocliente"];} ?>">
         <br>
-        Sexo: <input type="text" disabled readonly id="sexo" style="width:50px">
+        Sexo: <input type="text" disabled readonly id="sexo" style="width:50px" value="<?php if(isset($_COOKIE["sexocliente"])){echo $_COOKIE["sexocliente"];} ?>">
         <br>
-        Provincia: <input type="text" disabled readonly id="provincia" style="width:300px">
+        Provincia: <input type="text" disabled readonly id="provincia" style="width:300px" value="<?php if(isset($_COOKIE["provinciacliente"])){echo $_COOKIE["provinciacliente"];} ?>" >
         <br>
-        Localidad: <input type="text" disabled readonly id="localidad" style="width:300px">
+        Localidad: <input type="text" disabled readonly id="localidad" style="width:300px" value="<?php if(isset($_COOKIE["localidadcliente"])){echo $_COOKIE["localidadcliente"];} ?>" >
         <br>
-        Domicilio: <input type="text" disabled readonly id="domicilio" style="width:300px">
+        Domicilio: <input type="text" disabled readonly id="domicilio" style="width:300px" value="<?php if(isset($_COOKIE["domiciliocliente"])){echo $_COOKIE["domiciliocliente"];} ?>" >
         <br>
-        Teléfono celular: <input type="text" disabled readonly id="tcelular" style="width:300px">
+        Teléfono celular: <input type="text" disabled readonly id="tcelular" style="width:300px" value="<?php if(isset($_COOKIE["tcelularcliente"])){echo $_COOKIE["tcelularcliente"];} ?>" >
         <br>
-        Correo electrónico: <input type="text" disabled readonly id="mail" style="width:300px">
+        Correo electrónico: <input type="text" disabled readonly id="mail" style="width:300px" value="<?php if(isset($_COOKIE["mailcliente"])){echo $_COOKIE["mailcliente"];} ?>" >
         <br>
-        Teléfono fijo: <input type="text" disabled readonly id="tfijo" style="width:300px">
+        Teléfono fijo: <input type="text" disabled readonly id="tfijo" style="width:300px"  value="<?php if(isset($_COOKIE["tfijocliente"])){echo $_COOKIE["tfijocliente"];} ?>" >
         <br>
-        Teléfono trabajo: <input type="text" disabled readonly id="ttrabajo" style="width:300px">
+        Teléfono trabajo: <input type="text" disabled readonly id="ttrabajo" style="width:300px" value="<?php if(isset($_COOKIE["ttrabajocliente"])){echo $_COOKIE["ttrabajocliente"];} ?>" >
+        <br> <br>
+        <input type="text"  class="form-control" readonly id="MensajeError" >
         <br>
-          
         <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
          <?php if ($_SESSION['rol'] === 'usuario') 
           { ?>

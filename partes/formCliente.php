@@ -52,8 +52,14 @@
               //if (retorno.trim()=="EXISTE")              
                if (cliente.id > 0)
                 {
-                  alert("El cliente EXISTE. Modificar datos por grilla de clientes");    
+                  //alert("El cliente EXISTE. Modificar datos por grilla de clientes");    
+                  $("#MensajeError").val("El cliente EXISTE. Modificar datos por grilla de clientes o cargar un DNI distinto.");
+                  document.getElementById('botonguardarcliente').disabled = true;
                 }
+               else
+               {
+                 document.getElementById('botonguardarcliente').disabled = false;
+               }
               
             });
         funcionAjax.fail(function(retorno)
@@ -141,11 +147,12 @@ if(isset($_SESSION['registrado'])){  ?>
                 </div>
              </leggend>
          </fieldset> 
-          
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+        <input type="text" class="form-control" readonly id="MensajeError" >
+        <br>  
+        <button class="btn btn-lg btn-primary btn-block" id="botonguardarcliente" type="submit" enabled >Guardar</button>
         <?php if ($_SESSION['rol'] === 'usuario') 
           { ?>
-             <a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn btn-lg btn-success btn-block">Volver a venta</a>               
+             <a href="#" onclick="Mostrar('MostrarGrillaProductos')" class="btn btn-lg btn-success btn-block">Volver a Lista de Productos</a>               
          <?php } ?>   
         <input type="hidden" name="id" id="id" readonly>
       </form>

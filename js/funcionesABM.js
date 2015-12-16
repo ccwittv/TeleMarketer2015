@@ -301,9 +301,10 @@ function EditarProducto(idParametro)
 	
 }
 
-function VenderProducto(idParametro,dnicliente)
+function VenderProducto(idParametro)
 {    
     Mostrar('CargarVenta');
+    
 	//alert("Modificar");
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
@@ -323,7 +324,7 @@ function VenderProducto(idParametro,dnicliente)
 		alert(retorno);
 	});
 
-    //var dnicliente = $("#dni").val;
+    /*var dnicliente = getCookie['dnicliente'];
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
@@ -338,7 +339,7 @@ function VenderProducto(idParametro,dnicliente)
 	});
 	funcionAjax.fail(function(retorno){
 		alert(retorno);
-	});
+	});*/
 	
 }
 
@@ -408,6 +409,20 @@ function GuardarProducto()
 function GuardarVenta()
 {
         
+        var funcionAjaxCookiesClientes=$.ajax({
+		            url:"nexo.php",
+		            type:"post",
+		            data:{ 
+		            		queHacer:"BorrarCookiesClientes",
+		                 }
+		            });
+
+              funcionAjaxCookiesClientes.fail(function(retorno)
+		            {
+		              alert(retorno); 
+		            });
+
+
         var id = $("#id").val()
 		var producto=$("#producto").val();
 		var cantidad=$("#cantidad").val();
@@ -432,8 +447,9 @@ function GuardarVenta()
 			});
 		funcionAjax.done(function(retorno)
 			{
-		      alert(retorno);
-		      Mostrar('CargarVenta');		      
+		      //alert(retorno);
+		      $("#MensajeError").val(retorno);
+		      //Mostrar('CargarVenta');		      
 			});
 		funcionAjax.fail(function(retorno)
 			{	

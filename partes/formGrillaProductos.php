@@ -9,7 +9,21 @@
 		$("#content").css("width", "900px");
 
          function ChequearDNI(idInputText) 
-		    {
+		    {		
+		      
+              var funcionAjaxCookiesClientes=$.ajax({
+		            url:"nexo.php",
+		            type:"post",
+		            data:{ queHacer:"CargarCookiesClientes",
+		                   dni:document.getElementById(idInputText).value,
+		                 }
+		            });
+
+              funcionAjaxCookiesClientes.fail(function(retorno)
+		            {
+		              alert(retorno); 
+		            });
+
 		      var funcionAjax=$.ajax({
 		            url:"nexo.php",
 		            type:"post",
@@ -21,8 +35,11 @@
 		        funcionAjax.done(function(retorno)
 		            { 
 		              var cliente =JSON.parse(retorno);
+		              
+		              //Se muestra el apellido y nombre correspondiente al dni
 		              document.getElementById('apeynom').value = cliente.apeynom;
-		              		              		              
+		              
+		              //Aca se habilitan los botones		              		              
 		              var botonesproductos = document.getElementsByName('venderproducto');     				  
     				  for (var i=0; i<botonesproductos.length; i++)
     				   { 
@@ -31,7 +48,7 @@
 						 else
 		               		botonesproductos[i].disabled= false;          				
     				   } 
-		              		              
+		              
 		            });
 		        funcionAjax.fail(function(retorno)
 		            {
@@ -71,7 +88,7 @@
 		  } ?>			
     	<?php     	
 		foreach ($arrayDeProductos as $producto) 
-			{    
+			{    			
 				echo"<tr>";
 					 if ($_SESSION['rol'] === 'supervisor')
 					   { 	
@@ -81,7 +98,7 @@
 					 else if ($_SESSION['rol'] === 'usuario')
 					   { 
 					   	 //echo "<td><a onclick='VenderProducto($producto->id)' id='$producto->id' disabled class='btn btn-primary'> <span class='glyphicon glyphicon-shopping-cart'>&nbsp;</span>Vender</a></td>";
-					   	 echo "<td><button onclick='VenderProducto($producto->id,dni)' name='venderproducto' id='$producto->id' disabled class='btn btn-primary'> <span class='glyphicon glyphicon-shopping-cart'>&nbsp;</span>Vender</button></td>";
+					   	 echo "<td><button onclick='VenderProducto($producto->id)' name='venderproducto' id='$producto->id' disabled class='btn btn-primary'> <span class='glyphicon glyphicon-shopping-cart'>&nbsp;</span>Vender</button></td>";
 					   }  
 
 					echo "<td>$producto->nombre</td>

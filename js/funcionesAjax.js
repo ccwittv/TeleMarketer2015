@@ -2,7 +2,21 @@
 function Mostrar(queMostrar)
 {
 		//alert(queMostrar);      
-	var funcionAjax=$.ajax({
+	 var funcionAjaxCookiesClientes=$.ajax({
+                url:"nexo.php",
+                type:"post",
+                data:{ 
+                      queHacer:"BorrarCookiesClientes",
+                     }
+                });
+
+              funcionAjaxCookiesClientes.fail(function(retorno)
+                {
+                  alert(retorno); 
+                });
+
+
+  var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{queHacer:queMostrar}
