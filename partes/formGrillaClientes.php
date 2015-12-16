@@ -41,11 +41,14 @@
      					<td>$cliente->tfijo</td>
      					<td>$cliente->ttrabajo</td>
      				 </tr>";
-			}			  
-		}
+			}
+		 echo	"</tbody>		
+			</table>"; ?>
+		 <button class='btn btn-info' onclick='VerTodosEnMapa(<?php echo json_encode($arrayDeClientes); ?>)' type='button'><span class='glyphicon glyphicon-map-marker'>&nbsp;</span>Ver todos en Mapa</button>
+	<?php  }
 	else 
 	{ 
       echo"<h3>usted no esta logeado. </h3>"; 
 	} ?>
-	</tbody>
-</table>
+<!--	</tbody>
+</table>-->
