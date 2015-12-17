@@ -374,7 +374,11 @@ switch ($queHago) {
 	case 'TraerUnaProvincia':
 		$provincia=provincia::TraerUnaProvincia($_POST['idProvincia']);		
 		echo $provincia->provincia;
-		break;    	    		
+		break;
+	case 'TraerTodasLasProvincias':
+		$provincia=provincia::TraerTodasLasProvincias();		
+		echo json_encode($provincia);
+		break;    	    	    		
 	case 'TraerVenta':
 		$ventaCompletaBuscada=datoscompletosventa::TraerUnaVentaCompleta($_POST['idVenta']);		
 		echo json_encode($ventaCompletaBuscada);
@@ -387,7 +391,32 @@ switch ($queHago) {
 		break;
 	case 'MostrarEstadisticasVentas':
 			include("partes/estadisticas.php");
-		break;		    	    			
+		break;
+	case 'guardarMarcadores':
+        session_start();
+        if(isset($_POST["marcadores"]))
+        {
+            $filename = "ArchivosTxt/marcadores" . getdate()[0] . ".txt";
+
+            $_SESSION['file'] = $filename;
+            $puntos = $_POST["marcadores"];
+
+            $file = fopen($filename, "w");
+
+            foreach ($puntos as $valor)
+            {
+                $lat =  $valor["lat"];
+                $lng =  $valor["lng"];
+                $nombre =  $valor["nombre"];
+                fwrite($file, $lat.">".$lng.">".$nombre . PHP_EOL);
+            }
+        fclose($file);
+
+        echo "Marcadores guardados con exito";
+        }
+        else
+            echo "No ingreso marcador/es a guardar";
+        break;				    	    			
 	default:
 		# code...
 		break;

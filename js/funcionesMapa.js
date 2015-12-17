@@ -28,44 +28,24 @@ function VerEnMapa(prov, dire, loc, id, dni, fechanacimiento, sexo, apeynom, tce
 function VerTodosEnMapa(listaclientes)
 {
   //alert("ver todos en mapa");
-  var cliente;
-
-  for ( cliente in listaclientes)
-  	{
-	     var idProvincia = listaclientes[cliente].idprovincia;
-	     var funcionAjax=$.ajax({
+  var funcionAjax=$.ajax({
 									url:"nexo.php",
 									type:"post",
 									data:{
-											queHacer:"TraerUnaProvincia",
-											idProvincia:idProvincia
+											queHacer:"TraerTodasLasProvincias",
 										 }
 								});
 	      funcionAjax.done(function(retorno){
-			var provincia = retorno.trim();
-			VerEnMapa(provincia,listaclientes[cliente].domicilio,listaclientes[cliente].localidad);
-		});      
-      //VerEnMapa("buenos aires",listaclientes[cliente].domicilio,listaclientes[cliente].localidad);
-  	}
-  	
-     	
-    /*var punto = dire +", " +  loc  +", " +  prov +", Argentina";
-    console.log(punto);
-    var unCliente = "Nro. cliente: "+id+", "+ "DNI: "+dni+", "+"Fecha Nac.: "+fechanacimiento+", "+"Sexo: "+sexo+", "+
-    				"Apellido y nombre: "+apeynom+", "+"Celular: "+tcelular+", "+"Correo: "+mail+", "+"Tel.fijo:"+tfijo+", "+
-    				"Tel.trabajo: "+ttrabajo+", ";
-    var funcionAjax=$.ajax({
-		url:"nexo.php",
-		type:"post",
-		data:{
-			queHacer:"VerEnMapa"
-		}
-	});
-    funcionAjax.done(function(retorno){
-		$("#principal").html(retorno);
-        $("#punto").val(punto);
-        $("#id").val(unCliente);
-	Geolocalizacion.Marcador.iniciar();
-	Geolocalizacion.Marcador.verMarcador();	
-	});*/
+												//alert(retorno);
+												var provincias =JSON.parse(retorno);
+												for (var i=0; i<listaclientes.length; i++)
+  													{
+														var idprov = listaclientes[i].idprovincia;
+														var provincia = provincias[idprov-1].provincia;
+														var domicilio = listaclientes[i].domicilio;
+														var localidad = listaclientes[i].localidad;
+														//alert(provincia+domicilio+localidad+listaclientes[i].id+listaclientes[i].dni+listaclientes[i].fechanacimiento+listaclientes[i].sexo+listaclientes[i].apeynom+listaclientes[i].tcelular+listaclientes[i].mail+listaclientes[i].tfijo+listaclientes[i].ttrabajo);
+														VerEnMapa(provincia,domicilio,localidad,listaclientes[i].id,listaclientes[i].dni,listaclientes[i].fechanacimiento,listaclientes[i].sexo,listaclientes[i].apeynom,listaclientes[i].tcelular,listaclientes[i].mail,listaclientes[i].tfijo,listaclientes[i].ttrabajo);
+  													}
+											});
 }
