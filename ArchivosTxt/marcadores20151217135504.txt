@@ -1,0 +1,5 @@
+-27.4439525>-58.9856777>Nro. cliente: 3, DNI: 5678900, Fecha Nac.: 1980-08-23, Sexo: M, Apellido y nombre: Tapia, Ricardo, Celular: 1543250987, Correo: rtapia@baticueva.com, Tel.fijo:, Tel.trabajo: , 
+-38.7182349>-62.26312329999996>Nro. cliente: 4, DNI: 21098765, Fecha Nac.: 1984-05-11, Sexo: M, Apellido y nombre: Kent, Clark, Celular: 1509871234, Correo: ckent@metropolis.com, Tel.fijo:, Tel.trabajo: , 
+-36.2426974>-61.115944300000024>Nro. cliente: 6, DNI: 23444445, Fecha Nac.: 1960-04-01, Sexo: M, Apellido y nombre: Tinelli, Marcelo, Celular: , Correo: mtinelli@showmatch.com, Tel.fijo:, Tel.trabajo: , 
+-34.6625013>-58.36497459999998>Nro. cliente: 2, DNI: 23444446, Fecha Nac.: 1966-06-06, Sexo: M, Apellido y nombre: Mesa, Juan Carlos, Celular: 1566666666, Correo: jcm@mesadenoticias.com, Tel.fijo:4301-5434, Tel.trabajo: 45678901, 
+-34.0040576>-61.603842499999985>Nro. cliente: 1, DNI: 24567890, Fecha Nac.: 1927-02-25, Sexo: F, Apellido y nombre: Legrand, Mirtha, Celular: 1543250987, Correo: chiquita@almuerzos.com, Tel.fijo:4301-5434, Tel.trabajo: 4301-4444, 

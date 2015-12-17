@@ -396,7 +396,9 @@ switch ($queHago) {
         session_start();
         if(isset($_POST["marcadores"]))
         {
-            $filename = "ArchivosTxt/marcadores" . getdate()[0] . ".txt";
+	    	$fecha = date("Y").date("m").date("d").date("H").date("i").date("s");	
+	    	$filename = "ArchivosTxt/marcadores".$fecha.".txt";
+            //$filename = "ArchivosTxt/marcadores".getdate()[0].".txt";
 
             $_SESSION['file'] = $filename;
             $puntos = $_POST["marcadores"];

@@ -240,7 +240,7 @@ function GuardarCliente()
 		 }	
 	if (retorno.search('supervisor') != -1)
 		Mostrar("MostrarGrillaClientes");
-	else (retorno.search('usuario') != -1)
+	else if (retorno.search('usuario') != -1)
 	    Mostrar('MostrarGrillaProductos');
 	});
 	funcionAjax.fail(function(retorno){	
@@ -264,7 +264,7 @@ function BorrarProducto(idParametro)
 	});
 	funcionAjax.done(function(retorno){		
 		Mostrar("MostrarGrillaProductos");		
-		alert(retorno);
+		//alert(retorno);
 	});
 	funcionAjax.fail(function(retorno){	
 		alert(retorno);
