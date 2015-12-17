@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2015 a las 21:10:24
+-- Tiempo de generación: 17-12-2015 a las 18:46:28
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -47,7 +47,7 @@ WHERE id = pid$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `TraerTodosLosClientes`()
     NO SQL
-select * from cliente$$
+select * from cliente order by dni$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `TraerUnCliente`(IN `pid` BIGINT)
     NO SQL
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `mail` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `tfijo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `ttrabajo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `fechaventa` date NOT NULL,
   `idcliente` bigint(20) NOT NULL,
   `idusuario` bigint(20) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `venta`
@@ -233,7 +233,8 @@ INSERT INTO `venta` (`id`, `idproducto`, `cantidad`, `formadepago`, `fechaventa`
 (2, 4, 2, 'Transferencia o depósito', '2015-10-27', 1, 2),
 (3, 7, 1, 'Transferencia o depósito', '2015-11-05', 2, 1),
 (4, 4, 2, 'Otra forma de pago', '2015-11-05', 3, 2),
-(5, 3, 2, 'Otra forma de pago', '2015-11-19', 4, 2);
+(5, 3, 2, 'Otra forma de pago', '2015-11-19', 4, 2),
+(8, 2, 3, 'Otra forma de pago', '2015-12-16', 6, 2);
 
 --
 -- Índices para tablas volcadas
@@ -283,7 +284,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
@@ -308,7 +309,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

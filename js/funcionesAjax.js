@@ -125,3 +125,41 @@ function TraerRSS(str_rss_ws)
             //alert("siempre "+retorno.statusText);
           });
         }
+
+function showRSS(str) {
+  if (str.length==0) { 
+    document.getElementById("principal").innerHTML="";
+    return;
+  }
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+    }
+  }
+  //xmlhttp.open("GET","getrss.php?q="+str,true);
+  //xmlhttp.send();
+   var funcionAjax=$.ajax({ 
+                                    url:"traerRSSw3c.php",
+                                    type:"post",
+                                    data:{
+                                            q:str
+                                         }   
+                                });
+          funcionAjax.done(function(retorno){
+              //alert(retorno);
+              //document.getElementById("principal").value = "Solo se que no se nada";
+                  $("#principal").html(retorno);
+              });
+          funcionAjax.fail(function(retorno){
+                  alert(retorno);          
+              });
+          funcionAjax.always(function(retorno){
+            //alert("siempre "+retorno.statusText);
+          });
+}

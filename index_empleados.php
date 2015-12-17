@@ -74,12 +74,13 @@ if(isset($_SESSION['registrado'])){  ?>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">RSS<span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="#" onclick='TraerRSS("http://www.cdmarket.com.ar/feeds/")'>CD Market</a></li>
-                      <li><a href="#" onclick='TraerRSS("http://cdn01.am.infobae.com/adjuntos/163/rss/ahora.xml")'>Infobae</a></li>
+                      <li><a href="#" onclick='TraerRSS("cdn01.am.infobae.com/adjuntos/163/rss/ahora.xml")'>Infobae</a></li>
                       <li><a href="#" onclick='TraerRSS("http://www.infodolar.com/blog/index.php/feed/")'>Info Dolar</a></li>
+                      <li><a href="#" onclick='showRSS("Google")'>Google News</a></li>
+                      <li><a href="#" onclick='showRSS("NBC")'>NBC News</a></li>
                     </ul>
                    </div>
                    
-
                    <a href="#" onclick="deslogear()" class="btn btn-danger glyphicon glyphicon-log-out"> SALIR</a>
                 </div>
               </div> 
